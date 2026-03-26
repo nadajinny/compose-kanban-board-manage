@@ -27,7 +27,6 @@ fun TextInputSection(
     tagsInputState: TextInputState,
     modifier: Modifier = Modifier,
 ) {
-
     Column(
         modifier = modifier
             .fillMaxWidth()

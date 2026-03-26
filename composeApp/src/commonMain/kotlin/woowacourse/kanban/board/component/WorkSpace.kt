@@ -37,6 +37,7 @@ import woowacourse.kanban.board.Purple50
 import woowacourse.kanban.board.component.board.Board
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
+import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.state.WorkSpaceState
 import woowacourse.kanban.board.model.taskcard.Profile
 @Composable
@@ -49,75 +50,89 @@ fun WorkSpace(
     Row(
         modifier = modifier
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .width(255.dp)
-                .background(Color.White),
-        ) {
-            Column(
-                modifier = Modifier.padding(20.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Text(
-                    text = "프로젝트",
-                    style = TextStyle(
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Gray10
-                    ),
-                )
-                Text(
-                    text = "4주차 미션 보드",
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        color = Gray40
-                    ),
-                )
-            }
-            HorizontalDivider()
-            workSpaceState.projects.forEach { project ->
-                val backgroundColor =
-                    if (project == selectedProject) Blue80
-                    else Color.Transparent
-                val textColor =
-                    if (project == selectedProject) Purple50
-                    else Gray20
-                Button(
-                    onClick = { selectedProject = project },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = backgroundColor,
-                        contentColor = textColor
-                    ),
-                    elevation = ButtonDefaults.buttonElevation(
-                        hoveredElevation = 0.dp
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 10.dp),
-                    shape = RoundedCornerShape(10.dp),
-                ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Start
-                    ) {
-                        Text(
-                            text = project.title,
-                            style = TextStyle(
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Normal,
-                            ),
-                            overflow = TextOverflow.Ellipsis,
-                            maxLines = 1
-                        )
-                    }
-                }
-            }
-        }
+        SideBar(
+            workSpaceState = workSpaceState,
+            selectedProject = selectedProject,
+            onChangeProject = { selectedProject = it }
+        )
         Board(
             project = selectedProject,
             profiles = profiles
         )
+    }
+}
+
+@Composable
+private fun SideBar(
+    workSpaceState: WorkSpaceState,
+    selectedProject: Project,
+    onChangeProject: (Project) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxHeight()
+            .width(255.dp)
+            .background(Color.White),
+    ) {
+        Column(
+            modifier = Modifier.padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Text(
+                text = "프로젝트",
+                style = TextStyle(
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Gray10
+                ),
+            )
+            Text(
+                text = "4주차 미션 보드",
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    color = Gray40
+                ),
+            )
+        }
+        HorizontalDivider()
+        workSpaceState.projects.forEach { project ->
+            val backgroundColor =
+                if (project == selectedProject) Blue80
+                else Color.Transparent
+            val textColor =
+                if (project == selectedProject) Purple50
+                else Gray20
+            Button(
+                onClick = { onChangeProject(project) },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = backgroundColor,
+                    contentColor = textColor
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    hoveredElevation = 0.dp
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 10.dp),
+                shape = RoundedCornerShape(10.dp),
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    Text(
+                        text = project.title,
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Normal,
+                        ),
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 1
+                    )
+                }
+            }
+        }
     }
 }
 

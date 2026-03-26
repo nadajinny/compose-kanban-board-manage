@@ -48,7 +48,7 @@ fun Header(
 
 @Preview(showBackground = true)
 @Composable
-fun HeaderPreview() {
+private fun HeaderPreview() {
     Header(
         onClickClose = {},
     )
