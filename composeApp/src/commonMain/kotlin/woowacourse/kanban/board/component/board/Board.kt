@@ -31,16 +31,6 @@ import woowacourse.kanban.board.model.state.WorkSpaceState
 import woowacourse.kanban.board.model.state.ModalState
 import woowacourse.kanban.board.model.taskcard.Profile
 
-@Preview(showBackground = true)
-@Composable
-private fun BoardPreview() {
-    val project = ProjectPreviewData().values.toMutableList()[0]
-    val profiles = ProfilePreviewData().values.toImmutableList()
-    MaterialTheme {
-        Board(project, profiles)
-    }
-}
-
 @Composable
 fun Board(
     project: Project,
@@ -112,5 +102,15 @@ fun Board(
                 onMoveSnackBar = { shouldShowMoveSnackbar = true },
             )
         }
+    }
+}
+
+@Preview(showBackground = true, widthDp = 1000)
+@Composable
+private fun BoardPreview() {
+    val project = ProjectPreviewData().values.toMutableList()[0]
+    val profiles = ProfilePreviewData().values.toImmutableList()
+    MaterialTheme {
+        Board(project, profiles)
     }
 }

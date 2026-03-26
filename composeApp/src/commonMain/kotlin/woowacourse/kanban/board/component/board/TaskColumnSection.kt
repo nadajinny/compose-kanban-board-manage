@@ -53,20 +53,6 @@ import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.Title
 import woowacourse.kanban.board.model.taskcard.TaskCardData
 
-@Preview(showBackground = true)
-@Composable
-private fun TaskColumnSectionPreview() {
-    val project = ProjectPreviewData().values.toMutableList()
-    project.forEach { project ->
-        MaterialTheme {
-            TaskColumnSection(
-                project = project,
-                onMoveSnackBar = {},
-            )
-        }
-    }
-}
-
 @Composable
 fun TaskColumnSection(
     project: Project,
@@ -305,4 +291,18 @@ private fun TaskColumnDonePreview() {
         tasks = tasks,
         status = Status.DONE,
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TaskColumnSectionPreview() {
+    val project = ProjectPreviewData().values.toMutableList()
+    project.forEach { project ->
+        MaterialTheme {
+            TaskColumnSection(
+                project = project,
+                onMoveSnackBar = {},
+            )
+        }
+    }
 }

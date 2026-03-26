@@ -81,14 +81,13 @@ fun ButtonSection(
 
 @Composable
 @Preview(showBackground = true)
-private fun ButtonSectionPreview() {
-    var state by remember { mutableStateOf(Status.TODO) }
+private fun ButtonSectionTodoStatusPreview() {
     val profiles = ProfilePreviewData().values.toImmutableList()
     ButtonSection(
         state = Status.TODO,
         currentProfile = profiles[0],
         profiles = profiles,
-        onStateClick = { state = it },
+        onStateClick = { },
         onProfileClick = {},
     )
 }

@@ -36,21 +36,6 @@ import woowacourse.kanban.board.Gray30
 import woowacourse.kanban.board.component.ComponentText
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
 
-@Preview(showBackground = true)
-@Composable
-private fun BoardHeaderPreview() {
-    val project = ProjectPreviewData().values.toMutableList()[0]
-    MaterialTheme {
-        BoardHeader(
-            title = project.title,
-            doneRate = project.calculateDoneRate(),
-            doneTasks = project.doneTasks.size,
-            totalTasks = project.allTasksCount,
-            onClickCreateTask = {},
-        )
-    }
-}
-
 @Composable
 fun BoardHeader(
     title: String,
@@ -168,5 +153,20 @@ private fun TaskCreateButton(
                 color = Color.White,
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun BoardHeaderPreview() {
+    val project = ProjectPreviewData().values.toMutableList()[0]
+    MaterialTheme {
+        BoardHeader(
+            title = project.title,
+            doneRate = project.calculateDoneRate(),
+            doneTasks = project.doneTasks.size,
+            totalTasks = project.allTasksCount,
+            onClickCreateTask = {},
+        )
     }
 }

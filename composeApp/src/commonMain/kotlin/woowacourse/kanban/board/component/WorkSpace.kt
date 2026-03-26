@@ -1,6 +1,5 @@
 package woowacourse.kanban.board.component
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -39,22 +37,8 @@ import woowacourse.kanban.board.Purple50
 import woowacourse.kanban.board.component.board.Board
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
-import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.state.WorkSpaceState
 import woowacourse.kanban.board.model.taskcard.Profile
-
-@Preview(showBackground = true, widthDp = 1500)
-@Composable
-private fun WorkSpacePreview() {
-    val workSpace = WorkSpaceState(
-        ProjectPreviewData().values.toImmutableList()
-    )
-    val profiles = ProfilePreviewData().values.toImmutableList()
-    MaterialTheme {
-        WorkSpace(workSpace, profiles)
-    }
-}
-
 @Composable
 fun WorkSpace(
     workSpaceState: WorkSpaceState,
@@ -137,3 +121,14 @@ fun WorkSpace(
     }
 }
 
+@Preview(showBackground = true, widthDp = 1500)
+@Composable
+private fun WorkSpacePreview() {
+    val workSpace = WorkSpaceState(
+        ProjectPreviewData().values.toImmutableList()
+    )
+    val profiles = ProfilePreviewData().values.toImmutableList()
+    MaterialTheme {
+        WorkSpace(workSpace, profiles)
+    }
+}
