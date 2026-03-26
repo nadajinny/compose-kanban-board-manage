@@ -40,6 +40,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.component.extension.toBackgroundColor
 import woowacourse.kanban.board.component.extension.toBorderColor
+import woowacourse.kanban.board.component.extension.toFilterTask
 import woowacourse.kanban.board.component.extension.toHeaderColor
 import woowacourse.kanban.board.component.extension.toText
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
@@ -72,7 +73,7 @@ fun TaskColumnSection(
         Status.entries.forEach { status ->
             TaskColumn(
                 status = status,
-                tasks = filterTaskByStatus(status, project),
+                tasks = status.toFilterTask(status, project),
                 modifier = Modifier.weight(1f),
                 getIsDropTarget = {
                     currentDragPosition?.let { columnBounds[status]?.contains(it) } ?: false
@@ -105,14 +106,6 @@ fun TaskColumnSection(
         Spacer(
             modifier = Modifier.weight(.7f),
         )
-    }
-}
-
-private fun filterTaskByStatus(status: Status, project: Project): ImmutableList<TaskCardData> {
-    return when (status) {
-        Status.TODO -> project.todoTasks
-        Status.PROGRESS -> project.progressTasks
-        Status.DONE -> project.doneTasks
     }
 }
 

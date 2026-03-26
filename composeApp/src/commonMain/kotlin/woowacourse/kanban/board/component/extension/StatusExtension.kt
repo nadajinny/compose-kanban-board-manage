@@ -1,6 +1,7 @@
 package woowacourse.kanban.board.component.extension
 
 import androidx.compose.ui.graphics.Color
+import kotlinx.collections.immutable.ImmutableList
 import woowacourse.kanban.board.Blue60
 import woowacourse.kanban.board.Blue70
 import woowacourse.kanban.board.Blue90
@@ -11,7 +12,9 @@ import woowacourse.kanban.board.Yellow60
 import woowacourse.kanban.board.Yellow70
 import woowacourse.kanban.board.Yellow90
 import woowacourse.kanban.board.component.ComponentText
+import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Status
+import woowacourse.kanban.board.model.taskcard.TaskCardData
 
 fun Status.toText(): String = when (this) {
     Status.TODO -> ComponentText.STATE_BUTTON_TODO
@@ -35,4 +38,10 @@ fun Status.toHeaderColor(): Color = when (this) {
     Status.TODO -> Blue60
     Status.PROGRESS -> Yellow60
     Status.DONE -> Green60
+}
+
+fun Status.toFilterTask(status: Status, project: Project): ImmutableList<TaskCardData> = when (this) {
+    Status.TODO -> project.todoTasks
+    Status.PROGRESS -> project.progressTasks
+    Status.DONE -> project.doneTasks
 }

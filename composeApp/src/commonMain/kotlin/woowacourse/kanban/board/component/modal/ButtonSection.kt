@@ -35,7 +35,6 @@ fun ButtonSection(
     onProfileClick: (Profile) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-
     Column(
         modifier = modifier
             .fillMaxWidth()
