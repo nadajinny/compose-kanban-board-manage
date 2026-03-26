@@ -37,6 +37,7 @@ class ProjectTest {
         assertThat(project.progressTasks.size).isEqualTo(1)
     }
 
+    @Test
     fun `찾고자 하는 태스크 카드의 id값을 넣었을 때 해당 id 값을 가진 TaskCardData를 찾을 수 있다`() {
         val task = TaskCardData(
             id = "테스트",

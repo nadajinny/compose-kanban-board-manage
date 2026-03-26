@@ -12,17 +12,35 @@ import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
+import kanbanboard.composeapp.generated.resources.Res
+import kanbanboard.composeapp.generated.resources.profile
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlin.test.Test
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.Before
 import woowacourse.kanban.board.component.ComponentText
+import woowacourse.kanban.board.component.sample.ProjectPreviewData
+import woowacourse.kanban.board.model.taskcard.Profile
 
 @OptIn(ExperimentalTestApi::class)
 class ModalTest {
+
+    private lateinit var profiles: ImmutableList<Profile>
+
+    @Before
+    fun setUp() {
+        profiles = listOf(
+            Profile("다이노", Res.drawable.profile),
+            Profile("페임스", Res.drawable.profile)
+        ).toImmutableList()
+    }
 
     @Test
     fun `초기 상태에서 생성 버튼이 비활성화된다`() = runComposeUiTest {
         setContent {
             Modal(
+                profiles = profiles,
                 onClickClose = {},
                 onClickTaskCreate = {},
             )
@@ -34,6 +52,7 @@ class ModalTest {
     fun `제목을 입력하면 생성 버튼이 활성화된다`() = runComposeUiTest {
         setContent {
             Modal(
+                profiles = profiles,
                 onClickClose = {},
                 onClickTaskCreate = {},
             )
@@ -46,6 +65,7 @@ class ModalTest {
     fun `제목을 입력하고 태그에 ,,을 연속으로 입력하면 생성 버튼이 비활성화된다`() = runComposeUiTest {
         setContent {
             Modal(
+                profiles = profiles,
                 onClickClose = {},
                 onClickTaskCreate = {},
             )
@@ -60,6 +80,7 @@ class ModalTest {
     fun `제목을 입력한 뒤 모두 지우면 생성 버튼이 비활성화된다`() = runComposeUiTest {
         setContent {
             Modal(
+                profiles = profiles,
                 onClickClose = {},
                 onClickTaskCreate = {},
             )
@@ -75,6 +96,7 @@ class ModalTest {
         var close = false
         setContent {
             Modal(
+                profiles = profiles,
                 onClickClose = { close = true },
                 onClickTaskCreate = {},
             )
@@ -88,6 +110,7 @@ class ModalTest {
         var close = false
         setContent {
             Modal(
+                profiles = profiles,
                 onClickClose = { close = true },
                 onClickTaskCreate = {},
             )
@@ -101,6 +124,7 @@ class ModalTest {
         var create = false
         setContent {
             Modal(
+                profiles = profiles,
                 onClickClose = { },
                 onClickTaskCreate = { create = true },
             )
