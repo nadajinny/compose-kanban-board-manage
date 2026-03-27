@@ -40,7 +40,7 @@ fun Status.toHeaderColor(): Color = when (this) {
     Status.DONE -> Green60
 }
 
-fun Status.toFilterTask(status: Status, project: Project): ImmutableList<TaskCardData> = when (this) {
+fun Status.toFilterTask(project: Project): ImmutableList<TaskCardData> = when (this) {
     Status.TODO -> project.todoTasks
     Status.PROGRESS -> project.progressTasks
     Status.DONE -> project.doneTasks

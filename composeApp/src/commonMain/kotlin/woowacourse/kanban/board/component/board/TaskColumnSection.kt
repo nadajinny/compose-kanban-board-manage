@@ -73,7 +73,7 @@ fun TaskColumnSection(
         Status.entries.forEach { status ->
             TaskColumn(
                 status = status,
-                tasks = status.toFilterTask(status, project),
+                tasks = status.toFilterTask(project),
                 modifier = Modifier.weight(1f),
                 getIsDropTarget = {
                     currentDragPosition?.let { columnBounds[status]?.contains(it) } ?: false
