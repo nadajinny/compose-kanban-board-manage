@@ -29,13 +29,13 @@ import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.Gray70
 import woowacourse.kanban.board.Gray80
 import woowacourse.kanban.board.component.sample.TaskCardPreviewData
-import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
+import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.taskcard.Title
 import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable
 fun TaskCard(
@@ -102,7 +102,7 @@ private fun TaskCardEmptyDescriptionPreview() {
             description = Description(value = ""),
             tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노",Res.drawable.profile),
+            profile = Profile("다이노", Res.drawable.profile),
         ),
     )
 }
@@ -116,7 +116,7 @@ private fun TaskCardEmptyTagPreview() {
             description = Description(value = "세로 스크롤"),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노",Res.drawable.profile),
+            profile = Profile("다이노", Res.drawable.profile),
         ),
     )
 }
@@ -130,7 +130,7 @@ private fun TaskCardEmptyTagAndDescriptionPreview() {
             description = Description(value = ""),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노",Res.drawable.profile),
+            profile = Profile("다이노", Res.drawable.profile),
         ),
     )
 }
@@ -144,7 +144,7 @@ private fun TaskCardLongTitlePreview() {
             description = Description(value = ""),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노",Res.drawable.profile),
+            profile = Profile("다이노", Res.drawable.profile),
         ),
     )
 }
@@ -166,7 +166,7 @@ private fun TaskCardLongDescriptionPreview() {
             ),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노",Res.drawable.profile),
+            profile = Profile("다이노", Res.drawable.profile),
         ),
     )
 }

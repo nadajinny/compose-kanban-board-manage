@@ -18,14 +18,14 @@ import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
+import woowacourse.kanban.board.model.modal.TextInputState
 import woowacourse.kanban.board.model.state.ModalState
 import woowacourse.kanban.board.model.taskcard.Description
+import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.modal.TextInputState
-import woowacourse.kanban.board.model.taskcard.Profile
-import woowacourse.kanban.board.model.taskcard.Title
 import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable
 fun Modal(

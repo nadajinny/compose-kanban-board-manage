@@ -75,8 +75,8 @@ fun ProfileButton(
 @Composable
 private fun ProfileButtonNotChoicePreview() {
     ProfileButton(
-        currentState = Profile("다이노",Res.drawable.profile),
-        myState = Profile("페임스",Res.drawable.profile),
+        currentState = Profile("다이노", Res.drawable.profile),
+        myState = Profile("페임스", Res.drawable.profile),
         onClick = {}
     )
 }
@@ -85,8 +85,8 @@ private fun ProfileButtonNotChoicePreview() {
 @Composable
 private fun ProfileButtonChoicePreview() {
     ProfileButton(
-        currentState = Profile("페임스",Res.drawable.profile),
-        myState = Profile("페임스",Res.drawable.profile),
+        currentState = Profile("페임스", Res.drawable.profile),
+        myState = Profile("페임스", Res.drawable.profile),
         onClick = {}
     )
 }

@@ -1,11 +1,11 @@
 package woowacourse.kanban.board.model.project
 
 import androidx.compose.runtime.mutableStateListOf
+import java.util.UUID
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import woowacourse.kanban.board.model.taskcard.TaskCardData
 import woowacourse.kanban.board.model.taskcard.Status
-import java.util.UUID
+import woowacourse.kanban.board.model.taskcard.TaskCardData
 
 data class Project(
     val title: String,
@@ -20,7 +20,6 @@ data class Project(
     val todoTasks get() = tasks.filter { it.status == Status.TODO }.toImmutableList()
     val progressTasks get() = tasks.filter { it.status == Status.PROGRESS }.toImmutableList()
     val doneTasks get() = tasks.filter { it.status == Status.DONE }.toImmutableList()
-
 
     fun addCard(data: TaskCardData) = tasks.add(data)
 

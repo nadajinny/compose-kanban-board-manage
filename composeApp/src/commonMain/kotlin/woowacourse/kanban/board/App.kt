@@ -17,7 +17,7 @@ fun App() {
             Project("Compose1", listOf<TaskCardData>().toImmutableList()),
             Project("Compose2", listOf<TaskCardData>().toImmutableList()),
             Project("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCardData>().toImmutableList()),
-            ).toImmutableList()
+        ).toImmutableList()
     )
 
     val profiles = listOf(
@@ -28,5 +28,5 @@ fun App() {
     WorkSpace(
         workSpaceState = workSpace,
         profiles = profiles,
-        )
+    )
 }

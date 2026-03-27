@@ -30,9 +30,9 @@ import woowacourse.kanban.board.component.extension.toErrorText
 import woowacourse.kanban.board.component.extension.toLabel
 import woowacourse.kanban.board.component.extension.toPlaceholder
 import woowacourse.kanban.board.component.extension.toSupportingText
+import woowacourse.kanban.board.model.modal.TextInputValue
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.modal.TextInputValue
 import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable

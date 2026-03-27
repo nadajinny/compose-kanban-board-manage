@@ -6,17 +6,16 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile
-import kotlinx.collections.immutable.toImmutableList
-import woowacourse.kanban.board.component.sample.ProjectPreviewData
-import woowacourse.kanban.board.model.project.Project
 import kotlin.test.Test
-import woowacourse.kanban.board.model.taskcard.Status
+import kotlinx.collections.immutable.toImmutableList
+import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
+import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.taskcard.Title
 import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.Title
 
 @OptIn(ExperimentalTestApi::class)
 class TaskColumnSectionTest {
@@ -28,21 +27,21 @@ class TaskColumnSectionTest {
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.TODO,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val data2 = TaskCardData(
             title = Title(value = "제목"),
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.TODO,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val data3 = TaskCardData(
             title = Title(value = "제목"),
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.TODO,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val todoTasks = listOf(data1, data2, data3)
         val project = Project(
@@ -66,35 +65,35 @@ class TaskColumnSectionTest {
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val data2 = TaskCardData(
             title = Title(value = "제목"),
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val data3 = TaskCardData(
             title = Title(value = "제목"),
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val data4 = TaskCardData(
             title = Title(value = "제목"),
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val data5 = TaskCardData(
             title = Title(value = "제목"),
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val progressTasks = listOf(data1, data2, data3, data4, data5)
         val project = Project(
@@ -118,28 +117,28 @@ class TaskColumnSectionTest {
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.DONE,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val data2 = TaskCardData(
             title = Title(value = "제목"),
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.DONE,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val data3 = TaskCardData(
             title = Title(value = "제목"),
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.DONE,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val data4 = TaskCardData(
             title = Title(value = "제목"),
             description = Description("설명"),
             tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
             status = Status.DONE,
-            profile = Profile("다이노",Res.drawable.profile)
+            profile = Profile("다이노", Res.drawable.profile)
         )
         val doneTasks = listOf(data1, data2, data3, data4)
         val project = Project(

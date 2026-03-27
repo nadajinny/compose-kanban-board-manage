@@ -46,6 +46,6 @@ fun Profile(
 @Preview(showBackground = true)
 @Composable
 private fun ProfilePreview() {
-    val profile = Profile("다이노",Res.drawable.profile)
+    val profile = Profile("다이노", Res.drawable.profile)
     Profile(profile = profile)
 }

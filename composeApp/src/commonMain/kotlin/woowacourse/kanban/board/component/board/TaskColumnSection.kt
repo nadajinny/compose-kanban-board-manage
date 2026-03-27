@@ -46,13 +46,13 @@ import woowacourse.kanban.board.component.extension.toText
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.component.taskcard.TaskCard
 import woowacourse.kanban.board.model.project.Project
-import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
+import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.taskcard.Title
 import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable
 fun TaskColumnSection(

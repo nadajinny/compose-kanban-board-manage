@@ -13,16 +13,14 @@ import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile
+import kotlin.test.Test
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.junit.Before
-import kotlin.test.Test
 import woowacourse.kanban.board.component.ComponentText
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.model.project.Project
-import woowacourse.kanban.board.model.state.WorkSpaceState
 import woowacourse.kanban.board.model.taskcard.Profile
-import woowacourse.kanban.board.model.taskcard.TaskCardData
 
 @OptIn(ExperimentalTestApi::class)
 class BoardTest {
@@ -42,7 +40,8 @@ class BoardTest {
         setContent {
             Board(
                 project = project,
-                profiles = profiles)
+                profiles = profiles
+            )
         }
         onNodeWithText(ComponentText.BOARD_TASK_CREATE_BUTTON).performClick()
         onNodeWithText(ComponentText.TITLE_PLACEHOLDER).assertIsDisplayed()
@@ -53,7 +52,8 @@ class BoardTest {
         setContent {
             Board(
                 project = project,
-                profiles = profiles)
+                profiles = profiles
+            )
         }
         onNodeWithText(ComponentText.BOARD_TASK_CREATE_BUTTON).performClick()
         onNodeWithText(ComponentText.TITLE_PLACEHOLDER).assertIsDisplayed()
@@ -66,7 +66,8 @@ class BoardTest {
         setContent {
             Board(
                 project = project,
-                profiles = profiles)
+                profiles = profiles
+            )
         }
         onNodeWithText(ComponentText.BOARD_TASK_CREATE_BUTTON).performClick()
         onNodeWithText(ComponentText.TITLE_PLACEHOLDER).assertIsDisplayed()
@@ -79,7 +80,8 @@ class BoardTest {
         setContent {
             Board(
                 project = project,
-                profiles = profiles)
+                profiles = profiles
+            )
         }
         onNodeWithText(ComponentText.BOARD_TASK_CREATE_BUTTON).performClick()
         onAllNodes(isEditable())[0].performClick()
@@ -93,7 +95,8 @@ class BoardTest {
         setContent {
             Board(
                 project = project,
-                profiles = profiles)
+                profiles = profiles
+            )
         }
         onNodeWithText(ComponentText.BOARD_TASK_CREATE_BUTTON).performClick()
         onAllNodes(isEditable())[0].performClick()

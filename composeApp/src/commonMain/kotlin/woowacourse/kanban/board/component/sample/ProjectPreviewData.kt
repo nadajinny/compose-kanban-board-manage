@@ -13,7 +13,7 @@ import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.TaskCardData
 import woowacourse.kanban.board.model.taskcard.Title
 
-class ProjectPreviewData: PreviewParameterProvider<Project> {
+class ProjectPreviewData : PreviewParameterProvider<Project> {
     val taskCards = TaskCardPreviewData().values.toImmutableList()
     override val values: Sequence<Project> = sequenceOf(
         Project(
@@ -31,7 +31,7 @@ class ProjectPreviewData: PreviewParameterProvider<Project> {
     )
 }
 
-class TaskCardPreviewData: PreviewParameterProvider<TaskCardData> {
+class TaskCardPreviewData : PreviewParameterProvider<TaskCardData> {
     override val values: Sequence<TaskCardData> = sequenceOf(
         TaskCardData(
             title = Title("LazyColumn 컴포넌트 구현"),
@@ -78,8 +78,7 @@ class TaskCardPreviewData: PreviewParameterProvider<TaskCardData> {
     )
 }
 
-
-class ProfilePreviewData: PreviewParameterProvider<Profile> {
+class ProfilePreviewData : PreviewParameterProvider<Profile> {
     override val values: Sequence<Profile> = sequenceOf(
         Profile("다이노", Res.drawable.profile),
         Profile("페임스", Res.drawable.profile)

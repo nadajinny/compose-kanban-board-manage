@@ -2,19 +2,18 @@ package woowacourse.kanban.board.model
 
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile
+import kotlin.test.Test
+import kotlin.test.assertTrue
 import kotlinx.collections.immutable.immutableListOf
 import org.assertj.core.api.Assertions.assertThat
 import woowacourse.kanban.board.model.project.Project
-import woowacourse.kanban.board.model.taskcard.TaskCardData
-import kotlin.test.Test
-import woowacourse.kanban.board.model.taskcard.Title
 import woowacourse.kanban.board.model.taskcard.Description
-import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.taskcard.Tag
-import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Profile
-import kotlin.test.assertTrue
-
+import woowacourse.kanban.board.model.taskcard.Status
+import woowacourse.kanban.board.model.taskcard.Tag
+import woowacourse.kanban.board.model.taskcard.Tags
+import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.Title
 
 class ProjectTest {
     @Test
@@ -26,9 +25,9 @@ class ProjectTest {
                     id = "테스트",
                     title = Title("제목"),
                     description = Description("설명"),
-                    tags = Tags(immutableListOf<Tag>(Tag("태그1"),Tag("태그1"))),
+                    tags = Tags(immutableListOf<Tag>(Tag("태그1"), Tag("태그1"))),
                     status = Status.TODO,
-                    profile = Profile("다이노",Res.drawable.profile),
+                    profile = Profile("다이노", Res.drawable.profile),
                 )
             )
         )
@@ -43,9 +42,9 @@ class ProjectTest {
             id = "테스트",
             title = Title("제목"),
             description = Description("설명"),
-            tags = Tags(immutableListOf<Tag>(Tag("태그1"),Tag("태그1"))),
+            tags = Tags(immutableListOf<Tag>(Tag("태그1"), Tag("태그1"))),
             status = Status.TODO,
-            profile = Profile("다이노",Res.drawable.profile),
+            profile = Profile("다이노", Res.drawable.profile),
         )
         val project = Project(
             title = "테스트 프로젝트",

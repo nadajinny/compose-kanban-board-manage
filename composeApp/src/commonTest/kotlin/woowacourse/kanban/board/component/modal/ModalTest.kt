@@ -14,13 +14,12 @@ import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile
+import kotlin.test.Test
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import kotlin.test.Test
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import woowacourse.kanban.board.component.ComponentText
-import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.model.taskcard.Profile
 
 @OptIn(ExperimentalTestApi::class)
