@@ -20,7 +20,7 @@ class ModalState(
     var status by mutableStateOf(Status.TODO)
     var profile by mutableStateOf(profiles.first())
 
-    val isTitleValid by derivedStateOf { Title.Companion.isTitleValid(title) }
+    val isTitleValid by derivedStateOf { Title.isTitleValid(title) }
     val isTagsValid by derivedStateOf {
         Tag.isTagValid(tags) && Tags.isTagsValid(Tag.extractedTags(tags))
     }
