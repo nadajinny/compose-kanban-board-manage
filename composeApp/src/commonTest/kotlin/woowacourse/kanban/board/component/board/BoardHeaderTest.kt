@@ -51,7 +51,7 @@ class BoardHeaderTest {
     }
 
     @Test
-    fun `4개 업무 중 2개 완료된 업무가 있을때 50%가 출력된다`() = runComposeUiTest {
+    fun `10개 업무 중 5개 완료된 업무가 있을때 50%가 출력된다`() = runComposeUiTest {
         setContent {
             BoardHeader(
                 title = "타이틀",
