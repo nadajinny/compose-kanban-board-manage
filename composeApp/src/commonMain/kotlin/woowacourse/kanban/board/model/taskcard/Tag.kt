@@ -1,12 +1,14 @@
 package woowacourse.kanban.board.model.taskcard
 
+import woowacourse.kanban.board.util.ErrorMessage
+
 data class Tag(
     val value: String
 ) {
 
     init {
-        require(value.isNotBlank())
-        require(value.length <= TAG_MAX_TEXT_LENGTH)
+        require(value.isNotBlank()) { ErrorMessage.TAG_EMPTY }
+        require(value.length <= TAG_MAX_TEXT_LENGTH) { ErrorMessage.tagTooLong(TAG_MAX_TEXT_LENGTH) }
     }
 
     companion object {
