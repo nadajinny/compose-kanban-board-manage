@@ -23,4 +23,9 @@ class TagsTest {
     fun `isValidTags에 최대 태그 개수를 초과하는 태그가 입력되면 false를 반환한다`() {
         assertFalse { Tags.isTagsValid(listOf(Tag("태그1"), Tag("태그1"), Tag("태그1"), Tag("태그1"), Tag("태그1"), Tag("태그1"))) }
     }
+
+    @Test
+    fun `isValidTags에 태그가 입력되지 않으면 true를 반환한다`() {
+        assertTrue { Tags.isTagsValid(emptyList()) }
+    }
 }
