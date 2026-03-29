@@ -79,7 +79,7 @@ class TaskColumnSectionTest {
         val data2 = createData(Status.DONE)
         val data3 = createData(Status.DONE)
         val data4 = createData(Status.DONE)
-        
+
         val doneTasks = listOf(data1, data2, data3, data4)
         val project = Project(
             title = "title",
