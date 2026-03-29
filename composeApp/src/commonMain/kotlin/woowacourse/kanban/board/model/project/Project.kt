@@ -9,7 +9,7 @@ import woowacourse.kanban.board.model.taskcard.TaskCardData
 
 data class Project(
     val title: String,
-    val initialTasks: ImmutableList<TaskCardData>,
+    private val initialTasks: ImmutableList<TaskCardData>,
     val id: String = UUID.randomUUID().toString()
 ) {
     private val tasks = mutableStateListOf<TaskCardData>().apply {
