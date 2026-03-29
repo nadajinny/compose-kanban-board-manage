@@ -35,6 +35,7 @@ import woowacourse.kanban.board.Gray10
 import woowacourse.kanban.board.Gray30
 import woowacourse.kanban.board.component.ComponentText
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
+import woowacourse.kanban.board.model.taskcard.Status
 
 @Composable
 fun BoardHeader(
@@ -164,7 +165,7 @@ private fun BoardHeaderPreview() {
         BoardHeader(
             title = project.title,
             doneRate = project.calculateDoneRate(),
-            doneTasks = project.doneTasks.size,
+            doneTasks = project.filterTasksbyStatus(Status.DONE).size,
             totalTasks = project.allTasksCount,
             onClickCreateTask = {},
         )

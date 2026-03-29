@@ -26,6 +26,7 @@ import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Profile
+import woowacourse.kanban.board.model.taskcard.Status
 
 @Composable
 fun Board(
@@ -89,7 +90,7 @@ fun Board(
             BoardHeader(
                 title = project.title,
                 doneRate = project.calculateDoneRate(),
-                doneTasks = project.doneTasks.size,
+                doneTasks = project.filterTasksbyStatus(Status.DONE).size,
                 totalTasks = project.allTasksCount,
                 onClickCreateTask = { isShowModal = isShowModal.not() },
             )
