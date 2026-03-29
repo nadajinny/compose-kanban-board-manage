@@ -32,8 +32,8 @@ class ProjectTest {
             )
         )
         project.updateTaskStatus("테스트", Status.PROGRESS)
-        assertThat(project.todoTasks.size).isEqualTo(0)
-        assertThat(project.progressTasks.size).isEqualTo(1)
+        assertThat(project.filterTasksbyStatus(Status.TODO).size).isEqualTo(0)
+        assertThat(project.filterTasksbyStatus(Status.PROGRESS).size).isEqualTo(1)
     }
 
     @Test

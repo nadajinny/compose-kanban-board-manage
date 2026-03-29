@@ -19,6 +19,16 @@ import woowacourse.kanban.board.model.taskcard.Title
 class ProjectTest {
     private lateinit var workSpace: WorkSpaceState
 
+    fun createData(status: Status): TaskCardData {
+        return TaskCardData(
+            title = Title(value = "업무1"),
+            description = Description(""),
+            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
+            status = status,
+            profile = Profile("다이노", Res.drawable.profile)
+        )
+    }
+
     @Before
     fun setUp() {
         workSpace = WorkSpaceState(
@@ -32,66 +42,30 @@ class ProjectTest {
 
     @Test
     fun `Todo TaskCardData를 추가하면 todoList에 저장된다`() {
-        val data = TaskCardData(
-            title = Title(value = "업무1"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.TODO,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
+        val data = createData(Status.TODO)
         workSpace.projects.first().addCard(data)
-        assertThat(workSpace.projects.first().todoTasks).contains(data)
+        assertThat(workSpace.projects.first().filterTasksbyStatus(Status.TODO)).contains(data)
     }
 
     @Test
     fun `Progress TaskCardData를 추가하면 progressList에 저장된다`() {
-        val data = TaskCardData(
-            title = Title(value = "업무1"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
+        val data = createData(Status.PROGRESS)
         workSpace.projects.first().addCard(data)
-        assertThat(workSpace.projects.first().progressTasks).contains(data)
+        assertThat(workSpace.projects.first().filterTasksbyStatus(Status.PROGRESS)).contains(data)
     }
 
     @Test
     fun `Done TaskCardData를 추가하면 doneList에 저장된다`() {
-        val data = TaskCardData(
-            title = Title(value = "업무1"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.DONE,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
+        val data = createData(Status.DONE)
         workSpace.projects.first().addCard(data)
-        assertThat(workSpace.projects.first().doneTasks).contains(data)
+        assertThat(workSpace.projects.first().filterTasksbyStatus(Status.DONE)).contains(data)
     }
 
     @Test
     fun `4개 업무 중 2개를 완료했을 때 완료율은 50%로 계산된다`() {
-        val task1 = TaskCardData(
-            title = Title(value = "업무1"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.DONE,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val task2 = TaskCardData(
-            title = Title(value = "업무2"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.TODO,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val task3 = TaskCardData(
-            title = Title(value = "업무3"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.TODO,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
+        val task1 = createData(Status.DONE)
+        val task2 = createData(Status.TODO)
+        val task3 = createData(Status.TODO)
 
         workSpace.projects.first().addCard(task1)
         workSpace.projects.first().addCard(task1)
@@ -103,27 +77,9 @@ class ProjectTest {
 
     @Test
     fun `진행 상태가 모두 다른 3개 업무가 등록되면 totalTasks는 3으로 계산된다`() {
-        val task1 = TaskCardData(
-            title = Title(value = "업무1"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.TODO,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val task2 = TaskCardData(
-            title = Title(value = "업무2"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.DONE,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val task3 = TaskCardData(
-            title = Title(value = "업무3"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
+        val task1 = createData(Status.TODO)
+        val task2 = createData(Status.PROGRESS)
+        val task3 = createData(Status.DONE)
 
         workSpace.projects.first().addCard(task1)
         workSpace.projects.first().addCard(task2)
@@ -139,27 +95,9 @@ class ProjectTest {
 
     @Test
     fun `3개 업무 중 0개를 완료했을 때 완료율은 0%으로 계산된다`() {
-        val task1 = TaskCardData(
-            title = Title(value = "업무1"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.TODO,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val task2 = TaskCardData(
-            title = Title(value = "업무2"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.TODO,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val task3 = TaskCardData(
-            title = Title(value = "업무3"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.TODO,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
+        val task1 = createData(Status.TODO)
+        val task2 = createData(Status.TODO)
+        val task3 = createData(Status.TODO)
 
         workSpace.projects.first().addCard(task1)
         workSpace.projects.first().addCard(task2)

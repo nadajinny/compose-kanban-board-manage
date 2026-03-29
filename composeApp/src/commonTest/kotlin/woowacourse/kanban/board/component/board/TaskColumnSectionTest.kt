@@ -20,29 +20,21 @@ import woowacourse.kanban.board.model.taskcard.Title
 @OptIn(ExperimentalTestApi::class)
 class TaskColumnSectionTest {
 
+    fun createData(status: Status): TaskCardData {
+        return TaskCardData(
+            title = Title(value = "업무1"),
+            description = Description(""),
+            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
+            status = status,
+            profile = Profile("다이노", Res.drawable.profile)
+        )
+    }
+
     @Test
     fun `todoTasks에 등록된 태스크가 3개면 3이 출력된다`() = runComposeUiTest {
-        val data1 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.TODO,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val data2 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.TODO,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val data3 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.TODO,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
+        val data1 = createData(Status.TODO)
+        val data2 = createData(Status.TODO)
+        val data3 = createData(Status.TODO)
         val todoTasks = listOf(data1, data2, data3)
         val project = Project(
             title = "title",
@@ -60,41 +52,12 @@ class TaskColumnSectionTest {
 
     @Test
     fun `progressTasks에 등록된 태스크가 5개면 5가 출력된다`() = runComposeUiTest {
-        val data1 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val data2 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val data3 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val data4 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val data5 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
+        val data1 = createData(Status.PROGRESS)
+        val data2 = createData(Status.PROGRESS)
+        val data3 = createData(Status.PROGRESS)
+        val data4 = createData(Status.PROGRESS)
+        val data5 = createData(Status.PROGRESS)
+
         val progressTasks = listOf(data1, data2, data3, data4, data5)
         val project = Project(
             title = "title",
@@ -112,34 +75,11 @@ class TaskColumnSectionTest {
 
     @Test
     fun `doneTasks에 등록된 태스크가 4개면 4가 출력된다`() = runComposeUiTest {
-        val data1 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.DONE,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val data2 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.DONE,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val data3 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.DONE,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
-        val data4 = TaskCardData(
-            title = Title(value = "제목"),
-            description = Description("설명"),
-            tags = Tags(listOf(Tag("컴포넌트")).toImmutableList()),
-            status = Status.DONE,
-            profile = Profile("다이노", Res.drawable.profile)
-        )
+        val data1 = createData(Status.DONE)
+        val data2 = createData(Status.DONE)
+        val data3 = createData(Status.DONE)
+        val data4 = createData(Status.DONE)
+        
         val doneTasks = listOf(data1, data2, data3, data4)
         val project = Project(
             title = "title",
