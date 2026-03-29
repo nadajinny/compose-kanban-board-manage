@@ -46,19 +46,25 @@ fun WorkSpace(
     profiles: ImmutableList<Profile>,
     modifier: Modifier = Modifier
 ) {
-    var selectedProject by remember { mutableStateOf(workSpaceState.projects[0]) }
+    var selectedProject by remember(workSpaceState.projects) {
+        mutableStateOf(workSpaceState.projects.firstOrNull())
+    }
     Row(
         modifier = modifier
     ) {
-        SideBar(
-            workSpaceState = workSpaceState,
-            selectedProject = selectedProject,
-            onChangeProject = { selectedProject = it }
-        )
-        Board(
-            project = selectedProject,
-            profiles = profiles
-        )
+        selectedProject?.let { currentProject ->
+            SideBar(
+                workSpaceState = workSpaceState,
+                selectedProject = currentProject,
+                onChangeProject = { selectedProject = it }
+            )
+        }
+        selectedProject?.let {
+            Board(
+                project = it,
+                profiles = profiles
+            )
+        }
     }
 }
 
