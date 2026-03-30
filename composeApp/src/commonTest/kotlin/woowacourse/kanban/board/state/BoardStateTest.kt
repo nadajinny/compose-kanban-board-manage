@@ -15,7 +15,7 @@ import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.TaskCardData
 import woowacourse.kanban.board.model.taskcard.Title
 
-class ProjectTest {
+class BoardStateTest {
     private lateinit var workSpaceStateHolder: WorkSpaceStateHolder
 
     fun createData(status: Status): TaskCardData {
