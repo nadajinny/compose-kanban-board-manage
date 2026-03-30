@@ -1,7 +1,5 @@
 package woowacourse.kanban.board.state
 
-import kanbanboard.composeapp.generated.resources.Res
-import kanbanboard.composeapp.generated.resources.profile
 import kotlin.test.Test
 import kotlinx.collections.immutable.toImmutableList
 import org.assertj.core.api.Assertions.assertThat
@@ -25,7 +23,7 @@ class ProjectTest {
             description = Description(""),
             tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
             status = status,
-            profile = Profile("다이노", Res.drawable.profile)
+            profile = Profile("다이노")
         )
     }
 

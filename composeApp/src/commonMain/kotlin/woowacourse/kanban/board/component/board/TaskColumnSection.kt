@@ -34,8 +34,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kanbanboard.composeapp.generated.resources.Res
-import kanbanboard.composeapp.generated.resources.profile
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.component.extension.toBackgroundColor
@@ -241,7 +239,7 @@ private fun TaskColumnTodoPreview() {
             description = Description(value = "설명"),
             tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile),
+            profile = Profile("다이노"),
         ),
     ).toImmutableList()
     TaskColumn(
@@ -259,7 +257,7 @@ private fun TaskColumnProgressPreview() {
             description = Description(value = "설명"),
             tags = Tags(value = listOf(Tag(value = "컴포넌트"), Tag("zjavh")).toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile),
+            profile = Profile("다이노"),
         ),
     ).toImmutableList()
     TaskColumn(
@@ -277,7 +275,7 @@ private fun TaskColumnDonePreview() {
             description = Description(value = "설명"),
             tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile),
+            profile = Profile("다이노"),
         ),
     ).toImmutableList()
     TaskColumn(

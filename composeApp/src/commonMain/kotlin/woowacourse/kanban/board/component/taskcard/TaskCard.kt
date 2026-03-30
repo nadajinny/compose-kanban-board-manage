@@ -23,8 +23,6 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import kanbanboard.composeapp.generated.resources.Res
-import kanbanboard.composeapp.generated.resources.profile
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.Gray70
 import woowacourse.kanban.board.Gray80
@@ -102,7 +100,7 @@ private fun TaskCardEmptyDescriptionPreview() {
             description = Description(value = ""),
             tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile),
+            profile = Profile("다이노"),
         ),
     )
 }
@@ -116,7 +114,7 @@ private fun TaskCardEmptyTagPreview() {
             description = Description(value = "세로 스크롤"),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile),
+            profile = Profile("다이노"),
         ),
     )
 }
@@ -130,7 +128,7 @@ private fun TaskCardEmptyTagAndDescriptionPreview() {
             description = Description(value = ""),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile),
+            profile = Profile("다이노"),
         ),
     )
 }
@@ -144,7 +142,7 @@ private fun TaskCardLongTitlePreview() {
             description = Description(value = ""),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile),
+            profile = Profile("다이노"),
         ),
     )
 }
@@ -166,7 +164,7 @@ private fun TaskCardLongDescriptionPreview() {
             ),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
             status = Status.PROGRESS,
-            profile = Profile("다이노", Res.drawable.profile),
+            profile = Profile("다이노"),
         ),
     )
 }

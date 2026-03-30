@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import woowacourse.kanban.board.Blue50
 import woowacourse.kanban.board.Blue80
@@ -55,7 +56,7 @@ fun ProfileButton(
             horizontalArrangement = Arrangement.Start,
         ) {
             Image(
-                painter = painterResource(myState.icon),
+                painter = painterResource(myState.icon.toDrawableResource()),
                 contentDescription = "프로필 이미지",
                 modifier = Modifier.size(24.dp),
             )
@@ -75,8 +76,8 @@ fun ProfileButton(
 @Composable
 private fun ProfileButtonNotChoicePreview() {
     ProfileButton(
-        currentState = Profile("다이노", Res.drawable.profile),
-        myState = Profile("페임스", Res.drawable.profile),
+        currentState = Profile("다이노"),
+        myState = Profile("페임스"),
         onClick = {}
     )
 }
@@ -85,8 +86,13 @@ private fun ProfileButtonNotChoicePreview() {
 @Composable
 private fun ProfileButtonChoicePreview() {
     ProfileButton(
-        currentState = Profile("페임스", Res.drawable.profile),
-        myState = Profile("페임스", Res.drawable.profile),
+        currentState = Profile("페임스"),
+        myState = Profile("페임스"),
         onClick = {}
     )
+}
+
+private fun String.toDrawableResource(): DrawableResource = when (this) {
+    "DEFAULT" -> Res.drawable.profile
+    else -> Res.drawable.profile
 }

@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import woowacourse.kanban.board.Gray20
 import woowacourse.kanban.board.model.taskcard.Profile
@@ -27,7 +28,7 @@ fun Profile(
 ) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Image(
-            painter = painterResource(profile.icon),
+            painter = painterResource(profile.icon.toDrawableResource()),
             contentDescription = "프로필 이미지",
             modifier = modifier.size(24.dp),
         )
@@ -46,6 +47,11 @@ fun Profile(
 @Preview(showBackground = true)
 @Composable
 private fun ProfilePreview() {
-    val profile = Profile("다이노", Res.drawable.profile)
+    val profile = Profile("다이노")
     Profile(profile = profile)
+}
+
+private fun String.toDrawableResource(): DrawableResource = when (this) {
+    "DEFAULT" -> Res.drawable.profile
+    else -> Res.drawable.profile
 }

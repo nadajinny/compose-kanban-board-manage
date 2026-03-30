@@ -1,8 +1,6 @@
 package woowacourse.kanban.board
 
 import androidx.compose.runtime.Composable
-import kanbanboard.composeapp.generated.resources.Res
-import kanbanboard.composeapp.generated.resources.profile
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.component.WorkSpace
 import woowacourse.kanban.board.model.project.Project
@@ -21,8 +19,8 @@ fun App() {
     )
 
     val profiles = listOf(
-        Profile("다이노", Res.drawable.profile),
-        Profile("페임스", Res.drawable.profile)
+        Profile("다이노"),
+        Profile("페임스")
     ).toImmutableList()
 
     WorkSpace(

@@ -12,8 +12,6 @@ import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
-import kanbanboard.composeapp.generated.resources.Res
-import kanbanboard.composeapp.generated.resources.profile
 import kotlin.test.Test
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -30,8 +28,8 @@ class ModalTest {
     @Before
     fun setUp() {
         profiles = listOf(
-            Profile("다이노", Res.drawable.profile),
-            Profile("페임스", Res.drawable.profile)
+            Profile("다이노"),
+            Profile("페임스")
         ).toImmutableList()
     }
 

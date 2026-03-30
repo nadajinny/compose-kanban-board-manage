@@ -1,7 +1,5 @@
 package woowacourse.kanban.board.model
 
-import kanbanboard.composeapp.generated.resources.Res
-import kanbanboard.composeapp.generated.resources.profile
 import kotlin.test.Test
 import kotlin.test.assertTrue
 import kotlinx.collections.immutable.immutableListOf
@@ -28,7 +26,7 @@ class ProjectTest {
                     description = Description("설명"),
                     tags = Tags(immutableListOf<Tag>(Tag("태그1"), Tag("태그1"))),
                     status = Status.TODO,
-                    profile = Profile("다이노", Res.drawable.profile),
+                    profile = Profile("다이노"),
                 )
             )
         )
@@ -45,7 +43,7 @@ class ProjectTest {
             description = Description("설명"),
             tags = Tags(immutableListOf<Tag>(Tag("태그1"), Tag("태그1"))),
             status = Status.TODO,
-            profile = Profile("다이노", Res.drawable.profile),
+            profile = Profile("다이노"),
         )
         val project = Project(
             title = "테스트 프로젝트",

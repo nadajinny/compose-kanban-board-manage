@@ -6,8 +6,6 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
-import kanbanboard.composeapp.generated.resources.Res
-import kanbanboard.composeapp.generated.resources.profile
 import kotlin.test.Test
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
@@ -22,8 +20,8 @@ class WorkSpaceTest {
         val projects = ProjectPreviewData().values.toImmutableList()
         val workSpace = WorkSpaceModel(projects)
         val profiles = listOf(
-            Profile("다이노", Res.drawable.profile),
-            Profile("페임스", Res.drawable.profile)
+            Profile("다이노"),
+            Profile("페임스")
         ).toImmutableList()
         setContent {
             WorkSpace(
