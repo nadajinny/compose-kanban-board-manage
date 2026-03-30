@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component.modal
+package woowacourse.kanban.board.component.modal.section
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +19,8 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.Gray20
 import woowacourse.kanban.board.component.ComponentText
+import woowacourse.kanban.board.component.modal.button.ProfileButton
+import woowacourse.kanban.board.component.modal.button.StateButton
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status

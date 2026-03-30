@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component.modal
+package woowacourse.kanban.board.component.modal.input
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -26,11 +26,6 @@ import woowacourse.kanban.board.Gray20
 import woowacourse.kanban.board.Gray50
 import woowacourse.kanban.board.Gray70
 import woowacourse.kanban.board.Red50
-import woowacourse.kanban.board.component.extension.toErrorText
-import woowacourse.kanban.board.component.extension.toLabel
-import woowacourse.kanban.board.component.extension.toPlaceholder
-import woowacourse.kanban.board.component.extension.toSupportingText
-import woowacourse.kanban.board.model.modal.TextInputValue
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.Title

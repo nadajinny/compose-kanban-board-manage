@@ -17,9 +17,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import woowacourse.kanban.board.component.sample.ProfilePreviewData
+import woowacourse.kanban.board.component.modal.input.TextInputState
+import woowacourse.kanban.board.component.modal.section.ButtonSection
+import woowacourse.kanban.board.component.modal.section.Footer
+import woowacourse.kanban.board.component.modal.section.Header
+import woowacourse.kanban.board.component.modal.section.TextInputSection
 import woowacourse.kanban.board.component.modal.state.ModalState
-import woowacourse.kanban.board.model.modal.TextInputState
+import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Tag
