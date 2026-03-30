@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.model.state
+package woowacourse.kanban.board.component.modal.state
 
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -12,7 +12,7 @@ import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.Title
 
 class ModalState(
-    profiles: ImmutableList<Profile>
+    profiles: ImmutableList<Profile>,
 ) {
     var title by mutableStateOf("")
     var description by mutableStateOf("")
