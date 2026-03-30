@@ -5,6 +5,7 @@ import kanbanboard.composeapp.generated.resources.profile
 import kotlin.test.Test
 import kotlin.test.assertTrue
 import kotlinx.collections.immutable.immutableListOf
+import kotlinx.collections.immutable.persistentListOf
 import org.assertj.core.api.Assertions.assertThat
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Description
@@ -20,7 +21,7 @@ class ProjectTest {
     fun `입력한 id를 가진 태스크 카드가 변경값으로 입력한 status로 변경된다`() {
         val project = Project(
             title = "테스트 프로젝트",
-            initialTasks = immutableListOf<TaskCardData>(
+            initialTasks = persistentListOf(
                 TaskCardData(
                     id = "테스트",
                     title = Title("제목"),
@@ -48,7 +49,7 @@ class ProjectTest {
         )
         val project = Project(
             title = "테스트 프로젝트",
-            initialTasks = immutableListOf<TaskCardData>(
+            initialTasks = persistentListOf(
                 task
             )
         )

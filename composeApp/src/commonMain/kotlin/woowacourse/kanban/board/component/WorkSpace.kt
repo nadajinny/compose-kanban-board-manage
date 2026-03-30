@@ -38,23 +38,23 @@ import woowacourse.kanban.board.component.board.Board
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.model.project.Project
-import woowacourse.kanban.board.model.state.WorkSpaceState
+import woowacourse.kanban.board.model.state.WorkSpace as WorkSpaceModel
 import woowacourse.kanban.board.model.taskcard.Profile
 @Composable
 fun WorkSpace(
-    workSpaceState: WorkSpaceState,
+    workSpace: WorkSpaceModel,
     profiles: ImmutableList<Profile>,
     modifier: Modifier = Modifier
 ) {
-    var selectedProject by remember(workSpaceState.projects) {
-        mutableStateOf(workSpaceState.projects.firstOrNull())
+    var selectedProject by remember(workSpace.projects) {
+        mutableStateOf(workSpace.projects.firstOrNull())
     }
     Row(
         modifier = modifier
     ) {
         selectedProject?.let { currentProject ->
             SideBar(
-                workSpaceState = workSpaceState,
+                workSpace = workSpace,
                 selectedProject = currentProject,
                 onChangeProject = { selectedProject = it }
             )
@@ -70,7 +70,7 @@ fun WorkSpace(
 
 @Composable
 private fun SideBar(
-    workSpaceState: WorkSpaceState,
+    workSpace: WorkSpaceModel,
     selectedProject: Project,
     onChangeProject: (Project) -> Unit,
     modifier: Modifier = Modifier,
@@ -102,7 +102,7 @@ private fun SideBar(
             )
         }
         HorizontalDivider()
-        workSpaceState.projects.forEach { project ->
+        workSpace.projects.forEach { project ->
             val backgroundColor =
                 if (project == selectedProject) Blue80
                 else Color.Transparent
@@ -145,7 +145,7 @@ private fun SideBar(
 @Preview(showBackground = true, widthDp = 1500)
 @Composable
 private fun WorkSpacePreview() {
-    val workSpace = WorkSpaceState(
+    val workSpace = WorkSpaceModel(
         ProjectPreviewData().values.toImmutableList()
     )
     val profiles = ProfilePreviewData().values.toImmutableList()
