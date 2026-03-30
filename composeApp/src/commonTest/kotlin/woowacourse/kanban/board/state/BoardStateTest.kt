@@ -4,6 +4,7 @@ import kotlin.test.Test
 import kotlinx.collections.immutable.toImmutableList
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
+import woowacourse.kanban.board.component.state.WorkSpaceStateHolder
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.state.WorkSpace
 import woowacourse.kanban.board.model.taskcard.Description
@@ -15,7 +16,7 @@ import woowacourse.kanban.board.model.taskcard.TaskCardData
 import woowacourse.kanban.board.model.taskcard.Title
 
 class ProjectTest {
-    private lateinit var workSpace: WorkSpace
+    private lateinit var workSpaceStateHolder: WorkSpaceStateHolder
 
     fun createData(status: Status): TaskCardData {
         return TaskCardData(
@@ -29,34 +30,36 @@ class ProjectTest {
 
     @Before
     fun setUp() {
-        workSpace = WorkSpace(
-            listOf<Project>(
+        workSpaceStateHolder = WorkSpaceStateHolder(
+            WorkSpace(
+                listOf<Project>(
                 Project("Compose1", listOf<TaskCardData>().toImmutableList()),
                 Project("Compose2", listOf<TaskCardData>().toImmutableList()),
                 Project("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCardData>().toImmutableList()),
-            ).toImmutableList()
+                ).toImmutableList()
+            )
         )
     }
 
     @Test
     fun `Todo TaskCardData를 추가하면 todoList에 저장된다`() {
         val data = createData(Status.TODO)
-        workSpace.projects.first().addCard(data)
-        assertThat(workSpace.projects.first().filterTasksbyStatus(Status.TODO)).contains(data)
+        workSpaceStateHolder.addTask(data)
+        assertThat(workSpaceStateHolder.selectedProject?.filterTasksbyStatus(Status.TODO)).contains(data)
     }
 
     @Test
     fun `Progress TaskCardData를 추가하면 progressList에 저장된다`() {
         val data = createData(Status.PROGRESS)
-        workSpace.projects.first().addCard(data)
-        assertThat(workSpace.projects.first().filterTasksbyStatus(Status.PROGRESS)).contains(data)
+        workSpaceStateHolder.addTask(data)
+        assertThat(workSpaceStateHolder.selectedProject?.filterTasksbyStatus(Status.PROGRESS)).contains(data)
     }
 
     @Test
     fun `Done TaskCardData를 추가하면 doneList에 저장된다`() {
         val data = createData(Status.DONE)
-        workSpace.projects.first().addCard(data)
-        assertThat(workSpace.projects.first().filterTasksbyStatus(Status.DONE)).contains(data)
+        workSpaceStateHolder.addTask(data)
+        assertThat(workSpaceStateHolder.selectedProject?.filterTasksbyStatus(Status.DONE)).contains(data)
     }
 
     @Test
@@ -65,12 +68,12 @@ class ProjectTest {
         val task2 = createData(Status.TODO)
         val task3 = createData(Status.TODO)
 
-        workSpace.projects.first().addCard(task1)
-        workSpace.projects.first().addCard(task1)
-        workSpace.projects.first().addCard(task2)
-        workSpace.projects.first().addCard(task3)
+        workSpaceStateHolder.addTask(task1)
+        workSpaceStateHolder.addTask(task1)
+        workSpaceStateHolder.addTask(task2)
+        workSpaceStateHolder.addTask(task3)
 
-        assertThat(workSpace.projects.first().calculateDoneRate()).isEqualTo(0.50f)
+        assertThat(workSpaceStateHolder.selectedProject?.calculateDoneRate()).isEqualTo(0.50f)
     }
 
     @Test
@@ -79,16 +82,16 @@ class ProjectTest {
         val task2 = createData(Status.PROGRESS)
         val task3 = createData(Status.DONE)
 
-        workSpace.projects.first().addCard(task1)
-        workSpace.projects.first().addCard(task2)
-        workSpace.projects.first().addCard(task3)
+        workSpaceStateHolder.addTask(task1)
+        workSpaceStateHolder.addTask(task2)
+        workSpaceStateHolder.addTask(task3)
 
-        assertThat(workSpace.projects.first().allTasksCount).isEqualTo(3)
+        assertThat(workSpaceStateHolder.selectedProject?.allTasksCount).isEqualTo(3)
     }
 
     @Test
     fun `등록된 업무가 0개일 때 완료율은 0%으로 계산된다`() {
-        assertThat(workSpace.projects.first().calculateDoneRate()).isEqualTo(0.0f)
+        assertThat(workSpaceStateHolder.selectedProject?.calculateDoneRate()).isEqualTo(0.0f)
     }
 
     @Test
@@ -97,10 +100,10 @@ class ProjectTest {
         val task2 = createData(Status.TODO)
         val task3 = createData(Status.TODO)
 
-        workSpace.projects.first().addCard(task1)
-        workSpace.projects.first().addCard(task2)
-        workSpace.projects.first().addCard(task3)
+        workSpaceStateHolder.addTask(task1)
+        workSpaceStateHolder.addTask(task2)
+        workSpaceStateHolder.addTask(task3)
 
-        assertThat(workSpace.projects.first().calculateDoneRate()).isEqualTo(0.0f)
+        assertThat(workSpaceStateHolder.selectedProject?.calculateDoneRate()).isEqualTo(0.0f)
     }
 }

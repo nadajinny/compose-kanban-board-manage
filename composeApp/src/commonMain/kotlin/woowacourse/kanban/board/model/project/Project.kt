@@ -1,6 +1,5 @@
 package woowacourse.kanban.board.model.project
 
-import androidx.compose.runtime.mutableStateListOf
 import java.util.UUID
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -9,20 +8,20 @@ import woowacourse.kanban.board.model.taskcard.TaskCardData
 
 class Project(
     val title: String,
-    initialTasks: ImmutableList<TaskCardData>,
-    val id: String = UUID.randomUUID().toString()
+    private val tasks: ImmutableList<TaskCardData>,
+    val id: String = UUID.randomUUID().toString(),
 ) {
-    private val tasks = mutableStateListOf<TaskCardData>().apply {
-        addAll(initialTasks)
-    }
-
     val allTasksCount get() = tasks.size
 
-    fun filterTasksbyStatus(status: Status): ImmutableList<TaskCardData> {
-        return tasks.filter { it.status == status }.toImmutableList()
-    }
+    fun filterTasksbyStatus(status: Status): ImmutableList<TaskCardData> =
+        tasks.filter { it.status == status }.toImmutableList()
 
-    fun addCard(data: TaskCardData) = tasks.add(data)
+    fun addCard(data: TaskCardData): Project =
+        Project(
+            title = title,
+            tasks = (tasks + data).toImmutableList(),
+            id = id,
+        )
 
     fun calculateDoneRate(): Float {
         val totalTasks = allTasksCount
@@ -32,10 +31,17 @@ class Project(
 
     fun findTaskById(id: String): TaskCardData? = tasks.firstOrNull { it.id == id }
 
-    fun updateTaskStatus(id: String, targetStatus: Status) {
-        val idx = tasks.indexOfFirst { it.id == id }
-        if (idx == -1) return
+    fun updateTaskStatus(id: String, targetStatus: Status): Project {
+        if (tasks.none { it.id == id }) return this
 
-        tasks[idx] = tasks[idx].copy(status = targetStatus)
+        val updatedTasks = tasks.map { task ->
+            if (task.id == id) task.copy(status = targetStatus) else task
+        }.toImmutableList()
+
+        return Project(
+            title = title,
+            tasks = updatedTasks,
+            id = this.id,
+        )
     }
 }

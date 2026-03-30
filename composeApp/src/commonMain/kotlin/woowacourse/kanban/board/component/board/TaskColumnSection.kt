@@ -56,6 +56,7 @@ import woowacourse.kanban.board.model.taskcard.Title
 fun TaskColumnSection(
     project: Project,
     onMoveSnackBar: () -> Unit,
+    onUpdateTaskStatus: (String, Status) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var currentDragPosition by remember { mutableStateOf<Offset?>(null) }
@@ -87,7 +88,7 @@ fun TaskColumnSection(
                     draggedTaskId?.let { id ->
                         val task = project.findTaskById(id)
                         if (task != null && targetStatus != null && task.status != targetStatus) {
-                            project.updateTaskStatus(id, targetStatus)
+                            onUpdateTaskStatus(id, targetStatus)
                             onMoveSnackBar()
                         }
                     }
@@ -293,6 +294,7 @@ private fun TaskColumnSectionPreview() {
             TaskColumnSection(
                 project = project,
                 onMoveSnackBar = {},
+                onUpdateTaskStatus = { _, _ -> },
             )
         }
     }

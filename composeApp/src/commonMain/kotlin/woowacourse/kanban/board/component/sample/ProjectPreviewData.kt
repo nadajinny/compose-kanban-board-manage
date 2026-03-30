@@ -16,15 +16,15 @@ class ProjectPreviewData : PreviewParameterProvider<Project> {
     override val values: Sequence<Project> = sequenceOf(
         Project(
             title = "Compose1",
-            initialTasks = taskCards
+            tasks = taskCards
         ),
         Project(
             title = "Compose2",
-            initialTasks = taskCards
+            tasks = taskCards
         ),
         Project(
             title = "Compose3너무너무길경우에는 말줄임표로 표시됩니다.",
-            initialTasks = taskCards
+            tasks = taskCards
         ),
     )
 }

@@ -1,5 +1,9 @@
 package woowacourse.kanban.board.component.board
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed
@@ -36,9 +40,12 @@ class BoardTest {
     @Test
     fun `새 태스크 생성 버튼을 누르면 다이얼로그가 열린다`() = runComposeUiTest {
         setContent {
+            var currentProject by remember { mutableStateOf(project) }
             Board(
-                project = project,
-                profiles = profiles
+                project = currentProject,
+                profiles = profiles,
+                onCreateTask = { task -> currentProject = currentProject.addCard(task) },
+                onUpdateTaskStatus = { id, status -> currentProject = currentProject.updateTaskStatus(id, status) },
             )
         }
         onNodeWithText(ComponentText.BOARD_TASK_CREATE_BUTTON).performClick()
@@ -48,9 +55,12 @@ class BoardTest {
     @Test
     fun `다이얼로그 내 취소 버튼을 누르면 다이얼로그가 닫힌다`() = runComposeUiTest {
         setContent {
+            var currentProject by remember { mutableStateOf(project) }
             Board(
-                project = project,
-                profiles = profiles
+                project = currentProject,
+                profiles = profiles,
+                onCreateTask = { task -> currentProject = currentProject.addCard(task) },
+                onUpdateTaskStatus = { id, status -> currentProject = currentProject.updateTaskStatus(id, status) },
             )
         }
         onNodeWithText(ComponentText.BOARD_TASK_CREATE_BUTTON).performClick()
@@ -62,9 +72,12 @@ class BoardTest {
     @Test
     fun `다이얼로그 헤더의 x 버튼을 누르면 다이얼로그가 닫힌다`() = runComposeUiTest {
         setContent {
+            var currentProject by remember { mutableStateOf(project) }
             Board(
-                project = project,
-                profiles = profiles
+                project = currentProject,
+                profiles = profiles,
+                onCreateTask = { task -> currentProject = currentProject.addCard(task) },
+                onUpdateTaskStatus = { id, status -> currentProject = currentProject.updateTaskStatus(id, status) },
             )
         }
         onNodeWithText(ComponentText.BOARD_TASK_CREATE_BUTTON).performClick()
@@ -76,9 +89,12 @@ class BoardTest {
     @Test
     fun `모달을 통해 생성한 태스크 카드가 출력된다`() = runComposeUiTest {
         setContent {
+            var currentProject by remember { mutableStateOf(project) }
             Board(
-                project = project,
-                profiles = profiles
+                project = currentProject,
+                profiles = profiles,
+                onCreateTask = { task -> currentProject = currentProject.addCard(task) },
+                onUpdateTaskStatus = { id, status -> currentProject = currentProject.updateTaskStatus(id, status) },
             )
         }
         onNodeWithText(ComponentText.BOARD_TASK_CREATE_BUTTON).performClick()
@@ -91,9 +107,12 @@ class BoardTest {
     @Test
     fun `태스크 카드를 생성하면 스낵바가 출력된다`() = runComposeUiTest {
         setContent {
+            var currentProject by remember { mutableStateOf(project) }
             Board(
-                project = project,
-                profiles = profiles
+                project = currentProject,
+                profiles = profiles,
+                onCreateTask = { task -> currentProject = currentProject.addCard(task) },
+                onUpdateTaskStatus = { id, status -> currentProject = currentProject.updateTaskStatus(id, status) },
             )
         }
         onNodeWithText(ComponentText.BOARD_TASK_CREATE_BUTTON).performClick()

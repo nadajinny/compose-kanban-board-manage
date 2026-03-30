@@ -27,11 +27,14 @@ import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
+import woowacourse.kanban.board.model.taskcard.TaskCardData
 
 @Composable
 fun Board(
     project: Project,
     profiles: ImmutableList<Profile>,
+    onCreateTask: (TaskCardData) -> Unit,
+    onUpdateTaskStatus: (String, Status) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
@@ -80,7 +83,7 @@ fun Board(
                         profiles = profiles,
                         onClickClose = { isShowModal = false },
                         onClickTaskCreate = { task ->
-                            project.addCard(task)
+                            onCreateTask(task)
                             shouldShowSnackbar = true
                             isShowModal = false
                         },
@@ -97,6 +100,7 @@ fun Board(
             TaskColumnSection(
                 project = project,
                 onMoveSnackBar = { shouldShowMoveSnackbar = true },
+                onUpdateTaskStatus = onUpdateTaskStatus,
             )
         }
     }
@@ -108,6 +112,11 @@ private fun BoardPreview() {
     val project = ProjectPreviewData().values.toMutableList()[0]
     val profiles = ProfilePreviewData().values.toImmutableList()
     MaterialTheme {
-        Board(project, profiles)
+        Board(
+            project = project,
+            profiles = profiles,
+            onCreateTask = {},
+            onUpdateTaskStatus = { _, _ -> },
+        )
     }
 }

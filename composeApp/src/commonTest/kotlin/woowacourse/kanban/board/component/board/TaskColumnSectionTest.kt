@@ -36,12 +36,13 @@ class TaskColumnSectionTest {
         val todoTasks = listOf(data1, data2, data3)
         val project = Project(
             title = "title",
-            initialTasks = todoTasks.toImmutableList()
+            tasks = todoTasks.toImmutableList()
         )
         setContent {
             TaskColumnSection(
                 project = project,
-                onMoveSnackBar = {}
+                onMoveSnackBar = {},
+                onUpdateTaskStatus = { _, _ -> },
             )
         }
 
@@ -59,12 +60,13 @@ class TaskColumnSectionTest {
         val progressTasks = listOf(data1, data2, data3, data4, data5)
         val project = Project(
             title = "title",
-            initialTasks = progressTasks.toImmutableList()
+            tasks = progressTasks.toImmutableList()
         )
         setContent {
             TaskColumnSection(
                 project = project,
-                onMoveSnackBar = {}
+                onMoveSnackBar = {},
+                onUpdateTaskStatus = { _, _ -> },
             )
         }
 
@@ -81,12 +83,13 @@ class TaskColumnSectionTest {
         val doneTasks = listOf(data1, data2, data3, data4)
         val project = Project(
             title = "title",
-            initialTasks = doneTasks.toImmutableList()
+            tasks = doneTasks.toImmutableList()
         )
         setContent {
             TaskColumnSection(
                 project = project,
-                onMoveSnackBar = {}
+                onMoveSnackBar = {},
+                onUpdateTaskStatus = { _, _ -> },
             )
         }
 

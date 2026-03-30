@@ -19,7 +19,7 @@ class ProjectTest {
     fun `입력한 id를 가진 태스크 카드가 변경값으로 입력한 status로 변경된다`() {
         val project = Project(
             title = "테스트 프로젝트",
-            initialTasks = persistentListOf(
+            tasks = persistentListOf(
                 TaskCardData(
                     id = "테스트",
                     title = Title("제목"),
@@ -30,9 +30,9 @@ class ProjectTest {
                 )
             )
         )
-        project.updateTaskStatus("테스트", Status.PROGRESS)
-        assertThat(project.filterTasksbyStatus(Status.TODO).size).isEqualTo(0)
-        assertThat(project.filterTasksbyStatus(Status.PROGRESS).size).isEqualTo(1)
+        val updatedProject = project.updateTaskStatus("테스트", Status.PROGRESS)
+        assertThat(updatedProject.filterTasksbyStatus(Status.TODO).size).isEqualTo(0)
+        assertThat(updatedProject.filterTasksbyStatus(Status.PROGRESS).size).isEqualTo(1)
     }
 
     @Test
@@ -47,7 +47,7 @@ class ProjectTest {
         )
         val project = Project(
             title = "테스트 프로젝트",
-            initialTasks = persistentListOf(
+            tasks = persistentListOf(
                 task
             )
         )

@@ -15,10 +15,6 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -37,6 +33,7 @@ import woowacourse.kanban.board.Purple50
 import woowacourse.kanban.board.component.board.Board
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
+import woowacourse.kanban.board.component.state.rememberWorkSpaceStateHolder
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.state.WorkSpace as WorkSpaceModel
 import woowacourse.kanban.board.model.taskcard.Profile
@@ -46,23 +43,23 @@ fun WorkSpace(
     profiles: ImmutableList<Profile>,
     modifier: Modifier = Modifier
 ) {
-    var selectedProject by remember(workSpace.projects) {
-        mutableStateOf(workSpace.projects.firstOrNull())
-    }
+    val stateHolder = rememberWorkSpaceStateHolder(workSpace)
     Row(
         modifier = modifier
     ) {
-        selectedProject?.let { currentProject ->
+        stateHolder.selectedProject?.let { currentProject ->
             SideBar(
-                workSpace = workSpace,
+                workSpace = stateHolder.workSpace,
                 selectedProject = currentProject,
-                onChangeProject = { selectedProject = it }
+                onChangeProject = stateHolder::selectProject,
             )
         }
-        selectedProject?.let {
+        stateHolder.selectedProject?.let {
             Board(
                 project = it,
-                profiles = profiles
+                profiles = profiles,
+                onCreateTask = stateHolder::addTask,
+                onUpdateTaskStatus = stateHolder::updateTaskStatus,
             )
         }
     }
