@@ -91,7 +91,7 @@ fun Modal(
                     val data = TaskCardData(
                         title = Title(value = modalState.title),
                         description = Description(value = modalState.description),
-                        tags = Tags(Tag.extractedTags(modalState.tags).toImmutableList()),
+                        tags = Tags(Tag.parseAll(modalState.tags).toImmutableList()),
                         status = modalState.status,
                         profile = modalState.profile,
                     )

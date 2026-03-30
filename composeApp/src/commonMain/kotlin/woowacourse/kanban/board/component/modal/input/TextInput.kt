@@ -26,7 +26,6 @@ import woowacourse.kanban.board.Gray20
 import woowacourse.kanban.board.Gray50
 import woowacourse.kanban.board.Gray70
 import woowacourse.kanban.board.Red50
-import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.Title
 
@@ -181,8 +180,7 @@ private fun InvalidTagsInputPreview() {
 
     val isTagValid by remember {
         derivedStateOf {
-            val extractedTags = Tag.extractedTags(tags)
-            Tags.isTagsValid(extractedTags)
+            Tags.isValidInput(tags)
         }
     }
 
@@ -204,8 +202,7 @@ private fun ValidTagsInputPreview() {
 
     val isTagValid by remember {
         derivedStateOf {
-            val extractedTags = Tag.extractedTags(tags)
-            Tags.isTagsValid(extractedTags)
+            Tags.isValidInput(tags)
         }
     }
 

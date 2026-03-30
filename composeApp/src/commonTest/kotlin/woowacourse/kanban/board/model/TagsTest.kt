@@ -28,4 +28,9 @@ class TagsTest {
     fun `isValidTags에 태그가 입력되지 않으면 true를 반환한다`() {
         assertTrue { Tags.isTagsValid(emptyList()) }
     }
+
+    @Test
+    fun `빈 태그 입력값이 isValidInput에 입력되면 true를 반환한다`() {
+        assertTrue { Tags.isValidInput("") }
+    }
 }

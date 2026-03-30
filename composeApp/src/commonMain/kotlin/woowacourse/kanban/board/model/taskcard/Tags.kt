@@ -15,5 +15,11 @@ data class Tags(val value: ImmutableList<Tag>) {
         fun isTagsValid(value: List<Tag>): Boolean {
             return value.size <= MAX_TAGS
         }
+
+        fun isValidInput(value: String): Boolean {
+            if (value.isEmpty()) return true
+
+            return Tag.isValidInput(value) && isTagsValid(Tag.parseAll(value))
+        }
     }
 }

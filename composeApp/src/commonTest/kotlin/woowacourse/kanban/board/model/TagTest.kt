@@ -29,8 +29,14 @@ class TagTest {
     }
 
     @Test
-    fun `5자 이하의 값이 isTagValid에 입력되면 true를 반환한다`() {
-        assertThat(Tag.isTagValid("일이삼사오"))
+    fun `5자 이하의 값이 isValidValue에 입력되면 true를 반환한다`() {
+        assertThat(Tag.isValidValue("일이삼사오"))
             .isTrue
+    }
+
+    @Test
+    fun `빈 문자열이 isValidInput에 입력되면 false를 반환한다`() {
+        assertThat(Tag.isValidInput(""))
+            .isFalse
     }
 }

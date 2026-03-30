@@ -7,7 +7,6 @@ import androidx.compose.runtime.setValue
 import kotlinx.collections.immutable.ImmutableList
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
-import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.Title
 
@@ -21,7 +20,5 @@ class ModalState(
     var profile by mutableStateOf(profiles.first())
 
     val isTitleValid by derivedStateOf { Title.isTitleValid(title) }
-    val isTagsValid by derivedStateOf {
-        Tag.isTagValid(tags) && Tags.isTagsValid(Tag.extractedTags(tags))
-    }
+    val isTagsValid by derivedStateOf { Tags.isValidInput(tags) }
 }
