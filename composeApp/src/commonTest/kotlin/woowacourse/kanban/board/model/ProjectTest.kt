@@ -24,7 +24,7 @@ class ProjectTest {
                     id = "테스트",
                     title = Title("제목"),
                     description = Description("설명"),
-                    tags = Tags(immutableListOf<Tag>(Tag("태그1"), Tag("태그1"))),
+                    tags = Tags(persistentListOf(Tag("태그1"), Tag("태그1"))),
                     status = Status.TODO,
                     profile = Profile("다이노"),
                 )
@@ -41,7 +41,7 @@ class ProjectTest {
             id = "테스트",
             title = Title("제목"),
             description = Description("설명"),
-            tags = Tags(immutableListOf<Tag>(Tag("태그1"), Tag("태그1"))),
+            tags = Tags(persistentListOf(Tag("태그1"), Tag("태그1"))),
             status = Status.TODO,
             profile = Profile("다이노"),
         )
