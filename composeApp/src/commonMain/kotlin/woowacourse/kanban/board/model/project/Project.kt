@@ -7,9 +7,9 @@ import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.TaskCardData
 
-data class Project(
+class Project(
     val title: String,
-    private val initialTasks: ImmutableList<TaskCardData>,
+    initialTasks: ImmutableList<TaskCardData>,
     val id: String = UUID.randomUUID().toString()
 ) {
     private val tasks = mutableStateListOf<TaskCardData>().apply {
