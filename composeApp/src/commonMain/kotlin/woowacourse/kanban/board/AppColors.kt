@@ -1,0 +1,24 @@
+package woowacourse.kanban.board
+
+import androidx.compose.ui.graphics.Color
+
+val Gray10 = Color(0xFF101828)
+val Gray20 = Color(0xff364153)
+val Gray30 = Color(0xFF4A5565)
+val Gray40 = Color(0xFF6A7282)
+val Gray50 = Color(0xFFAAAAAA)
+val Gray70 = Color(0xFFE5E7EB)
+val Gray80 = Color(0xFFF3F4F6)
+val Blue50 = Color(0xFF1447E6)
+val Blue60 = Color(0xFF155DFC)
+val Blue70 = Color(0xFFBEDBFF)
+val Blue80 = Color(0xFFEEF2FF)
+val Blue90 = Color(0xFFEFF6FF)
+val Yellow60 = Color(0xFFE17100)
+val Yellow70 = Color(0xFFFEE685)
+val Yellow90 = Color(0xFFFFFBEB)
+val Red50 = Color(0xFFB3261E)
+val Green60 = Color(0xFF00A63E)
+val Green70 = Color(0xFFB9F8CF)
+val Green90 = Color(0xFFF0FDF4)
+val Purple50 = Color(0xFF432DD7)

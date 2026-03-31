@@ -1,44 +1,35 @@
 package woowacourse.kanban.board
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import kanbanboard.composeapp.generated.resources.Res
-import kanbanboard.composeapp.generated.resources.compose_multiplatform
-import org.jetbrains.compose.resources.painterResource
+import kotlinx.collections.immutable.toImmutableList
+import woowacourse.kanban.board.component.WorkSpace
+import woowacourse.kanban.board.model.project.Project
+import woowacourse.kanban.board.model.state.WorkSpace as WorkSpaceModel
+import woowacourse.kanban.board.model.taskcard.Profile
+import woowacourse.kanban.board.model.taskcard.TaskCardData
 
 @Composable
-@Preview
 fun App() {
-    MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-                Image(painterResource(Res.drawable.compose_multiplatform), null)
-            }
-        }
+    val workSpace = remember {
+        WorkSpaceModel(
+            listOf(
+                Project("Compose1", listOf<TaskCardData>().toImmutableList()),
+                Project("Compose2", listOf<TaskCardData>().toImmutableList()),
+                Project("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCardData>().toImmutableList()),
+            ).toImmutableList()
+        )
     }
+
+    val profiles = remember {
+        listOf(
+            Profile("다이노"),
+            Profile("페임스")
+        ).toImmutableList()
+    }
+
+    WorkSpace(
+        workSpace = workSpace,
+        profiles = profiles,
+    )
 }
