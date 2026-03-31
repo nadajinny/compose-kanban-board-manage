@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import woowacourse.kanban.board.component.state.WorkSpaceStateHolder
 import woowacourse.kanban.board.model.project.Project
-import woowacourse.kanban.board.model.state.WorkSpace
+import woowacourse.kanban.board.model.Workspace.WorkSpace
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status

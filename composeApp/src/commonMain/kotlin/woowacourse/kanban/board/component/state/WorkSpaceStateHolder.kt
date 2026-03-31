@@ -7,7 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.model.project.Project
-import woowacourse.kanban.board.model.state.WorkSpace
+import woowacourse.kanban.board.model.Workspace.WorkSpace
 import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.TaskCardData
 
