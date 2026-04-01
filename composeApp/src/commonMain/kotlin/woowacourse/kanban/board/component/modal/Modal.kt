@@ -37,7 +37,9 @@ fun Modal(
     profiles: ImmutableList<Profile>,
     initialTask: TaskCard?,
     onClickClose: () -> Unit,
-    onSubmitTask: (TaskCard) -> Unit,
+    onCreateTask: (TaskCard) -> Unit,
+    onUpdateTask: (String, TaskCard) -> Unit,
+    onDeleteTask: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val modalState = remember { ModalState(profiles, initialTask) }
@@ -55,6 +57,15 @@ fun Modal(
         onChange = { modalState.tags = it },
         isError = modalState.isTagsValid.not(),
     )
+    val buildTaskCard = {
+        TaskCard(
+            title = Title(value = modalState.title),
+            description = Description(value = modalState.description),
+            tags = Tags(Tag.parseAll(modalState.tags).toImmutableList()),
+            status = modalState.status,
+            profile = modalState.profile,
+        )
+    }
 
     Card(
         modifier = modifier
@@ -90,16 +101,16 @@ fun Modal(
             Footer(
                 onClickClose = onClickClose,
                 onClickTaskCreate = {
-                    val data = TaskCard(
-                        title = Title(value = modalState.title),
-                        description = Description(value = modalState.description),
-                        tags = Tags(Tag.parseAll(modalState.tags).toImmutableList()),
-                        status = modalState.status,
-                        profile = modalState.profile,
-                    )
-                    onSubmitTask(data)
+                    onCreateTask(buildTaskCard())
+                },
+                onClickTaskDelete = {
+                    initialTask?.let { task -> onDeleteTask(task.id) }
+                },
+                onClickTaskModify = {
+                    initialTask?.let { task -> onUpdateTask(task.id, buildTaskCard()) }
                 },
                 isButtonEnabled = modalState.isTitleValid && modalState.isTagsValid,
+                isCreateMode = initialTask == null,
             )
         }
     }
@@ -114,6 +125,8 @@ private fun ModalPreview() {
         profiles = profiles,
         initialTask = task,
         onClickClose = {},
-        onSubmitTask = {},
+        onCreateTask = {},
+        onUpdateTask = { _, _ -> },
+        onDeleteTask = {},
     )
 }

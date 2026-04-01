@@ -20,4 +20,15 @@ class TaskCard(
             profile = profile
         )
     }
+
+    fun update(updatedTask: TaskCard): TaskCard {
+        return TaskCard(
+            id = id,
+            title = updatedTask.title,
+            description = updatedTask.description,
+            tags = updatedTask.tags,
+            status = updatedTask.status,
+            profile = updatedTask.profile
+        )
+    }
 }

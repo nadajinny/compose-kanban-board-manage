@@ -35,6 +35,14 @@ class WorkSpaceStateHolder(
         updateSelectedProject { project -> project.updateTaskStatus(id, targetStatus) }
     }
 
+    fun updateTask(id: String, task: TaskCard) {
+        updateSelectedProject { project -> project.updateTask(id, task) }
+    }
+
+    fun deleteTask(id: String) {
+        updateSelectedProject { project -> project.deleteTask(id) }
+    }
+
     private fun updateSelectedProject(update: (Project) -> Project) {
         val targetProjectId = selectedProjectId ?: return
         val index = workSpace.projects.indexOfFirst { it.id == targetProjectId }

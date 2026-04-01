@@ -44,4 +44,26 @@ class Project(
             id = this.id,
         )
     }
+
+    fun updateTask(id: String, updatedTask: TaskCard): Project {
+        if (tasks.none { it.id == id }) return this
+
+        val updatedTasks = tasks.map { task ->
+            if (task.id == id) task.update(updatedTask) else task
+        }.toImmutableList()
+
+        return Project(
+            title = title,
+            tasks = updatedTasks,
+            id = this.id
+        )
+    }
+
+    fun deleteTask(id: String): Project {
+        return Project(
+            title = title,
+            tasks = tasks.filterNot { it.id == id }.toImmutableList(),
+            id = this.id
+        )
+    }
 }

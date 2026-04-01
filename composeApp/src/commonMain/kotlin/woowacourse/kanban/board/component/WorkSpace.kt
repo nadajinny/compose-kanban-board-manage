@@ -59,6 +59,8 @@ fun WorkSpace(
                 project = it,
                 profiles = profiles,
                 onCreateTask = stateHolder::addTask,
+                onUpdateTask = stateHolder::updateTask,
+                onDeleteTask = stateHolder::deleteTask,
                 onUpdateTaskStatus = stateHolder::updateTaskStatus,
             )
         }
