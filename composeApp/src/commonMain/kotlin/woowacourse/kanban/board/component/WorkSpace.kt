@@ -35,7 +35,7 @@ import woowacourse.kanban.board.component.util.Gray20
 import woowacourse.kanban.board.component.util.Gray40
 import woowacourse.kanban.board.component.util.Purple50
 import woowacourse.kanban.board.model.project.Project
-import woowacourse.kanban.board.model.state.WorkSpace as WorkSpaceModel
+import woowacourse.kanban.board.model.workspace.WorkSpace as WorkSpaceModel
 import woowacourse.kanban.board.model.taskcard.Profile
 @Composable
 fun WorkSpace(

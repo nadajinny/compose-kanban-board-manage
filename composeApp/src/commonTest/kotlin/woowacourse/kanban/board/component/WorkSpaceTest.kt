@@ -9,7 +9,7 @@ import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
-import woowacourse.kanban.board.model.state.WorkSpace as WorkSpaceModel
+import woowacourse.kanban.board.model.workspace.WorkSpace as WorkSpaceModel
 import woowacourse.kanban.board.model.taskcard.Profile
 
 @OptIn(ExperimentalTestApi::class)
