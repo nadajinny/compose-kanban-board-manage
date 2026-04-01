@@ -11,7 +11,7 @@ import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.TaskCard
 import woowacourse.kanban.board.model.taskcard.Title
 
 class ProjectTest {
@@ -20,7 +20,7 @@ class ProjectTest {
         val project = Project(
             title = "테스트 프로젝트",
             tasks = persistentListOf(
-                TaskCardData(
+                TaskCard(
                     id = "테스트",
                     title = Title("제목"),
                     description = Description("설명"),
@@ -36,8 +36,8 @@ class ProjectTest {
     }
 
     @Test
-    fun `찾고자 하는 태스크 카드의 id값을 넣었을 때 해당 id 값을 가진 TaskCardData를 찾을 수 있다`() {
-        val task = TaskCardData(
+    fun `찾고자 하는 태스크 카드의 id값을 넣었을 때 해당 id 값을 가진 TaskCard를 찾을 수 있다`() {
+        val task = TaskCard(
             id = "테스트",
             title = Title("제목"),
             description = Description("설명"),

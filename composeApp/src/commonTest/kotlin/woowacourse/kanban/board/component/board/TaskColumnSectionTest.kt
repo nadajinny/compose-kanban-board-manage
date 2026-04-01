@@ -12,14 +12,14 @@ import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.TaskCard
 import woowacourse.kanban.board.model.taskcard.Title
 
 @OptIn(ExperimentalTestApi::class)
 class TaskColumnSectionTest {
 
-    fun createData(status: Status): TaskCardData {
-        return TaskCardData(
+    fun createData(status: Status): TaskCard {
+        return TaskCard(
             title = Title(value = "업무1"),
             description = Description(""),
             tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),

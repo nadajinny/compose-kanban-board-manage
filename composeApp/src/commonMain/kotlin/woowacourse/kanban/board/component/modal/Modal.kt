@@ -28,14 +28,14 @@ import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.TaskCard
 import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable
 fun Modal(
     profiles: ImmutableList<Profile>,
     onClickClose: () -> Unit,
-    onClickTaskCreate: (TaskCardData) -> Unit,
+    onClickTaskCreate: (TaskCard) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val modalState = remember { ModalState(profiles) }
@@ -88,7 +88,7 @@ fun Modal(
             Footer(
                 onClickClose = onClickClose,
                 onClickTaskCreate = {
-                    val data = TaskCardData(
+                    val data = TaskCard(
                         title = Title(value = modalState.title),
                         description = Description(value = modalState.description),
                         tags = Tags(Tag.parseAll(modalState.tags).toImmutableList()),

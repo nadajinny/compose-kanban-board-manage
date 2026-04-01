@@ -9,7 +9,7 @@ import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.workspace.WorkSpace
 import woowacourse.kanban.board.model.taskcard.Status
-import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.TaskCard
 
 class WorkSpaceStateHolder(
     initialWorkSpace: WorkSpace,
@@ -27,7 +27,7 @@ class WorkSpaceStateHolder(
         selectedProjectId = project.id
     }
 
-    fun addTask(task: TaskCardData) {
+    fun addTask(task: TaskCard) {
         updateSelectedProject { project -> project.addCard(task) }
     }
 

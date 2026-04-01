@@ -32,12 +32,12 @@ import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.TaskCard
 import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable
 fun TaskCard(
-    data: TaskCardData,
+    data: TaskCard,
     modifier: Modifier = Modifier,
     onDragStart: () -> Unit = {},
     onDragChange: (Offset) -> Unit = {},
@@ -95,7 +95,7 @@ private fun TaskCardPreview() {
 @Composable
 private fun TaskCardEmptyDescriptionPreview() {
     TaskCard(
-        data = TaskCardData(
+        data = TaskCard(
             title = Title(value = "LazyColumn 컴포넌트 구현"),
             description = Description(value = ""),
             tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
@@ -109,7 +109,7 @@ private fun TaskCardEmptyDescriptionPreview() {
 @Composable
 private fun TaskCardEmptyTagPreview() {
     TaskCard(
-        data = TaskCardData(
+        data = TaskCard(
             title = Title(value = "LazyColumn 컴포넌트 구현"),
             description = Description(value = "세로 스크롤"),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
@@ -123,7 +123,7 @@ private fun TaskCardEmptyTagPreview() {
 @Composable
 private fun TaskCardEmptyTagAndDescriptionPreview() {
     TaskCard(
-        data = TaskCardData(
+        data = TaskCard(
             title = Title(value = "LazyColumn 컴포넌트 구현"),
             description = Description(value = ""),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
@@ -137,7 +137,7 @@ private fun TaskCardEmptyTagAndDescriptionPreview() {
 @Composable
 private fun TaskCardLongTitlePreview() {
     TaskCard(
-        data = TaskCardData(
+        data = TaskCard(
             title = Title(value = "LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현"),
             description = Description(value = ""),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
@@ -151,7 +151,7 @@ private fun TaskCardLongTitlePreview() {
 @Composable
 private fun TaskCardLongDescriptionPreview() {
     TaskCard(
-        data = TaskCardData(
+        data = TaskCard(
             title = Title(value = "LazyColumn 컴포넌트 구현"),
             description = Description(
                 value = "세로 스크롤  세로 스크롤" +

@@ -10,7 +10,7 @@ import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.TaskCard
 import woowacourse.kanban.board.model.taskcard.Title
 
 @OptIn(ExperimentalTestApi::class)
@@ -19,7 +19,7 @@ class TaskCardTest {
     @Test
     fun `모든 필드가 있는 카드 - 제목, 설명, 태그, 닉네임 출력`() = runComposeUiTest {
         val tags = listOf("컴포넌트", "성능")
-        val taskCardData = TaskCardData(
+        val TaskCard = TaskCard(
             title = Title("LazyColumn 컴포넌트 구현"),
             description = Description("세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다."),
             tags = Tags(listOf(Tag("컴포넌트"), Tag("성능")).toImmutableList()),
@@ -27,7 +27,7 @@ class TaskCardTest {
             profile = Profile("다이노"),
         )
         setContent {
-            TaskCard(data = taskCardData)
+            TaskCard(data = TaskCard)
         }
 
         onNodeWithText("LazyColumn 컴포넌트 구현").assertExists()

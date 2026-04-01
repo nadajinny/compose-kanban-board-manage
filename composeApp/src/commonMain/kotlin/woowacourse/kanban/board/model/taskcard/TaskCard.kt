@@ -2,7 +2,7 @@ package woowacourse.kanban.board.model.taskcard
 
 import java.util.UUID
 
-data class TaskCardData(
+class TaskCard(
     val id: String = UUID.randomUUID().toString(),
     val title: Title,
     val description: Description,

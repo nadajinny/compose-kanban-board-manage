@@ -14,7 +14,7 @@ import woowacourse.kanban.board.component.util.Yellow90
 import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Status
-import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.TaskCard
 
 fun Status.toText(): String = when (this) {
     Status.TODO -> ComponentText.STATE_BUTTON_TODO
@@ -40,5 +40,5 @@ fun Status.toHeaderColor(): Color = when (this) {
     Status.DONE -> Green60
 }
 
-fun Status.toFilterTask(project: Project): ImmutableList<TaskCardData> =
+fun Status.toFilterTask(project: Project): ImmutableList<TaskCard> =
     project.filterTasksbyStatus(this)

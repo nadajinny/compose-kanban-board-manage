@@ -12,14 +12,14 @@ import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.TaskCard
 import woowacourse.kanban.board.model.taskcard.Title
 
 class BoardStateTest {
     private lateinit var workSpaceStateHolder: WorkSpaceStateHolder
 
-    fun createData(status: Status): TaskCardData {
-        return TaskCardData(
+    fun createData(status: Status): TaskCard {
+        return TaskCard(
             title = Title(value = "업무1"),
             description = Description(""),
             tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
@@ -33,30 +33,30 @@ class BoardStateTest {
         workSpaceStateHolder = WorkSpaceStateHolder(
             WorkSpace(
                 listOf<Project>(
-                Project("Compose1", listOf<TaskCardData>().toImmutableList()),
-                Project("Compose2", listOf<TaskCardData>().toImmutableList()),
-                Project("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCardData>().toImmutableList()),
+                Project("Compose1", listOf<TaskCard>().toImmutableList()),
+                Project("Compose2", listOf<TaskCard>().toImmutableList()),
+                Project("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCard>().toImmutableList()),
                 ).toImmutableList()
             )
         )
     }
 
     @Test
-    fun `Todo TaskCardData를 추가하면 todoList에 저장된다`() {
+    fun `Todo TaskCard를 추가하면 todoList에 저장된다`() {
         val data = createData(Status.TODO)
         workSpaceStateHolder.addTask(data)
         assertThat(workSpaceStateHolder.selectedProject?.filterTasksbyStatus(Status.TODO)).contains(data)
     }
 
     @Test
-    fun `Progress TaskCardData를 추가하면 progressList에 저장된다`() {
+    fun `Progress TaskCard를 추가하면 progressList에 저장된다`() {
         val data = createData(Status.PROGRESS)
         workSpaceStateHolder.addTask(data)
         assertThat(workSpaceStateHolder.selectedProject?.filterTasksbyStatus(Status.PROGRESS)).contains(data)
     }
 
     @Test
-    fun `Done TaskCardData를 추가하면 doneList에 저장된다`() {
+    fun `Done TaskCard를 추가하면 doneList에 저장된다`() {
         val data = createData(Status.DONE)
         workSpaceStateHolder.addTask(data)
         assertThat(workSpaceStateHolder.selectedProject?.filterTasksbyStatus(Status.DONE)).contains(data)

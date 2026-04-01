@@ -27,13 +27,13 @@ import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
-import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.TaskCard
 
 @Composable
 fun Board(
     project: Project,
     profiles: ImmutableList<Profile>,
-    onCreateTask: (TaskCardData) -> Unit,
+    onCreateTask: (TaskCard) -> Unit,
     onUpdateTaskStatus: (String, Status) -> Unit,
     modifier: Modifier = Modifier,
 ) {

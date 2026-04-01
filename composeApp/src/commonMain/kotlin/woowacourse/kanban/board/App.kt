@@ -7,16 +7,16 @@ import woowacourse.kanban.board.component.WorkSpace
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.workspace.WorkSpace as WorkSpaceModel
 import woowacourse.kanban.board.model.taskcard.Profile
-import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.TaskCard
 
 @Composable
 fun App() {
     val workSpace = remember {
         WorkSpaceModel(
             listOf(
-                Project("Compose1", listOf<TaskCardData>().toImmutableList()),
-                Project("Compose2", listOf<TaskCardData>().toImmutableList()),
-                Project("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCardData>().toImmutableList()),
+                Project("Compose1", listOf<TaskCard>().toImmutableList()),
+                Project("Compose2", listOf<TaskCard>().toImmutableList()),
+                Project("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCard>().toImmutableList()),
             ).toImmutableList()
         )
     }

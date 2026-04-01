@@ -49,7 +49,7 @@ import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
-import woowacourse.kanban.board.model.taskcard.TaskCardData
+import woowacourse.kanban.board.model.taskcard.TaskCard
 import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable
@@ -111,11 +111,11 @@ fun TaskColumnSection(
 @Composable
 private fun TaskColumn(
     status: Status,
-    tasks: ImmutableList<TaskCardData>,
+    tasks: ImmutableList<TaskCard>,
     modifier: Modifier = Modifier,
     getIsDropTarget: () -> Boolean = { false },
     onBoundsChanged: (Rect) -> Unit = {},
-    onTaskDragStart: (TaskCardData) -> Unit = {},
+    onTaskDragStart: (TaskCard) -> Unit = {},
     onTaskDragChange: (Offset) -> Unit = {},
     onTaskDragEnd: () -> Unit = {},
     onTaskDragCancel: () -> Unit = {},
@@ -235,7 +235,7 @@ private fun TaskColumnTodoHeaderPreview() {
 @Composable
 private fun TaskColumnTodoPreview() {
     val tasks = listOf(
-        TaskCardData(
+        TaskCard(
             title = Title(value = "제목"),
             description = Description(value = "설명"),
             tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
@@ -253,7 +253,7 @@ private fun TaskColumnTodoPreview() {
 @Composable
 private fun TaskColumnProgressPreview() {
     val tasks = listOf(
-        TaskCardData(
+        TaskCard(
             title = Title(value = "제목"),
             description = Description(value = "설명"),
             tags = Tags(value = listOf(Tag(value = "컴포넌트"), Tag("zjavh")).toImmutableList()),
@@ -271,7 +271,7 @@ private fun TaskColumnProgressPreview() {
 @Composable
 private fun TaskColumnDonePreview() {
     val tasks = listOf(
-        TaskCardData(
+        TaskCard(
             title = Title(value = "제목"),
             description = Description(value = "설명"),
             tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
