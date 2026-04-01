@@ -15,6 +15,7 @@ object ComponentText {
     const val STATE_BUTTON_LABEL = "상태"
     const val STATE_BUTTON_TODO = "To Do"
     const val STATE_BUTTON_PROGRESS = "In Progress"
+    const val STATE_BUTTON_REVIEW = "Review"
     const val STATE_BUTTON_DONE = "Done"
     const val PROFILE_BUTTON_LABEL = "담당자"
     const val CANCEL_BUTTON = "취소"

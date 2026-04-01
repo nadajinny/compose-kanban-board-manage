@@ -33,7 +33,7 @@ import woowacourse.kanban.board.component.util.Blue80
 import woowacourse.kanban.board.component.util.Gray10
 import woowacourse.kanban.board.component.util.Gray20
 import woowacourse.kanban.board.component.util.Gray40
-import woowacourse.kanban.board.component.util.Purple50
+import woowacourse.kanban.board.component.util.Purple80
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.workspace.WorkSpace as WorkSpaceModel
@@ -104,7 +104,7 @@ private fun SideBar(
                 if (project == selectedProject) Blue80
                 else Color.Transparent
             val textColor =
-                if (project == selectedProject) Purple50
+                if (project == selectedProject) Purple80
                 else Gray20
             Button(
                 onClick = { onChangeProject(project) },
