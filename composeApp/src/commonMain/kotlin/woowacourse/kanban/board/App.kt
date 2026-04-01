@@ -5,9 +5,9 @@ import androidx.compose.runtime.remember
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.component.WorkSpace
 import woowacourse.kanban.board.model.project.Project
-import woowacourse.kanban.board.model.workspace.WorkSpace as WorkSpaceModel
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.TaskCard
+import woowacourse.kanban.board.model.workspace.WorkSpace as WorkSpaceModel
 
 @Composable
 fun App() {

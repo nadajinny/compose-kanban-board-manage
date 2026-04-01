@@ -2,7 +2,6 @@ package woowacourse.kanban.board.model
 
 import kotlin.test.Test
 import kotlin.test.assertTrue
-import kotlinx.collections.immutable.immutableListOf
 import kotlinx.collections.immutable.persistentListOf
 import org.assertj.core.api.Assertions.assertThat
 import woowacourse.kanban.board.model.project.Project

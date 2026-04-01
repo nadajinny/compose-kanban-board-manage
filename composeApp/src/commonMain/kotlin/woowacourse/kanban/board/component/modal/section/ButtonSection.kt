@@ -14,11 +14,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import woowacourse.kanban.board.component.util.Gray20
-import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.component.modal.button.ProfileButton
 import woowacourse.kanban.board.component.modal.button.StateButton
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
+import woowacourse.kanban.board.component.util.ComponentText
+import woowacourse.kanban.board.component.util.Gray20
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
 

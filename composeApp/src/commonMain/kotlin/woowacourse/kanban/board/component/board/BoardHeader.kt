@@ -31,10 +31,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlin.math.roundToInt
+import woowacourse.kanban.board.component.sample.ProjectPreviewData
+import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.component.util.Gray10
 import woowacourse.kanban.board.component.util.Gray30
-import woowacourse.kanban.board.component.util.ComponentText
-import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.model.taskcard.Status
 
 @Composable

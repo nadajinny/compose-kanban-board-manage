@@ -22,8 +22,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.component.util.Blue50
-import woowacourse.kanban.board.component.util.Gray20
 import woowacourse.kanban.board.component.util.ComponentText
+import woowacourse.kanban.board.component.util.Gray20
 
 @Composable
 fun Footer(

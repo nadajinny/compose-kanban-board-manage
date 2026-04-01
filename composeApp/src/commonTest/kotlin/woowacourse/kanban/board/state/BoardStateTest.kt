@@ -6,7 +6,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import woowacourse.kanban.board.component.state.WorkSpaceStateHolder
 import woowacourse.kanban.board.model.project.Project
-import woowacourse.kanban.board.model.workspace.WorkSpace
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
@@ -14,6 +13,7 @@ import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.TaskCard
 import woowacourse.kanban.board.model.taskcard.Title
+import woowacourse.kanban.board.model.workspace.WorkSpace
 
 class BoardStateTest {
     private lateinit var workSpaceStateHolder: WorkSpaceStateHolder
@@ -33,9 +33,9 @@ class BoardStateTest {
         workSpaceStateHolder = WorkSpaceStateHolder(
             WorkSpace(
                 listOf<Project>(
-                Project("Compose1", listOf<TaskCard>().toImmutableList()),
-                Project("Compose2", listOf<TaskCard>().toImmutableList()),
-                Project("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCard>().toImmutableList()),
+                    Project("Compose1", listOf<TaskCard>().toImmutableList()),
+                    Project("Compose2", listOf<TaskCard>().toImmutableList()),
+                    Project("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCard>().toImmutableList()),
                 ).toImmutableList()
             )
         )

@@ -19,8 +19,8 @@ import kotlin.test.Test
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.junit.Before
-import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
+import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Profile
 

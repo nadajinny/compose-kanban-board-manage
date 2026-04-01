@@ -24,9 +24,9 @@ import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.toImmutableList
+import woowacourse.kanban.board.component.sample.TaskCardPreviewData
 import woowacourse.kanban.board.component.util.Gray70
 import woowacourse.kanban.board.component.util.Gray80
-import woowacourse.kanban.board.component.sample.TaskCardPreviewData
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
