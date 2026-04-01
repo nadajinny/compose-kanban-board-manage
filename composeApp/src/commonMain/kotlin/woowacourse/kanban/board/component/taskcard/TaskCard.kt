@@ -78,7 +78,7 @@ fun TaskCard(
                 thickness = 1.dp,
                 color = Gray80,
             )
-            Profile(profile = data.profile)
+            if(data.profile.isAssigned) Profile(profile = data.profile)
         }
     }
 }
