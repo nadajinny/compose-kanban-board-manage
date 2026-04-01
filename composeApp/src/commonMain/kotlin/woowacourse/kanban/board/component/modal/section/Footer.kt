@@ -80,6 +80,7 @@ private fun ModifyButton(enabled: Boolean, onClickTaskDelete: () -> Unit, onClic
         text = "삭제",
         onClick = onClickTaskDelete
     )
+    Spacer(modifier = Modifier.width(12.dp))
     FooterButton(
         enabled = enabled,
         containerColor = Purple70,
