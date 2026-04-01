@@ -74,11 +74,13 @@ fun TaskCard(
             Title(title = data.title.value)
             Description(description = data.description.value)
             Tags(tags = data.tags)
-            HorizontalDivider(
-                thickness = 1.dp,
-                color = Gray80,
-            )
-            if(data.profile.isAssigned) Profile(profile = data.profile)
+            if(data.profile.isAssigned) {
+                HorizontalDivider(
+                    thickness = 1.dp,
+                    color = Gray80,
+                )
+                Profile(profile = data.profile)
+            }
         }
     }
 }
