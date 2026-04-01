@@ -35,7 +35,7 @@ class Project(
         if (tasks.none { it.id == id }) return this
 
         val updatedTasks = tasks.map { task ->
-            if (task.id == id) task.copy(status = targetStatus) else task
+            if (task.id == id) task.changeStatus(afterStatus = targetStatus) else task
         }.toImmutableList()
 
         return Project(
