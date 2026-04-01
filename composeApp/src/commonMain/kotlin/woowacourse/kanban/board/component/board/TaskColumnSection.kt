@@ -57,6 +57,7 @@ fun TaskColumnSection(
     project: Project,
     onMoveSnackBar: () -> Unit,
     onUpdateTaskStatus: (String, Status) -> Unit,
+    onTaskClick: (TaskCard) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var currentDragPosition by remember { mutableStateOf<Offset?>(null) }
@@ -100,6 +101,7 @@ fun TaskColumnSection(
                     currentDragPosition = null
                     draggedTaskId = null
                 },
+                onTaskClick = onTaskClick
             )
         }
         Spacer(
@@ -119,6 +121,7 @@ private fun TaskColumn(
     onTaskDragChange: (Offset) -> Unit = {},
     onTaskDragEnd: () -> Unit = {},
     onTaskDragCancel: () -> Unit = {},
+    onTaskClick: (TaskCard) -> Unit,
 ) {
     val isDropTarget by remember { derivedStateOf { getIsDropTarget() } }
     val lastBoundsHolder = remember { mutableStateOf<Rect?>(null) }
@@ -157,6 +160,7 @@ private fun TaskColumn(
                     TaskCard(
                         data = task,
                         modifier = Modifier.fillMaxWidth(),
+                        onClick = { onTaskClick(task) },
                         onDragStart = { onTaskDragStart(task) },
                         onDragChange = onTaskDragChange,
                         onDragEnd = onTaskDragEnd,
@@ -231,71 +235,71 @@ private fun TaskColumnTodoHeaderPreview() {
     )
 }
 
-@Preview(heightDp = 400)
-@Composable
-private fun TaskColumnTodoPreview() {
-    val tasks = listOf(
-        TaskCard(
-            title = Title(value = "제목"),
-            description = Description(value = "설명"),
-            tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
-            status = Status.PROGRESS,
-            profile = Profile("다이노"),
-        ),
-    ).toImmutableList()
-    TaskColumn(
-        tasks = tasks,
-        status = Status.TODO,
-    )
-}
-
-@Preview(heightDp = 400)
-@Composable
-private fun TaskColumnProgressPreview() {
-    val tasks = listOf(
-        TaskCard(
-            title = Title(value = "제목"),
-            description = Description(value = "설명"),
-            tags = Tags(value = listOf(Tag(value = "컴포넌트"), Tag("zjavh")).toImmutableList()),
-            status = Status.PROGRESS,
-            profile = Profile("다이노"),
-        ),
-    ).toImmutableList()
-    TaskColumn(
-        tasks = tasks,
-        status = Status.PROGRESS,
-    )
-}
-
-@Preview(heightDp = 400)
-@Composable
-private fun TaskColumnDonePreview() {
-    val tasks = listOf(
-        TaskCard(
-            title = Title(value = "제목"),
-            description = Description(value = "설명"),
-            tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
-            status = Status.PROGRESS,
-            profile = Profile("다이노"),
-        ),
-    ).toImmutableList()
-    TaskColumn(
-        tasks = tasks,
-        status = Status.DONE,
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun TaskColumnSectionPreview() {
-    val project = ProjectPreviewData().values.toMutableList()
-    project.forEach { project ->
-        MaterialTheme {
-            TaskColumnSection(
-                project = project,
-                onMoveSnackBar = {},
-                onUpdateTaskStatus = { _, _ -> },
-            )
-        }
-    }
-}
+//@Preview(heightDp = 400)
+//@Composable
+//private fun TaskColumnTodoPreview() {
+//    val tasks = listOf(
+//        TaskCard(
+//            title = Title(value = "제목"),
+//            description = Description(value = "설명"),
+//            tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
+//            status = Status.PROGRESS,
+//            profile = Profile("다이노"),
+//        ),
+//    ).toImmutableList()
+//    TaskColumn(
+//        tasks = tasks,
+//        status = Status.TODO,
+//    )
+//}
+//
+//@Preview(heightDp = 400)
+//@Composable
+//private fun TaskColumnProgressPreview() {
+//    val tasks = listOf(
+//        TaskCard(
+//            title = Title(value = "제목"),
+//            description = Description(value = "설명"),
+//            tags = Tags(value = listOf(Tag(value = "컴포넌트"), Tag("zjavh")).toImmutableList()),
+//            status = Status.PROGRESS,
+//            profile = Profile("다이노"),
+//        ),
+//    ).toImmutableList()
+//    TaskColumn(
+//        tasks = tasks,
+//        status = Status.PROGRESS,
+//    )
+//}
+//
+//@Preview(heightDp = 400)
+//@Composable
+//private fun TaskColumnDonePreview() {
+//    val tasks = listOf(
+//        TaskCard(
+//            title = Title(value = "제목"),
+//            description = Description(value = "설명"),
+//            tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
+//            status = Status.PROGRESS,
+//            profile = Profile("다이노"),
+//        ),
+//    ).toImmutableList()
+//    TaskColumn(
+//        tasks = tasks,
+//        status = Status.DONE,
+//    )
+//}
+//
+//@Preview(showBackground = true)
+//@Composable
+//private fun TaskColumnSectionPreview() {
+//    val project = ProjectPreviewData().values.toMutableList()
+//    project.forEach { project ->
+//        MaterialTheme {
+//            TaskColumnSection(
+//                project = project,
+//                onMoveSnackBar = {},
+//                onUpdateTaskStatus = { _, _ -> },
+//            )
+//        }
+//    }
+//}

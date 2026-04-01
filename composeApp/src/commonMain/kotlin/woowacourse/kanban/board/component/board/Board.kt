@@ -101,6 +101,7 @@ fun Board(
                 project = project,
                 onMoveSnackBar = { shouldShowMoveSnackbar = true },
                 onUpdateTaskStatus = onUpdateTaskStatus,
+                onTaskClick = { isShowModal = true },
             )
         }
     }
