@@ -55,11 +55,13 @@ fun ProfileButton(
         Row(
             horizontalArrangement = Arrangement.Start,
         ) {
-            Image(
-                painter = painterResource(myState.icon.toDrawableResource()),
-                contentDescription = "프로필 이미지",
-                modifier = Modifier.size(24.dp),
-            )
+            myState.icon.toDrawableResource()?.let {
+                Image(
+                    painter = painterResource(it),
+                    contentDescription = "프로필 이미지",
+                    modifier = Modifier.size(24.dp),
+                )
+            }
             Spacer(modifier = Modifier.width(12.dp))
             Text(
                 text = myState.nickname,
@@ -92,7 +94,7 @@ private fun ProfileButtonChoicePreview() {
     )
 }
 
-private fun String.toDrawableResource(): DrawableResource = when (this) {
+private fun String.toDrawableResource(): DrawableResource? = when (this) {
     "DEFAULT" -> Res.drawable.profile
-    else -> Res.drawable.profile
+    else -> null
 }
