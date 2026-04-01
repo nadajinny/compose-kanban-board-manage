@@ -24,13 +24,18 @@ import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.component.util.Blue50
 import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.component.util.Gray20
+import woowacourse.kanban.board.component.util.Purple70
+import woowacourse.kanban.board.component.util.Red20
 
 @Composable
 fun Footer(
     onClickClose: () -> Unit,
     onClickTaskCreate: () -> Unit,
+    onClickTaskDelete: () -> Unit,
+    onClickTaskModify: () -> Unit,
     isButtonEnabled: Boolean,
     modifier: Modifier = Modifier,
+    isCreateMode: Boolean,
 ) {
     Column(
         modifier = modifier
@@ -51,14 +56,46 @@ fun Footer(
                 onClick = onClickClose,
             )
             Spacer(modifier = Modifier.width(12.dp))
-            FooterButton(
-                enabled = isButtonEnabled,
-                containerColor = Blue50,
-                text = ComponentText.CREATE_BUTTON,
-                onClick = onClickTaskCreate,
-            )
+            if(isCreateMode) {
+                CreateButton(
+                    enabled = isButtonEnabled,
+                    onClickTaskCreate = onClickTaskCreate,
+                )
+            } else {
+                ModifyButton(
+                    enabled = isButtonEnabled,
+                    onClickTaskDelete = onClickTaskDelete,
+                    onClickTaskModify = onClickTaskModify
+                )
+            }
         }
     }
+}
+
+@Composable
+private fun ModifyButton(enabled: Boolean, onClickTaskDelete: () -> Unit, onClickTaskModify: () -> Unit) {
+    FooterButton(
+        enabled = enabled,
+        containerColor = Red20,
+        text = "삭제",
+        onClick = onClickTaskDelete
+    )
+    FooterButton(
+        enabled = enabled,
+        containerColor = Purple70,
+        text = "수정",
+        onClick = onClickTaskModify
+    )
+}
+
+@Composable
+private fun CreateButton(enabled: Boolean, onClickTaskCreate: () -> Unit) {
+    FooterButton(
+        enabled = enabled,
+        containerColor = Blue50,
+        text = ComponentText.CREATE_BUTTON,
+        onClick = onClickTaskCreate
+    )
 }
 
 @Composable
@@ -90,10 +127,26 @@ private fun FooterButton(
 
 @Preview(showBackground = true)
 @Composable
-private fun FooterPreview() {
+private fun CreateFooterPreview() {
     Footer(
         onClickClose = {},
         onClickTaskCreate = {},
         isButtonEnabled = true,
+        onClickTaskDelete = {},
+        onClickTaskModify = {},
+        isCreateMode = true,
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ModifyFooterPreview() {
+    Footer(
+        onClickClose = {},
+        onClickTaskCreate = {},
+        isButtonEnabled = true,
+        onClickTaskDelete = {},
+        onClickTaskModify = {},
+        isCreateMode = false,
     )
 }
