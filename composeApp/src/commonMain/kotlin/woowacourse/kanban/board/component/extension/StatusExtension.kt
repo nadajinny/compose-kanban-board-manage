@@ -2,16 +2,16 @@ package woowacourse.kanban.board.component.extension
 
 import androidx.compose.ui.graphics.Color
 import kotlinx.collections.immutable.ImmutableList
-import woowacourse.kanban.board.Blue60
-import woowacourse.kanban.board.Blue70
-import woowacourse.kanban.board.Blue90
-import woowacourse.kanban.board.Green60
-import woowacourse.kanban.board.Green70
-import woowacourse.kanban.board.Green90
-import woowacourse.kanban.board.Yellow60
-import woowacourse.kanban.board.Yellow70
-import woowacourse.kanban.board.Yellow90
-import woowacourse.kanban.board.component.ComponentText
+import woowacourse.kanban.board.component.util.Blue60
+import woowacourse.kanban.board.component.util.Blue70
+import woowacourse.kanban.board.component.util.Blue90
+import woowacourse.kanban.board.component.util.Green60
+import woowacourse.kanban.board.component.util.Green70
+import woowacourse.kanban.board.component.util.Green90
+import woowacourse.kanban.board.component.util.Yellow60
+import woowacourse.kanban.board.component.util.Yellow70
+import woowacourse.kanban.board.component.util.Yellow90
+import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.TaskCardData

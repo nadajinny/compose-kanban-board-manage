@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component
+package woowacourse.kanban.board.component.util
 
 object ComponentText {
     const val HEADER_LABEL = "새 태스크 생성"

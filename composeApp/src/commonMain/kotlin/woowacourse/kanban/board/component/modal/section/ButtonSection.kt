@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -16,8 +14,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import woowacourse.kanban.board.Gray20
-import woowacourse.kanban.board.component.ComponentText
+import woowacourse.kanban.board.component.util.Gray20
+import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.component.modal.button.ProfileButton
 import woowacourse.kanban.board.component.modal.button.StateButton
 import woowacourse.kanban.board.component.sample.ProfilePreviewData

@@ -26,10 +26,10 @@ import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
-import woowacourse.kanban.board.Blue50
-import woowacourse.kanban.board.Blue80
-import woowacourse.kanban.board.Gray20
-import woowacourse.kanban.board.Gray70
+import woowacourse.kanban.board.component.util.Blue50
+import woowacourse.kanban.board.component.util.Blue80
+import woowacourse.kanban.board.component.util.Gray20
+import woowacourse.kanban.board.component.util.Gray70
 import woowacourse.kanban.board.model.taskcard.Profile
 
 @Composable

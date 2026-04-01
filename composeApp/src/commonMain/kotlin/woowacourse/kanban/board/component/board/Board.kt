@@ -19,8 +19,8 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import woowacourse.kanban.board.Gray80
-import woowacourse.kanban.board.component.ComponentText
+import woowacourse.kanban.board.component.util.Gray80
+import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.component.modal.Modal
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.component.sample.ProjectPreviewData

@@ -17,10 +17,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.Blue50
-import woowacourse.kanban.board.Blue80
-import woowacourse.kanban.board.Gray20
-import woowacourse.kanban.board.Gray70
+import woowacourse.kanban.board.component.util.Blue50
+import woowacourse.kanban.board.component.util.Blue80
+import woowacourse.kanban.board.component.util.Gray20
+import woowacourse.kanban.board.component.util.Gray70
 import woowacourse.kanban.board.component.extension.toText
 import woowacourse.kanban.board.model.taskcard.Status
 

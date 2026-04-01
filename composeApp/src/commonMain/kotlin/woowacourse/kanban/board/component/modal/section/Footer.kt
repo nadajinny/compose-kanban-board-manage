@@ -21,9 +21,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.Blue50
-import woowacourse.kanban.board.Gray20
-import woowacourse.kanban.board.component.ComponentText
+import woowacourse.kanban.board.component.util.Blue50
+import woowacourse.kanban.board.component.util.Gray20
+import woowacourse.kanban.board.component.util.ComponentText
 
 @Composable
 fun Footer(

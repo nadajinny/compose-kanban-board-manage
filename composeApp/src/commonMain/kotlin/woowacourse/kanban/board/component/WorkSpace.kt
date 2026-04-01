@@ -25,15 +25,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import woowacourse.kanban.board.Blue80
-import woowacourse.kanban.board.Gray10
-import woowacourse.kanban.board.Gray20
-import woowacourse.kanban.board.Gray40
-import woowacourse.kanban.board.Purple50
 import woowacourse.kanban.board.component.board.Board
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.component.state.rememberWorkSpaceStateHolder
+import woowacourse.kanban.board.component.util.Blue80
+import woowacourse.kanban.board.component.util.Gray10
+import woowacourse.kanban.board.component.util.Gray20
+import woowacourse.kanban.board.component.util.Gray40
+import woowacourse.kanban.board.component.util.Purple50
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.state.WorkSpace as WorkSpaceModel
 import woowacourse.kanban.board.model.taskcard.Profile
