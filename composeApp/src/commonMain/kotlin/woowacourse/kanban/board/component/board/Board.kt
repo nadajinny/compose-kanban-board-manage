@@ -36,8 +36,11 @@ fun Board(
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
 
-    var shouldShowSnackbar by remember { mutableStateOf(false) }
+    var shouldShowCreateSnackbar by remember { mutableStateOf(false) }
     var shouldShowMoveSnackbar by remember { mutableStateOf(false) }
+
+    var shouldShowModifySnackbar by remember { mutableStateOf(false) }
+    var shouldShowDeleteSnackbar by remember { mutableStateOf(false) }
 
     var isShowModal by remember { mutableStateOf(false) }
     var selectedTask by remember { mutableStateOf<TaskCard?>(null) }
@@ -46,13 +49,13 @@ fun Board(
         isShowModal = false
     }
 
-    LaunchedEffect(shouldShowSnackbar) {
-        if (shouldShowSnackbar) {
+    LaunchedEffect(shouldShowCreateSnackbar) {
+        if (shouldShowCreateSnackbar) {
             snackbarHostState.showSnackbar(
                 message = ComponentText.BOARD_TASK_CREATE_SNACKBAR,
                 withDismissAction = true,
             )
-            shouldShowSnackbar = false
+            shouldShowCreateSnackbar = false
         }
     }
 
@@ -63,6 +66,26 @@ fun Board(
                 withDismissAction = true,
             )
             shouldShowMoveSnackbar = false
+        }
+    }
+
+    LaunchedEffect(shouldShowModifySnackbar) {
+        if (shouldShowModifySnackbar) {
+            snackbarHostState.showSnackbar(
+                message = ComponentText.BOARD_TASK_MODIFY_SNACKBAR,
+                withDismissAction = true,
+            )
+            shouldShowModifySnackbar = false
+        }
+    }
+
+    LaunchedEffect(shouldShowDeleteSnackbar) {
+        if (shouldShowDeleteSnackbar) {
+            snackbarHostState.showSnackbar(
+                message = ComponentText.BOARD_TASK_DELETE_SNACKBAR,
+                withDismissAction = true,
+            )
+            shouldShowDeleteSnackbar = false
         }
     }
 
@@ -88,15 +111,17 @@ fun Board(
                         onClickClose = closeModal,
                         onCreateTask = { task ->
                             onCreateTask(task)
-                            shouldShowSnackbar = true
+                            shouldShowCreateSnackbar = true
                             closeModal()
                         },
                         onUpdateTask = { id, task ->
                             onUpdateTask(id, task)
+                            shouldShowModifySnackbar = true
                             closeModal()
                         },
                         onDeleteTask = { id ->
                             onDeleteTask(id)
+                            shouldShowDeleteSnackbar = true
                             closeModal()
                         },
                     )

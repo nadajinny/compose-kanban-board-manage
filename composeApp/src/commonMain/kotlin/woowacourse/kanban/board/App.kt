@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.component.WorkSpace
+import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.TaskCard
@@ -13,11 +14,7 @@ import woowacourse.kanban.board.model.workspace.WorkSpace as WorkSpaceModel
 fun App() {
     val workSpace = remember {
         WorkSpaceModel(
-            listOf(
-                Project("Compose1", listOf<TaskCard>().toImmutableList()),
-                Project("Compose2", listOf<TaskCard>().toImmutableList()),
-                Project("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCard>().toImmutableList()),
-            ).toImmutableList()
+            ProjectPreviewData().values.toImmutableList()
         )
     }
 

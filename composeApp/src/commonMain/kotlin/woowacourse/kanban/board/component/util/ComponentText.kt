@@ -26,4 +26,6 @@ object ComponentText {
     const val BOARD_TASK_CREATE_BUTTON = "새 태스크 생성"
     const val BOARD_TASK_CREATE_SNACKBAR = "새로운 태스크가 추가되었습니다."
     const val BOARD_TASK_MOVE_SNACKBAR = "태스크가 이동되었습니다."
+    const val BOARD_TASK_MODIFY_SNACKBAR = "태스크가 수정되었습니다."
+    const val BOARD_TASK_DELETE_SNACKBAR = "태스크가 삭제되었습니다."
 }
