@@ -1,7 +1,6 @@
 package woowacourse.kanban.board.component.sample
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Description
@@ -77,7 +76,7 @@ class TaskCardPreviewData : PreviewParameterProvider<TaskCard> {
         TaskCard(
             title = Title("리컴포지션 최적화"),
             description = Description("derivedStateOf와 key를 활용하여 불필요한 리컴포지션을 방지합니다."),
-            tags = Tags(listOf(Tag("최적화"),Tag("성능")).toImmutableList()),
+            tags = Tags(listOf(Tag("최적화"), Tag("성능")).toImmutableList()),
             profile = Profile("페임스"),
             status = Status.REVIEW
         )

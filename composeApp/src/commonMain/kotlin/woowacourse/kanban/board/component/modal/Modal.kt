@@ -24,6 +24,7 @@ import woowacourse.kanban.board.component.modal.section.Header
 import woowacourse.kanban.board.component.modal.section.TextInputSection
 import woowacourse.kanban.board.component.modal.state.ModalState
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
+import woowacourse.kanban.board.component.sample.TaskCardPreviewData
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Tag
@@ -34,11 +35,12 @@ import woowacourse.kanban.board.model.taskcard.Title
 @Composable
 fun Modal(
     profiles: ImmutableList<Profile>,
+    initialTask: TaskCard?,
     onClickClose: () -> Unit,
-    onClickTaskCreate: (TaskCard) -> Unit,
+    onSubmitTask: (TaskCard) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val modalState = remember { ModalState(profiles) }
+    val modalState = remember { ModalState(profiles, initialTask) }
     val titleInputState = TextInputState(
         value = modalState.title,
         onChange = { modalState.title = it },
@@ -95,7 +97,7 @@ fun Modal(
                         status = modalState.status,
                         profile = modalState.profile,
                     )
-                    onClickTaskCreate(data)
+                    onSubmitTask(data)
                 },
                 isButtonEnabled = modalState.isTitleValid && modalState.isTagsValid,
             )
@@ -107,9 +109,11 @@ fun Modal(
 @Composable
 private fun ModalPreview() {
     val profiles = ProfilePreviewData().values.toImmutableList()
+    val task = TaskCardPreviewData().values.toImmutableList()[0]
     Modal(
         profiles = profiles,
+        initialTask = task,
         onClickClose = {},
-        onClickTaskCreate = {},
+        onSubmitTask = {},
     )
 }

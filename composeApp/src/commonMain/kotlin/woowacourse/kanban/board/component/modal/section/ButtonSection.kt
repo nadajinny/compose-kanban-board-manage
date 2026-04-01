@@ -63,7 +63,7 @@ fun ButtonSection(
             verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            if(state == Status.TODO) ProfileButton(
+            if (state == Status.TODO) ProfileButton(
                 currentState = currentProfile,
                 myState = Profile.NONE,
                 onClick = { onProfileClick(Profile.NONE) }

@@ -77,7 +77,7 @@ fun TaskCard(
             Title(title = data.title.value)
             Description(description = data.description.value)
             Tags(tags = data.tags)
-            if(data.profile.isAssigned) {
+            if (data.profile.isAssigned) {
                 HorizontalDivider(
                     thickness = 1.dp,
                     color = Gray80,

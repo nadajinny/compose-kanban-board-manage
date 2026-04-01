@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -35,22 +34,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.component.extension.toBackgroundColor
 import woowacourse.kanban.board.component.extension.toBorderColor
 import woowacourse.kanban.board.component.extension.toFilterTask
 import woowacourse.kanban.board.component.extension.toHeaderColor
 import woowacourse.kanban.board.component.extension.toText
-import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.component.taskcard.TaskCard
 import woowacourse.kanban.board.model.project.Project
-import woowacourse.kanban.board.model.taskcard.Description
-import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
-import woowacourse.kanban.board.model.taskcard.Tag
-import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.TaskCard
-import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable
 fun TaskColumnSection(
@@ -235,9 +227,9 @@ private fun TaskColumnTodoHeaderPreview() {
     )
 }
 
-//@Preview(heightDp = 400)
-//@Composable
-//private fun TaskColumnTodoPreview() {
+// @Preview(heightDp = 400)
+// @Composable
+// private fun TaskColumnTodoPreview() {
 //    val tasks = listOf(
 //        TaskCard(
 //            title = Title(value = "제목"),
@@ -251,11 +243,11 @@ private fun TaskColumnTodoHeaderPreview() {
 //        tasks = tasks,
 //        status = Status.TODO,
 //    )
-//}
+// }
 //
-//@Preview(heightDp = 400)
-//@Composable
-//private fun TaskColumnProgressPreview() {
+// @Preview(heightDp = 400)
+// @Composable
+// private fun TaskColumnProgressPreview() {
 //    val tasks = listOf(
 //        TaskCard(
 //            title = Title(value = "제목"),
@@ -269,11 +261,11 @@ private fun TaskColumnTodoHeaderPreview() {
 //        tasks = tasks,
 //        status = Status.PROGRESS,
 //    )
-//}
+// }
 //
-//@Preview(heightDp = 400)
-//@Composable
-//private fun TaskColumnDonePreview() {
+// @Preview(heightDp = 400)
+// @Composable
+// private fun TaskColumnDonePreview() {
 //    val tasks = listOf(
 //        TaskCard(
 //            title = Title(value = "제목"),
@@ -287,11 +279,11 @@ private fun TaskColumnTodoHeaderPreview() {
 //        tasks = tasks,
 //        status = Status.DONE,
 //    )
-//}
+// }
 //
-//@Preview(showBackground = true)
-//@Composable
-//private fun TaskColumnSectionPreview() {
+// @Preview(showBackground = true)
+// @Composable
+// private fun TaskColumnSectionPreview() {
 //    val project = ProjectPreviewData().values.toMutableList()
 //    project.forEach { project ->
 //        MaterialTheme {
@@ -302,4 +294,4 @@ private fun TaskColumnTodoHeaderPreview() {
 //            )
 //        }
 //    }
-//}
+// }

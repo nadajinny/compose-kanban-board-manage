@@ -41,7 +41,9 @@ fun Board(
 
     var shouldShowSnackbar by remember { mutableStateOf(false) }
     var shouldShowMoveSnackbar by remember { mutableStateOf(false) }
+
     var isShowModal by remember { mutableStateOf(false) }
+    var selectedTask by remember { mutableStateOf<TaskCard?>(null) }
 
     LaunchedEffect(shouldShowSnackbar) {
         if (shouldShowSnackbar) {
@@ -74,17 +76,29 @@ fun Board(
         ) {
             if (isShowModal) {
                 Dialog(
-                    onDismissRequest = { isShowModal = false },
+                    onDismissRequest = {
+                        selectedTask = null
+                        isShowModal = false
+                    },
                     properties = DialogProperties(
                         usePlatformDefaultWidth = false,
                     ),
                 ) {
                     Modal(
                         profiles = profiles,
-                        onClickClose = { isShowModal = false },
-                        onClickTaskCreate = { task ->
-                            onCreateTask(task)
-                            shouldShowSnackbar = true
+                        initialTask = selectedTask,
+                        onClickClose = {
+                            selectedTask = null
+                            isShowModal = false
+                        },
+                        onSubmitTask = { task ->
+                            if (selectedTask == null) {
+                                onCreateTask(task)
+                                shouldShowSnackbar = true
+                            } else {
+                                onCreateTask(task) // 수정 필요
+                                shouldShowSnackbar = true
+                            }
                             isShowModal = false
                         },
                     )
@@ -95,13 +109,19 @@ fun Board(
                 doneRate = project.calculateDoneRate(),
                 doneTasks = project.filterTasksbyStatus(Status.DONE).size,
                 totalTasks = project.allTasksCount,
-                onClickCreateTask = { isShowModal = isShowModal.not() },
+                onClickCreateTask = {
+                    selectedTask = null
+                    isShowModal = true
+                },
             )
             TaskColumnSection(
                 project = project,
                 onMoveSnackBar = { shouldShowMoveSnackbar = true },
                 onUpdateTaskStatus = onUpdateTaskStatus,
-                onTaskClick = { isShowModal = true },
+                onTaskClick = { task ->
+                    selectedTask = task
+                    isShowModal = true
+                },
             )
         }
     }

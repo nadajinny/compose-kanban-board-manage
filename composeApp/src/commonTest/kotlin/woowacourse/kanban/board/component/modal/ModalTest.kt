@@ -39,7 +39,7 @@ class ModalTest {
             Modal(
                 profiles = profiles,
                 onClickClose = {},
-                onClickTaskCreate = {},
+                onClickTaskCreate = {},,
             )
         }
         onNodeWithText(ComponentText.CREATE_BUTTON).assertIsNotEnabled()
@@ -50,6 +50,7 @@ class ModalTest {
         setContent {
             Modal(
                 profiles = profiles,
+                initialTask = ,
                 onClickClose = {},
                 onClickTaskCreate = {},
             )
@@ -64,7 +65,7 @@ class ModalTest {
             Modal(
                 profiles = profiles,
                 onClickClose = {},
-                onClickTaskCreate = {},
+                onClickTaskCreate = {},,
             )
         }
         onNodeWithText(ComponentText.TITLE_PLACEHOLDER).performTextInput("하이")
@@ -79,7 +80,7 @@ class ModalTest {
             Modal(
                 profiles = profiles,
                 onClickClose = {},
-                onClickTaskCreate = {},
+                onClickTaskCreate = {},,
             )
         }
         onAllNodes(isEditable())[0].performTextInput("하이")
@@ -95,7 +96,7 @@ class ModalTest {
             Modal(
                 profiles = profiles,
                 onClickClose = { close = true },
-                onClickTaskCreate = {},
+                onClickTaskCreate = {},,
             )
         }
         onNodeWithContentDescription("닫기").performClick()
@@ -109,7 +110,7 @@ class ModalTest {
             Modal(
                 profiles = profiles,
                 onClickClose = { close = true },
-                onClickTaskCreate = {},
+                onClickTaskCreate = {},,
             )
         }
         onNodeWithText(ComponentText.CANCEL_BUTTON).performSemanticsAction(SemanticsActions.OnClick)
@@ -123,7 +124,7 @@ class ModalTest {
             Modal(
                 profiles = profiles,
                 onClickClose = { },
-                onClickTaskCreate = { create = true },
+                onClickTaskCreate = { create = true },,
             )
         }
         onAllNodes(isEditable())[0].performTextInput("하이")
