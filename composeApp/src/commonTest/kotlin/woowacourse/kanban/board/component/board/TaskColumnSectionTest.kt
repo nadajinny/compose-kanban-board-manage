@@ -104,4 +104,28 @@ class TaskColumnSectionTest {
 
         onNodeWithText("4").assertIsDisplayed()
     }
+
+    @Test
+    fun `reviewTasks에 등록된 태스크가 2개면 2가 출력된다`() = runComposeUiTest {
+        val data1 = createData(Status.REVIEW)
+        val data2 = createData(Status.REVIEW)
+
+        val reviewTasks = listOf(data1, data2)
+        val project = Project(
+            title = "title",
+            tasks = reviewTasks.toImmutableList()
+        )
+        setContent {
+            TaskColumnSection(
+                project = project,
+                onMoveSnackBar = {},
+                onInvalidStatusMove = {},
+                onRequireProfileMove = {},
+                onUpdateTaskStatus = { _, _ -> },
+                onTaskClick = {},
+            )
+        }
+
+        onNodeWithText("2").assertIsDisplayed()
+    }
 }
