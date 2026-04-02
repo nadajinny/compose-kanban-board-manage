@@ -8,5 +8,12 @@ object TaskCardPolicy {
         }
     }
 
+    fun requireProfile(status: Status): Boolean {
+        return when(status) {
+            Status.TODO -> false
+            else -> true
+        }
+    }
+
 
 }
