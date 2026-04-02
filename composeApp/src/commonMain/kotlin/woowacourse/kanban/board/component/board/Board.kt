@@ -7,15 +7,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.coroutines.launch
 import woowacourse.kanban.board.component.modal.Modal
 import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.component.util.Gray80
@@ -35,58 +36,22 @@ fun Board(
     modifier: Modifier = Modifier,
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
 
-    var shouldShowCreateSnackbar by remember { mutableStateOf(false) }
-    var shouldShowMoveSnackbar by remember { mutableStateOf(false) }
-
-    var shouldShowModifySnackbar by remember { mutableStateOf(false) }
-    var shouldShowDeleteSnackbar by remember { mutableStateOf(false) }
+    fun showSnackbar(message: String) {
+        coroutineScope.launch {
+            snackbarHostState.showSnackbar(
+                message = message,
+                withDismissAction = true
+            )
+        }
+    }
 
     var isShowModal by remember { mutableStateOf(false) }
     var selectedTask by remember { mutableStateOf<TaskCard?>(null) }
     val closeModal = {
         selectedTask = null
         isShowModal = false
-    }
-
-    LaunchedEffect(shouldShowCreateSnackbar) {
-        if (shouldShowCreateSnackbar) {
-            snackbarHostState.showSnackbar(
-                message = ComponentText.BOARD_TASK_CREATE_SNACKBAR,
-                withDismissAction = true,
-            )
-            shouldShowCreateSnackbar = false
-        }
-    }
-
-    LaunchedEffect(shouldShowMoveSnackbar) {
-        if (shouldShowMoveSnackbar) {
-            snackbarHostState.showSnackbar(
-                message = ComponentText.BOARD_TASK_MOVE_SNACKBAR,
-                withDismissAction = true,
-            )
-            shouldShowMoveSnackbar = false
-        }
-    }
-
-    LaunchedEffect(shouldShowModifySnackbar) {
-        if (shouldShowModifySnackbar) {
-            snackbarHostState.showSnackbar(
-                message = ComponentText.BOARD_TASK_MODIFY_SNACKBAR,
-                withDismissAction = true,
-            )
-            shouldShowModifySnackbar = false
-        }
-    }
-
-    LaunchedEffect(shouldShowDeleteSnackbar) {
-        if (shouldShowDeleteSnackbar) {
-            snackbarHostState.showSnackbar(
-                message = ComponentText.BOARD_TASK_DELETE_SNACKBAR,
-                withDismissAction = true,
-            )
-            shouldShowDeleteSnackbar = false
-        }
     }
 
     Scaffold(
@@ -109,19 +74,20 @@ fun Board(
                         profiles = profiles,
                         initialTask = selectedTask,
                         onClickClose = closeModal,
+                        onShowSnackbar = ::showSnackbar,
                         onCreateTask = { task ->
                             onCreateTask(task)
-                            shouldShowCreateSnackbar = true
+                            showSnackbar(ComponentText.BOARD_TASK_CREATE_SNACKBAR)
                             closeModal()
                         },
                         onUpdateTask = { id, task ->
                             onUpdateTask(id, task)
-                            shouldShowModifySnackbar = true
+                            showSnackbar(ComponentText.BOARD_TASK_MODIFY_SNACKBAR)
                             closeModal()
                         },
                         onDeleteTask = { id ->
                             onDeleteTask(id)
-                            shouldShowDeleteSnackbar = true
+                            showSnackbar(ComponentText.BOARD_TASK_DELETE_SNACKBAR)
                             closeModal()
                         },
                     )
@@ -139,7 +105,15 @@ fun Board(
             )
             TaskColumnSection(
                 project = project,
-                onMoveSnackBar = { shouldShowMoveSnackbar = true },
+                onMoveSnackBar = {
+                    showSnackbar(ComponentText.BOARD_TASK_MOVE_SNACKBAR)
+                },
+                onInvalidStatusMove = {
+                    showSnackbar(ComponentText.BOARD_TASK_INVALID_STATUS_SNACKBAR)
+                },
+                onRequireProfileMove = {
+                    showSnackbar(ComponentText.BOARD_TASK_REQUIRE_PROFILE_SNACKBAR)
+                },
                 onUpdateTaskStatus = onUpdateTaskStatus,
                 onTaskClick = { task ->
                     selectedTask = task

@@ -43,11 +43,14 @@ import woowacourse.kanban.board.component.taskcard.TaskCard
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.TaskCard
+import woowacourse.kanban.board.model.taskcard.TaskCardPolicy
 
 @Composable
 fun TaskColumnSection(
     project: Project,
     onMoveSnackBar: () -> Unit,
+    onInvalidStatusMove: () -> Unit,
+    onRequireProfileMove: () -> Unit,
     onUpdateTaskStatus: (String, Status) -> Unit,
     onTaskClick: (TaskCard) -> Unit,
     modifier: Modifier = Modifier,
@@ -80,9 +83,18 @@ fun TaskColumnSection(
 
                     draggedTaskId?.let { id ->
                         val task = project.findTaskById(id)
-                        if (task != null && targetStatus != null && task.status != targetStatus) {
-                            onUpdateTaskStatus(id, targetStatus)
-                            onMoveSnackBar()
+                        when {
+                            task == null || targetStatus == null || task.status == targetStatus -> Unit
+                            !TaskCardPolicy.canModifyStatus(task.status, targetStatus) -> {
+                                onInvalidStatusMove()
+                            }
+                            TaskCardPolicy.requireProfile(targetStatus) && !task.profile.isAssigned -> {
+                                onRequireProfileMove()
+                            }
+                            else -> {
+                                onUpdateTaskStatus(id, targetStatus)
+                                onMoveSnackBar()
+                            }
                         }
                     }
 

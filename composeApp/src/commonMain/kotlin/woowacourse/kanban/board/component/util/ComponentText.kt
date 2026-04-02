@@ -28,4 +28,9 @@ object ComponentText {
     const val BOARD_TASK_MOVE_SNACKBAR = "태스크가 이동되었습니다."
     const val BOARD_TASK_MODIFY_SNACKBAR = "태스크가 수정되었습니다."
     const val BOARD_TASK_DELETE_SNACKBAR = "태스크가 삭제되었습니다."
+
+    const val BOARD_TASK_DELETE_DENIED_SNACKBAR = "해당 상태에서는 태스크 삭제가 불가합니다."
+    const val BOARD_TASK_INVALID_STATUS_SNACKBAR = "해당 상태로 옮길 수 없습니다."
+    const val BOARD_TASK_REQUIRE_PROFILE_SNACKBAR = "담당자를 지정해야 상태를 옮길 수 있습니다."
+
 }

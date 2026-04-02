@@ -25,11 +25,13 @@ import woowacourse.kanban.board.component.modal.section.TextInputSection
 import woowacourse.kanban.board.component.modal.state.ModalState
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.component.sample.TaskCardPreviewData
+import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.TaskCard
+import woowacourse.kanban.board.model.taskcard.TaskCardPolicy
 import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable
@@ -37,6 +39,7 @@ fun Modal(
     profiles: ImmutableList<Profile>,
     initialTask: TaskCard?,
     onClickClose: () -> Unit,
+    onShowSnackbar: (String) -> Unit,
     onCreateTask: (TaskCard) -> Unit,
     onUpdateTask: (String, TaskCard) -> Unit,
     onDeleteTask: (String) -> Unit,
@@ -95,7 +98,20 @@ fun Modal(
                 state = modalState.status,
                 currentProfile = modalState.profile,
                 profiles = profiles,
-                onStateClick = { modalState.status = it },
+                onStateClick = { nextStatus ->
+                    when {
+                        modalState.status == nextStatus -> Unit
+                        !TaskCardPolicy.canModifyStatus(modalState.status, nextStatus) -> {
+                            onShowSnackbar(ComponentText.BOARD_TASK_INVALID_STATUS_SNACKBAR)
+                        }
+                        TaskCardPolicy.requireProfile(nextStatus) && !modalState.profile.isAssigned -> {
+                            onShowSnackbar(ComponentText.BOARD_TASK_REQUIRE_PROFILE_SNACKBAR)
+                        }
+                        else -> {
+                            modalState.status = nextStatus
+                        }
+                    }
+                },
                 onProfileClick = { modalState.profile = it },
             )
             Footer(
@@ -104,7 +120,13 @@ fun Modal(
                     onCreateTask(buildTaskCard())
                 },
                 onClickTaskDelete = {
-                    initialTask?.let { task -> onDeleteTask(task.id) }
+                    initialTask?.let { task ->
+                        if (TaskCardPolicy.canDelete(modalState.status)) {
+                            onDeleteTask(task.id)
+                        } else {
+                            onShowSnackbar(ComponentText.BOARD_TASK_DELETE_DENIED_SNACKBAR)
+                        }
+                    }
                 },
                 onClickTaskModify = {
                     initialTask?.let { task -> onUpdateTask(task.id, buildTaskCard()) }
@@ -128,5 +150,6 @@ private fun ModalPreview() {
         onCreateTask = {},
         onUpdateTask = { _, _ -> },
         onDeleteTask = {},
+        onShowSnackbar = {},
     )
 }
