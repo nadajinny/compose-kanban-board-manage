@@ -18,7 +18,13 @@ import kotlinx.collections.immutable.toImmutableList
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import woowacourse.kanban.board.component.util.ComponentText
+import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
+import woowacourse.kanban.board.model.taskcard.Status
+import woowacourse.kanban.board.model.taskcard.Tag
+import woowacourse.kanban.board.model.taskcard.Tags
+import woowacourse.kanban.board.model.taskcard.TaskCard
+import woowacourse.kanban.board.model.taskcard.Title
 
 @OptIn(ExperimentalTestApi::class)
 class ModalTest {
@@ -31,6 +37,20 @@ class ModalTest {
             Profile("다이노"),
             Profile("페임스"),
         ).toImmutableList()
+    }
+
+    private fun createTask(
+        title: String = "업무1",
+        status: Status = Status.TODO,
+        profile: Profile = profiles.first(),
+    ): TaskCard {
+        return TaskCard(
+            title = Title(title),
+            description = Description("설명"),
+            tags = Tags(listOf<Tag>().toImmutableList()),
+            status = status,
+            profile = profile,
+        )
     }
 
     @Test
@@ -167,5 +187,87 @@ class ModalTest {
         onAllNodes(isEditable())[0].performTextInput("하이")
         onNodeWithText(ComponentText.CREATE_BUTTON).performSemanticsAction(SemanticsActions.OnClick)
         assertThat(create).isTrue()
+    }
+
+    @Test
+    fun `todo 상태에서는 담당자 없음 버튼이 보인다`() = runComposeUiTest {
+        setContent {
+            Modal(
+                profiles = profiles,
+                initialTask = null,
+                onClickClose = {},
+                onShowSnackbar = {},
+                onCreateTask = {},
+                onUpdateTask = { _, _ -> },
+                onDeleteTask = {},
+            )
+        }
+
+        onNodeWithText(Profile.NONE.nickname).assertExists()
+    }
+
+    @Test
+    fun `review 상태에서 삭제를 누르면 삭제 불가 스낵바를 요청한다`() = runComposeUiTest {
+        var snackbarMessage = ""
+        var deleted = false
+
+        setContent {
+            Modal(
+                profiles = profiles,
+                initialTask = createTask(status = Status.REVIEW),
+                onClickClose = {},
+                onShowSnackbar = { snackbarMessage = it },
+                onCreateTask = {},
+                onUpdateTask = { _, _ -> },
+                onDeleteTask = { deleted = true },
+            )
+        }
+
+        onNodeWithText("삭제").performSemanticsAction(SemanticsActions.OnClick)
+
+        assertThat(snackbarMessage).isEqualTo(ComponentText.BOARD_TASK_DELETE_DENIED_SNACKBAR)
+        assertThat(deleted).isFalse()
+    }
+
+    @Test
+    fun `done 상태에서 review 상태로 변경하려고 하면 전이 불가 스낵바를 요청한다`() = runComposeUiTest {
+        var snackbarMessage = ""
+
+        setContent {
+            Modal(
+                profiles = profiles,
+                initialTask = createTask(status = Status.DONE),
+                onClickClose = {},
+                onShowSnackbar = { snackbarMessage = it },
+                onCreateTask = {},
+                onUpdateTask = { _, _ -> },
+                onDeleteTask = {},
+            )
+        }
+
+        onNodeWithText(ComponentText.STATE_BUTTON_REVIEW).performClick()
+
+        assertThat(snackbarMessage).isEqualTo(ComponentText.BOARD_TASK_INVALID_STATUS_SNACKBAR)
+    }
+
+    @Test
+    fun `담당자가 없는 todo 상태에서 in progress로 변경하려고 하면 담당자 지정 스낵바를 요청한다`() = runComposeUiTest {
+        var snackbarMessage = ""
+
+        setContent {
+            Modal(
+                profiles = profiles,
+                initialTask = createTask(status = Status.TODO, profile = Profile.NONE),
+                onClickClose = {},
+                onShowSnackbar = { snackbarMessage = it },
+                onCreateTask = {},
+                onUpdateTask = { _, _ -> },
+                onDeleteTask = {},
+            )
+        }
+
+        onNodeWithText(ComponentText.STATE_BUTTON_PROGRESS).performClick()
+
+        assertThat(snackbarMessage).isEqualTo(ComponentText.BOARD_TASK_REQUIRE_PROFILE_SNACKBAR)
     }
 }
