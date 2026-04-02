@@ -3,6 +3,7 @@ package woowacourse.kanban.board.component.board
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -13,11 +14,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import woowacourse.kanban.board.component.modal.Modal
+import woowacourse.kanban.board.component.sample.ProfilePreviewData
+import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.component.util.Gray80
 import woowacourse.kanban.board.model.project.Project
@@ -124,19 +129,20 @@ fun Board(
     }
 }
 
-// @Preview(showBackground = true, widthDp = 1000)
-// @Composable
-// private fun BoardPreview() {
-//    val project = ProjectPreviewData().values.toMutableList()[0]
-//    val profiles = ProfilePreviewData().values.toImmutableList()
-//    MaterialTheme {
-//        Board(
-//            project = project,
-//            profiles = profiles,
-//            onCreateTask = {},
-//            onUpdateTask = { _, _ -> },
-//            onDeleteTask = {},
-//            onUpdateTaskStatus = { _, _ -> },
-//        )
-//    }
-// }
+@Preview(showBackground = true, widthDp = 1000)
+@Composable
+private fun BoardPreview() {
+    val project = ProjectPreviewData().values.first()
+    val profiles = ProfilePreviewData().values.toImmutableList()
+
+    MaterialTheme {
+        Board(
+            project = project,
+            profiles = profiles,
+            onCreateTask = {},
+            onUpdateTask = { _, _ -> },
+            onDeleteTask = {},
+            onUpdateTaskStatus = { _, _ -> },
+        )
+    }
+}

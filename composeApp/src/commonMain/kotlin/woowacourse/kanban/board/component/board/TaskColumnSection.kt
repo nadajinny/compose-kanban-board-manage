@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -34,16 +35,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.component.extension.toBackgroundColor
 import woowacourse.kanban.board.component.extension.toBorderColor
 import woowacourse.kanban.board.component.extension.toFilterTask
 import woowacourse.kanban.board.component.extension.toHeaderColor
 import woowacourse.kanban.board.component.extension.toText
-import woowacourse.kanban.board.component.taskcard.TaskCard
+import woowacourse.kanban.board.component.sample.ProjectPreviewData
+import woowacourse.kanban.board.component.taskcard.TaskCard as TaskCardItem
 import woowacourse.kanban.board.model.project.Project
+import woowacourse.kanban.board.model.taskcard.Description
+import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
+import woowacourse.kanban.board.model.taskcard.Tag
+import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.TaskCard
 import woowacourse.kanban.board.model.taskcard.TaskCardPolicy
+import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable
 fun TaskColumnSection(
@@ -161,7 +169,7 @@ private fun TaskColumn(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 items(tasks, key = { it.id }) { task ->
-                    TaskCard(
+                    TaskCardItem(
                         data = task,
                         modifier = Modifier.fillMaxWidth(),
                         onClick = { onTaskClick(task) },
@@ -239,71 +247,79 @@ private fun TaskColumnTodoHeaderPreview() {
     )
 }
 
-// @Preview(heightDp = 400)
-// @Composable
-// private fun TaskColumnTodoPreview() {
-//    val tasks = listOf(
-//        TaskCard(
-//            title = Title(value = "제목"),
-//            description = Description(value = "설명"),
-//            tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
-//            status = Status.PROGRESS,
-//            profile = Profile("다이노"),
-//        ),
-//    ).toImmutableList()
-//    TaskColumn(
-//        tasks = tasks,
-//        status = Status.TODO,
-//    )
-// }
-//
-// @Preview(heightDp = 400)
-// @Composable
-// private fun TaskColumnProgressPreview() {
-//    val tasks = listOf(
-//        TaskCard(
-//            title = Title(value = "제목"),
-//            description = Description(value = "설명"),
-//            tags = Tags(value = listOf(Tag(value = "컴포넌트"), Tag("zjavh")).toImmutableList()),
-//            status = Status.PROGRESS,
-//            profile = Profile("다이노"),
-//        ),
-//    ).toImmutableList()
-//    TaskColumn(
-//        tasks = tasks,
-//        status = Status.PROGRESS,
-//    )
-// }
-//
-// @Preview(heightDp = 400)
-// @Composable
-// private fun TaskColumnDonePreview() {
-//    val tasks = listOf(
-//        TaskCard(
-//            title = Title(value = "제목"),
-//            description = Description(value = "설명"),
-//            tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
-//            status = Status.PROGRESS,
-//            profile = Profile("다이노"),
-//        ),
-//    ).toImmutableList()
-//    TaskColumn(
-//        tasks = tasks,
-//        status = Status.DONE,
-//    )
-// }
-//
-// @Preview(showBackground = true)
-// @Composable
-// private fun TaskColumnSectionPreview() {
-//    val project = ProjectPreviewData().values.toMutableList()
-//    project.forEach { project ->
-//        MaterialTheme {
-//            TaskColumnSection(
-//                project = project,
-//                onMoveSnackBar = {},
-//                onUpdateTaskStatus = { _, _ -> },
-//            )
-//        }
-//    }
-// }
+@Preview(heightDp = 400)
+@Composable
+private fun TaskColumnTodoPreview() {
+    val tasks = listOf(
+        TaskCard(
+            title = Title(value = "제목"),
+            description = Description(value = "설명"),
+            tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
+            status = Status.PROGRESS,
+            profile = Profile("다이노"),
+        ),
+    ).toImmutableList()
+
+    TaskColumn(
+        tasks = tasks,
+        status = Status.TODO,
+        onTaskClick = {},
+    )
+}
+
+@Preview(heightDp = 400)
+@Composable
+private fun TaskColumnProgressPreview() {
+    val tasks = listOf(
+        TaskCard(
+            title = Title(value = "제목"),
+            description = Description(value = "설명"),
+            tags = Tags(value = listOf(Tag(value = "컴포넌트"), Tag("zjavh")).toImmutableList()),
+            status = Status.PROGRESS,
+            profile = Profile("다이노"),
+        ),
+    ).toImmutableList()
+
+    TaskColumn(
+        tasks = tasks,
+        status = Status.PROGRESS,
+        onTaskClick = {},
+    )
+}
+
+@Preview(heightDp = 400)
+@Composable
+private fun TaskColumnDonePreview() {
+    val tasks = listOf(
+        TaskCard(
+            title = Title(value = "제목"),
+            description = Description(value = "설명"),
+            tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
+            status = Status.PROGRESS,
+            profile = Profile("다이노"),
+        ),
+    ).toImmutableList()
+
+    TaskColumn(
+        tasks = tasks,
+        status = Status.DONE,
+        onTaskClick = {},
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TaskColumnSectionPreview() {
+    val project = ProjectPreviewData().values.first()
+
+    MaterialTheme {
+        TaskColumnSection(
+            project = project,
+            onMoveSnackBar = {},
+            onInvalidStatusMove = {},
+            onRequireProfileMove = {},
+            onUpdateTaskStatus = { _, _ -> },
+            onTaskClick = {},
+        )
+    }
+}
