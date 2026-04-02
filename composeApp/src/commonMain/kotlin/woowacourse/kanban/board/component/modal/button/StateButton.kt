@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -36,27 +37,28 @@ fun StateButton(
     val borderColor = if (currentState == myState) Blue50 else Gray70
     val textColor = if (currentState == myState) Blue50 else Gray20
 
-    Box(
-        modifier = modifier
-            .width(200.dp)
-            .clip(RoundedCornerShape(10.dp))
-            .border(
-                1.dp,
-                color = borderColor,
-                shape = RoundedCornerShape(10.dp),
-            )
-            .background(color = backgroundColor)
-            .clickable { onClick() }
-            .padding(horizontal = 50.dp, vertical = 14.dp),
+    Column {
+        Box(
+            modifier = modifier
+                .clip(RoundedCornerShape(10.dp))
+                .border(
+                    1.dp,
+                    color = borderColor,
+                    shape = RoundedCornerShape(10.dp),
+                )
+                .background(color = backgroundColor)
+                .clickable { onClick() }
+                .padding(horizontal = 50.dp, vertical = 14.dp),
 
-    ) {
-        Text(
-            text = myState.toText(),
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth(),
-            fontSize = 16.sp,
-            color = textColor,
-            fontWeight = FontWeight.Normal,
-        )
+            ) {
+            Text(
+                text = myState.toText(),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
+                fontSize = 16.sp,
+                color = textColor,
+                fontWeight = FontWeight.Normal,
+            )
+        }
     }
 }
