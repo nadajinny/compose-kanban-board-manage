@@ -56,7 +56,7 @@ fun Footer(
                 onClick = onClickClose,
             )
             Spacer(modifier = Modifier.width(12.dp))
-            if(isCreateMode) {
+            if (isCreateMode) {
                 CreateButton(
                     enabled = isButtonEnabled,
                     onClickTaskCreate = onClickTaskCreate,

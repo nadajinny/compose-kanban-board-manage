@@ -29,7 +29,7 @@ class ModalTest {
     fun setUp() {
         profiles = listOf(
             Profile("다이노"),
-            Profile("페임스")
+            Profile("페임스"),
         ).toImmutableList()
     }
 
@@ -38,10 +38,15 @@ class ModalTest {
         setContent {
             Modal(
                 profiles = profiles,
+                initialTask = null,
                 onClickClose = {},
-                onClickTaskCreate = {},,
+                onShowSnackbar = {},
+                onCreateTask = {},
+                onUpdateTask = { _, _ -> },
+                onDeleteTask = {},
             )
         }
+
         onNodeWithText(ComponentText.CREATE_BUTTON).assertIsNotEnabled()
     }
 
@@ -50,12 +55,16 @@ class ModalTest {
         setContent {
             Modal(
                 profiles = profiles,
-                initialTask = ,
+                initialTask = null,
                 onClickClose = {},
-                onClickTaskCreate = {},
+                onShowSnackbar = {},
+                onCreateTask = {},
+                onUpdateTask = { _, _ -> },
+                onDeleteTask = {},
             )
         }
-        onNodeWithText(ComponentText.TITLE_PLACEHOLDER).performTextInput("하이")
+
+        onAllNodes(isEditable())[0].performTextInput("하이")
         onNodeWithText(ComponentText.CREATE_BUTTON).assertIsEnabled()
     }
 
@@ -64,13 +73,18 @@ class ModalTest {
         setContent {
             Modal(
                 profiles = profiles,
+                initialTask = null,
                 onClickClose = {},
-                onClickTaskCreate = {},,
+                onShowSnackbar = {},
+                onCreateTask = {},
+                onUpdateTask = { _, _ -> },
+                onDeleteTask = {},
             )
         }
-        onNodeWithText(ComponentText.TITLE_PLACEHOLDER).performTextInput("하이")
+
+        onAllNodes(isEditable())[0].performTextInput("하이")
         onNodeWithText(ComponentText.CREATE_BUTTON).assertIsEnabled()
-        onNodeWithText(ComponentText.TAG_PLACEHOLDER).performTextInput("태그,,태그2")
+        onAllNodes(isEditable())[2].performTextInput("태그,,태그2")
         onNodeWithText(ComponentText.CREATE_BUTTON).assertIsNotEnabled()
     }
 
@@ -79,10 +93,15 @@ class ModalTest {
         setContent {
             Modal(
                 profiles = profiles,
+                initialTask = null,
                 onClickClose = {},
-                onClickTaskCreate = {},,
+                onShowSnackbar = {},
+                onCreateTask = {},
+                onUpdateTask = { _, _ -> },
+                onDeleteTask = {},
             )
         }
+
         onAllNodes(isEditable())[0].performTextInput("하이")
         onAllNodes(isEditable())[0].performTextClearance()
         waitForIdle()
@@ -92,13 +111,19 @@ class ModalTest {
     @Test
     fun `Modal 헤더의 닫기 버튼을 누르면 onClickClose가 호출된다`() = runComposeUiTest {
         var close = false
+
         setContent {
             Modal(
                 profiles = profiles,
+                initialTask = null,
                 onClickClose = { close = true },
-                onClickTaskCreate = {},,
+                onShowSnackbar = {},
+                onCreateTask = {},
+                onUpdateTask = { _, _ -> },
+                onDeleteTask = {},
             )
         }
+
         onNodeWithContentDescription("닫기").performClick()
         assertThat(close).isTrue()
     }
@@ -106,27 +131,39 @@ class ModalTest {
     @Test
     fun `취소 버튼을 누르면 onClickClose가 호출된다`() = runComposeUiTest {
         var close = false
+
         setContent {
             Modal(
                 profiles = profiles,
+                initialTask = null,
                 onClickClose = { close = true },
-                onClickTaskCreate = {},,
+                onShowSnackbar = {},
+                onCreateTask = {},
+                onUpdateTask = { _, _ -> },
+                onDeleteTask = {},
             )
         }
+
         onNodeWithText(ComponentText.CANCEL_BUTTON).performSemanticsAction(SemanticsActions.OnClick)
         assertThat(close).isTrue()
     }
 
     @Test
-    fun `제목을 입력하고 생성 버튼을 누르면 onClickTaskCreate가 호출된다`() = runComposeUiTest {
+    fun `제목을 입력하고 생성 버튼을 누르면 onCreateTask가 호출된다`() = runComposeUiTest {
         var create = false
+
         setContent {
             Modal(
                 profiles = profiles,
-                onClickClose = { },
-                onClickTaskCreate = { create = true },,
+                initialTask = null,
+                onClickClose = {},
+                onShowSnackbar = {},
+                onCreateTask = { create = true },
+                onUpdateTask = { _, _ -> },
+                onDeleteTask = {},
             )
         }
+
         onAllNodes(isEditable())[0].performTextInput("하이")
         onNodeWithText(ComponentText.CREATE_BUTTON).performSemanticsAction(SemanticsActions.OnClick)
         assertThat(create).isTrue()

@@ -124,9 +124,9 @@ fun Board(
     }
 }
 
-//@Preview(showBackground = true, widthDp = 1000)
-//@Composable
-//private fun BoardPreview() {
+// @Preview(showBackground = true, widthDp = 1000)
+// @Composable
+// private fun BoardPreview() {
 //    val project = ProjectPreviewData().values.toMutableList()[0]
 //    val profiles = ProfilePreviewData().values.toImmutableList()
 //    MaterialTheme {
@@ -139,4 +139,4 @@ fun Board(
 //            onUpdateTaskStatus = { _, _ -> },
 //        )
 //    }
-//}
+// }

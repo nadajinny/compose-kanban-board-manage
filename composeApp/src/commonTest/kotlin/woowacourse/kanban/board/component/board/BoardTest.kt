@@ -45,6 +45,8 @@ class BoardTest {
                 project = currentProject,
                 profiles = profiles,
                 onCreateTask = { task -> currentProject = currentProject.addCard(task) },
+                onUpdateTask = { id, task -> currentProject = currentProject.updateTask(id, task) },
+                onDeleteTask = { id -> currentProject = currentProject.deleteTask(id) },
                 onUpdateTaskStatus = { id, status -> currentProject = currentProject.updateTaskStatus(id, status) },
             )
         }
@@ -60,6 +62,8 @@ class BoardTest {
                 project = currentProject,
                 profiles = profiles,
                 onCreateTask = { task -> currentProject = currentProject.addCard(task) },
+                onUpdateTask = { id, task -> currentProject = currentProject.updateTask(id, task) },
+                onDeleteTask = { id -> currentProject = currentProject.deleteTask(id) },
                 onUpdateTaskStatus = { id, status -> currentProject = currentProject.updateTaskStatus(id, status) },
             )
         }
@@ -77,6 +81,8 @@ class BoardTest {
                 project = currentProject,
                 profiles = profiles,
                 onCreateTask = { task -> currentProject = currentProject.addCard(task) },
+                onUpdateTask = { id, task -> currentProject = currentProject.updateTask(id, task) },
+                onDeleteTask = { id -> currentProject = currentProject.deleteTask(id) },
                 onUpdateTaskStatus = { id, status -> currentProject = currentProject.updateTaskStatus(id, status) },
             )
         }
@@ -94,6 +100,8 @@ class BoardTest {
                 project = currentProject,
                 profiles = profiles,
                 onCreateTask = { task -> currentProject = currentProject.addCard(task) },
+                onUpdateTask = { id, task -> currentProject = currentProject.updateTask(id, task) },
+                onDeleteTask = { id -> currentProject = currentProject.deleteTask(id) },
                 onUpdateTaskStatus = { id, status -> currentProject = currentProject.updateTaskStatus(id, status) },
             )
         }
@@ -112,6 +120,8 @@ class BoardTest {
                 project = currentProject,
                 profiles = profiles,
                 onCreateTask = { task -> currentProject = currentProject.addCard(task) },
+                onUpdateTask = { id, task -> currentProject = currentProject.updateTask(id, task) },
+                onDeleteTask = { id -> currentProject = currentProject.deleteTask(id) },
                 onUpdateTaskStatus = { id, status -> currentProject = currentProject.updateTaskStatus(id, status) },
             )
         }

@@ -42,7 +42,10 @@ class TaskColumnSectionTest {
             TaskColumnSection(
                 project = project,
                 onMoveSnackBar = {},
+                onInvalidStatusMove = {},
+                onRequireProfileMove = {},
                 onUpdateTaskStatus = { _, _ -> },
+                onTaskClick = {},
             )
         }
 
@@ -66,7 +69,10 @@ class TaskColumnSectionTest {
             TaskColumnSection(
                 project = project,
                 onMoveSnackBar = {},
+                onInvalidStatusMove = {},
+                onRequireProfileMove = {},
                 onUpdateTaskStatus = { _, _ -> },
+                onTaskClick = {},
             )
         }
 
@@ -89,7 +95,10 @@ class TaskColumnSectionTest {
             TaskColumnSection(
                 project = project,
                 onMoveSnackBar = {},
+                onInvalidStatusMove = {},
+                onRequireProfileMove = {},
                 onUpdateTaskStatus = { _, _ -> },
+                onTaskClick = {},
             )
         }
 
