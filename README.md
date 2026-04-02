@@ -42,16 +42,16 @@
 - 비즈니스 로직
     - [x] To do 상태에서는 태스크 삭제가 가능하다.
     - [x] To do 상태에서는 담당자를 미지정할 수 있다.
-    - [ ] To do 상태에서는 In Progress로만 전이 가능하다.
+    - [x] To do 상태에서는 In Progress로만 전이 가능하다.
     - [x] In Progress 상태에서는 태스크 삭제가 가능하다.
     - [x] In Progress 상태에서는 담당자가 지정된 상태여야 한다.
-    - [ ] In Progress 상태에서는 To do, Review로만 전이 가능하다.
+    - [x] In Progress 상태에서는 To do, Review로만 전이 가능하다.
     - [x] Review 상태에서는 태스크 삭제가 불가능하다.
     - [x] Review 상태에서는 담당자가 지정된 상태여야 한다.
-    - [ ] Review 상태에서는 In Progress, Done로만 전이 가능하다.
+    - [x] Review 상태에서는 In Progress, Done로만 전이 가능하다.
     - [x] Done 상태에서는 태스크 삭제가 불가능하다.
     - [x] Done 상태에서는 담당자가 지정된 상태여야 한다.
-    - [ ] Done 상태에서는 To do로만 전이 가능하다.
+    - [x] Done 상태에서는 To do로만 전이 가능하다.
 - UI 로직
     - [ ] Review 혹은 Done 상태에서 태스크 삭제를 진행하려고 할 때, "해당 상태에서는 태스크 삭제가 불가합니다."라는 스낵바가 표시된다.
     - [ ] 전이 불가능한 상태로 이동하려고 할때, "해당 상태로 옮길 수 없습니다."라는 스낵바가 표시된다.

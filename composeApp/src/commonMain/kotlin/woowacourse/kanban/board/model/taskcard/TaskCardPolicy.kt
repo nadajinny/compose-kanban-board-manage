@@ -15,5 +15,12 @@ object TaskCardPolicy {
         }
     }
 
-
+    fun canModifyStatus(current: Status, after: Status): Boolean {
+        return after in when (current) {
+            Status.TODO -> setOf(Status.PROGRESS)
+            Status.PROGRESS -> setOf(Status.TODO, Status.REVIEW)
+            Status.REVIEW -> setOf(Status.PROGRESS, Status.DONE)
+            Status.DONE -> setOf(Status.TODO)
+        }
+    }
 }
