@@ -37,4 +37,21 @@ class TaskCardTest {
         }
         onNodeWithText("다이노").assertExists()
     }
+
+    @Test
+    fun `담당자가 없는 카드에서는 담당자 정보가 표시되지 않는다`() = runComposeUiTest {
+        val taskCard = TaskCard(
+            title = Title("담당자 없는 카드"),
+            description = Description("설명"),
+            tags = Tags(listOf(Tag("태그")).toImmutableList()),
+            status = Status.TODO,
+            profile = Profile.NONE,
+        )
+
+        setContent {
+            TaskCard(data = taskCard)
+        }
+
+        onNodeWithText(Profile.NONE.nickname).assertDoesNotExist()
+    }
 }
