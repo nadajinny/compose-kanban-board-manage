@@ -3,6 +3,7 @@ package woowacourse.kanban.board.component.modal.section
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -43,13 +44,17 @@ fun ButtonSection(
             fontWeight = FontWeight.SemiBold,
             color = Gray20,
         )
-        FlowRow(
+        Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Status.entries.forEach { it ->
-                StateButton(currentState = state, myState = it, onClick = { onStateClick(it) })
+                StateButton(
+                    currentState = state,
+                    myState = it,
+                    onClick = { onStateClick(it) },
+                    modifier = Modifier.weight(1f),
+                )
             }
         }
         Text(
