@@ -48,11 +48,11 @@ fun ButtonSection(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            Status.entries.forEach { it ->
+            Status.entries.forEach { status ->
                 StateButton(
                     currentState = state,
-                    myState = it,
-                    onClick = { onStateClick(it) },
+                    myState = status,
+                    onClick = { onStateClick(status) },
                     modifier = Modifier.weight(1f),
                 )
             }
