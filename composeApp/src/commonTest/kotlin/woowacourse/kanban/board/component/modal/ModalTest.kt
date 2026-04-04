@@ -39,20 +39,6 @@ class ModalTest {
         ).toImmutableList()
     }
 
-    private fun createTask(
-        title: String = "업무1",
-        status: Status = Status.TODO,
-        profile: Profile = profiles.first(),
-    ): TaskCard {
-        return TaskCard(
-            title = Title(title),
-            description = Description("설명"),
-            tags = Tags(listOf<Tag>().toImmutableList()),
-            status = status,
-            profile = profile,
-        )
-    }
-
     @Test
     fun `초기 상태에서 생성 버튼이 비활성화된다`() = runComposeUiTest {
         setContent {
@@ -269,5 +255,19 @@ class ModalTest {
         onNodeWithText(ComponentText.STATE_BUTTON_PROGRESS).performClick()
 
         assertThat(snackbarMessage).isEqualTo(ComponentText.BOARD_TASK_REQUIRE_PROFILE_SNACKBAR)
+    }
+
+    private fun createTask(
+        title: String = "업무1",
+        status: Status = Status.TODO,
+        profile: Profile = profiles.first(),
+    ): TaskCard {
+        return TaskCard(
+            title = Title(title),
+            description = Description("설명"),
+            tags = Tags(listOf<Tag>().toImmutableList()),
+            status = status,
+            profile = profile,
+        )
     }
 }

@@ -18,16 +18,6 @@ import woowacourse.kanban.board.model.workspace.WorkSpace
 class BoardStateTest {
     private lateinit var workSpaceStateHolder: WorkSpaceStateHolder
 
-    fun createData(status: Status): TaskCard {
-        return TaskCard(
-            title = Title(value = "업무1"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = status,
-            profile = Profile("다이노")
-        )
-    }
-
     @Before
     fun setUp() {
         workSpaceStateHolder = WorkSpaceStateHolder(
@@ -105,5 +95,15 @@ class BoardStateTest {
         workSpaceStateHolder.addTask(task3)
 
         assertThat(workSpaceStateHolder.selectedProject?.calculateDoneRate()).isEqualTo(0.0f)
+    }
+
+    private fun createData(status: Status): TaskCard {
+        return TaskCard(
+            title = Title(value = "업무1"),
+            description = Description(""),
+            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
+            status = status,
+            profile = Profile("다이노")
+        )
     }
 }

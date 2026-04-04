@@ -18,16 +18,6 @@ import woowacourse.kanban.board.model.taskcard.Title
 @OptIn(ExperimentalTestApi::class)
 class TaskColumnSectionTest {
 
-    fun createData(status: Status): TaskCard {
-        return TaskCard(
-            title = Title(value = "업무1"),
-            description = Description(""),
-            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
-            status = status,
-            profile = Profile("다이노")
-        )
-    }
-
     @Test
     fun `todoTasks에 등록된 태스크가 3개면 3이 출력된다`() = runComposeUiTest {
         val data1 = createData(Status.TODO)
@@ -127,5 +117,16 @@ class TaskColumnSectionTest {
         }
 
         onNodeWithText("2").assertIsDisplayed()
+    }
+
+
+    private fun createData(status: Status): TaskCard {
+        return TaskCard(
+            title = Title(value = "업무1"),
+            description = Description(""),
+            tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
+            status = status,
+            profile = Profile("다이노")
+        )
     }
 }

@@ -37,6 +37,7 @@ class BoardTest {
             Profile("페임스")
         ).toImmutableList()
     }
+
     @Test
     fun `새 태스크 생성 버튼을 누르면 다이얼로그가 열린다`() = runComposeUiTest {
         setContent {
