@@ -23,4 +23,5 @@ class ModalState(
 
     val isTitleValid by derivedStateOf { Title.isTitleValid(title) }
     val isTagsValid by derivedStateOf { Tags.isValidInput(tags) }
+    val isSubmittable by derivedStateOf { isTitleValid && isTagsValid }
 }

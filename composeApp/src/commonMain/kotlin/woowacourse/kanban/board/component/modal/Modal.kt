@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
+import woowacourse.kanban.board.component.modal.action.ModalButtonActionFactory
 import woowacourse.kanban.board.component.modal.input.TextInputState
 import woowacourse.kanban.board.component.modal.section.ButtonSection
 import woowacourse.kanban.board.component.modal.section.Footer
@@ -25,13 +26,11 @@ import woowacourse.kanban.board.component.modal.section.TextInputSection
 import woowacourse.kanban.board.component.modal.state.ModalState
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.component.sample.TaskCardPreviewData
-import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.TaskCard
-import woowacourse.kanban.board.model.taskcard.TaskCardPolicy
 import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable
@@ -69,6 +68,15 @@ fun Modal(
             profile = modalState.profile,
         )
     }
+    val buttonActionFactory = ModalButtonActionFactory(
+        modalState = modalState,
+        initialTask = initialTask,
+        buildTaskCard = buildTaskCard,
+        onShowSnackbar = onShowSnackbar,
+        onCreateTask = onCreateTask,
+        onUpdateTask = onUpdateTask,
+        onDeleteTask = onDeleteTask,
+    )
 
     Card(
         modifier = modifier
@@ -99,39 +107,22 @@ fun Modal(
                 currentProfile = modalState.profile,
                 profiles = profiles,
                 onStateClick = { nextStatus ->
-                    when {
-                        modalState.status == nextStatus -> Unit
-                        !TaskCardPolicy.canModifyStatus(modalState.status, nextStatus) -> {
-                            onShowSnackbar(ComponentText.BOARD_TASK_INVALID_STATUS_SNACKBAR)
-                        }
-                        TaskCardPolicy.requireProfile(nextStatus) && !modalState.profile.isAssigned -> {
-                            onShowSnackbar(ComponentText.BOARD_TASK_REQUIRE_PROFILE_SNACKBAR)
-                        }
-                        else -> {
-                            modalState.status = nextStatus
-                        }
-                    }
+                    buttonActionFactory.createStatusChangeAction(nextStatus).execute()
                 },
                 onProfileClick = { modalState.profile = it },
             )
             Footer(
                 onClickClose = onClickClose,
                 onClickTaskCreate = {
-                    onCreateTask(buildTaskCard())
+                    buttonActionFactory.createTaskCreateAction().execute()
                 },
                 onClickTaskDelete = {
-                    initialTask?.let { task ->
-                        if (TaskCardPolicy.canDelete(modalState.status)) {
-                            onDeleteTask(task.id)
-                        } else {
-                            onShowSnackbar(ComponentText.BOARD_TASK_DELETE_DENIED_SNACKBAR)
-                        }
-                    }
+                    buttonActionFactory.createTaskDeleteAction().execute()
                 },
                 onClickTaskModify = {
-                    initialTask?.let { task -> onUpdateTask(task.id, buildTaskCard()) }
+                    buttonActionFactory.createTaskModifyAction().execute()
                 },
-                isButtonEnabled = modalState.isTitleValid && modalState.isTagsValid,
+                isButtonEnabled = modalState.isSubmittable,
                 isCreateMode = initialTask == null,
             )
         }
