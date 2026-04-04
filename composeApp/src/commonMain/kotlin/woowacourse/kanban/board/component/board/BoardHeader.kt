@@ -71,13 +71,12 @@ fun BoardHeader(
 @Composable
 private fun ProgressBar(
     progress: Float,
-    modifier: Modifier = Modifier,
 ) {
     LinearProgressIndicator(
         gapSize = 0.dp,
         strokeCap = StrokeCap.Square,
         progress = { progress },
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
             .height(8.dp)
             .clip(RoundedCornerShape(15.dp)),
@@ -120,7 +119,6 @@ private fun BoardHeaderTitle(
         }
         TaskCreateButton(
             onClickCreateTask = onClickCreateTask,
-            modifier = Modifier,
         )
     }
 }
@@ -128,11 +126,9 @@ private fun BoardHeaderTitle(
 @Composable
 private fun TaskCreateButton(
     onClickCreateTask: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     Button(
         onClick = { onClickCreateTask() },
-        modifier = modifier,
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Blue,
         ),

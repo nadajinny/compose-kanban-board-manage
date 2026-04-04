@@ -72,10 +72,9 @@ private fun SideBar(
     workSpace: WorkSpaceModel,
     selectedProject: Project,
     onChangeProject: (Project) -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxHeight()
             .width(255.dp)
             .background(Color.White),

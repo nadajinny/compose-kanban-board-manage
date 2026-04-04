@@ -103,7 +103,6 @@ private fun CreateButton(enabled: Boolean, onClickTaskCreate: () -> Unit) {
 private fun FooterButton(
     containerColor: Color,
     text: String,
-    modifier: Modifier = Modifier,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
     contentColor: Color = Color.Unspecified,
@@ -111,7 +110,7 @@ private fun FooterButton(
     Button(
         enabled = enabled,
         onClick = onClick,
-        modifier = modifier
+        modifier = Modifier
             .clip(RoundedCornerShape(10.dp)),
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor,
