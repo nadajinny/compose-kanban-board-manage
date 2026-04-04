@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -47,19 +48,25 @@ fun TaskCard(
     onDragCancel: () -> Unit = {},
 ) {
     var cardWindowPosition by remember { mutableStateOf(Offset.Zero) }
+    val latestCardWindowPosition by rememberUpdatedState(cardWindowPosition)
+    val latestOnDragStart by rememberUpdatedState(onDragStart)
+    val latestOnDragChange by rememberUpdatedState(onDragChange)
+    val latestOnDragEnd by rememberUpdatedState(onDragEnd)
+    val latestOnDragCancel by rememberUpdatedState(onDragCancel)
+
     Card(
         modifier = modifier
             .onGloballyPositioned { cardWindowPosition = it.positionInWindow() }
             .clickable { onClick() }
             .pointerInput(Unit) {
                 detectDragGestures(
-                    onDragStart = { onDragStart() },
+                    onDragStart = { latestOnDragStart() },
                     onDrag = { change, _ ->
                         change.consume()
-                        onDragChange(cardWindowPosition + change.position)
+                        latestOnDragChange(latestCardWindowPosition + change.position)
                     },
-                    onDragEnd = { onDragEnd() },
-                    onDragCancel = { onDragCancel() },
+                    onDragEnd = { latestOnDragEnd() },
+                    onDragCancel = { latestOnDragCancel() },
                 )
             }
             .width(286.dp),
