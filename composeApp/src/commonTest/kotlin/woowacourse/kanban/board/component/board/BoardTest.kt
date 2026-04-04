@@ -15,10 +15,10 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import org.junit.Before
 import woowacourse.kanban.board.component.sample.ProjectPreviewData
 import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.model.project.Project
@@ -29,7 +29,7 @@ class BoardTest {
     private lateinit var project: Project
     private lateinit var profiles: ImmutableList<Profile>
 
-    @Before
+    @BeforeTest
     fun setUp() {
         project = ProjectPreviewData().values.toImmutableList()[0]
         profiles = listOf(

@@ -12,11 +12,11 @@ import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Before
 import woowacourse.kanban.board.component.util.ComponentText
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
@@ -31,7 +31,7 @@ class ModalTest {
 
     private lateinit var profiles: ImmutableList<Profile>
 
-    @Before
+    @BeforeTest
     fun setUp() {
         profiles = listOf(
             Profile("다이노"),

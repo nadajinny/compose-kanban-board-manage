@@ -1,9 +1,9 @@
 package woowacourse.kanban.board.state
 
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlinx.collections.immutable.toImmutableList
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Before
 import woowacourse.kanban.board.component.state.WorkSpaceStateHolder
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Description
@@ -18,7 +18,7 @@ import woowacourse.kanban.board.model.workspace.WorkSpace
 class BoardStateTest {
     private lateinit var workSpaceStateHolder: WorkSpaceStateHolder
 
-    @Before
+    @BeforeTest
     fun setUp() {
         workSpaceStateHolder = WorkSpaceStateHolder(
             WorkSpace(
