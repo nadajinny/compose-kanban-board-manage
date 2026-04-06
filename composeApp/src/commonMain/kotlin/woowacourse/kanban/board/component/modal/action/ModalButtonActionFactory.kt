@@ -13,6 +13,7 @@ fun interface ModalButtonAction {
 class ModalButtonActionFactory(
     private val modalState: ModalState,
     private val initialTask: TaskCard?,
+    private val onModalStateChange: (ModalState) -> Unit,
     private val buildTaskCard: (String?) -> TaskCard,
     private val onShowSnackbar: (String) -> Unit,
     private val onCreateTask: (TaskCard) -> Unit,
@@ -29,7 +30,7 @@ class ModalButtonActionFactory(
                 onShowSnackbar(ComponentText.BOARD_TASK_REQUIRE_PROFILE_SNACKBAR)
             }
             else -> {
-                modalState.status = nextStatus
+                onModalStateChange(modalState.copy(status = nextStatus))
             }
         }
     }

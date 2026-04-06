@@ -124,7 +124,6 @@ class TaskColumnSectionTest {
         onNodeWithText("2").assertIsDisplayed()
     }
 
-
     private fun createData(status: Status): TaskCard {
         taskSequence += 1
         return TaskCard(

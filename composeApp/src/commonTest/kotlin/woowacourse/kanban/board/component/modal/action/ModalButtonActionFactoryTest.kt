@@ -28,12 +28,13 @@ class ModalButtonActionFactoryTest {
 
     @Test
     fun `상태 변경 액션은 전이할 수 없는 상태 변경을 거절한다`() {
-        val modalState = ModalState(profiles, createTask(status = Status.DONE))
+        var modalState = ModalState(profiles, createTask(status = Status.DONE))
         var snackbarMessage = ""
 
         createFactory(
             modalState = modalState,
             initialTask = createTask(status = Status.DONE),
+            onModalStateChange = { modalState = it },
             onShowSnackbar = { snackbarMessage = it },
         ).createStatusChangeAction(Status.REVIEW).execute()
 
@@ -44,12 +45,13 @@ class ModalButtonActionFactoryTest {
     @Test
     fun `상태 변경 액션은 담당자가 필요한 상태 변경 전에 담당자를 검증한다`() {
         val initialTask = createTask(status = Status.TODO, profile = Profile.NONE)
-        val modalState = ModalState(profiles, initialTask)
+        var modalState = ModalState(profiles, initialTask)
         var snackbarMessage = ""
 
         createFactory(
             modalState = modalState,
             initialTask = initialTask,
+            onModalStateChange = { modalState = it },
             onShowSnackbar = { snackbarMessage = it },
         ).createStatusChangeAction(Status.PROGRESS).execute()
 
@@ -59,22 +61,24 @@ class ModalButtonActionFactoryTest {
 
     @Test
     fun `생성 액션은 입력이 유효할 때만 태스크를 생성한다`() {
-        val modalState = ModalState(profiles, null)
+        var modalState = ModalState(profiles, null)
         var createdTask: TaskCard? = null
 
         createFactory(
             modalState = modalState,
             initialTask = null,
+            onModalStateChange = { modalState = it },
             onCreateTask = { createdTask = it },
         ).createTaskCreateAction().execute()
 
         assertThat(createdTask).isNull()
 
-        modalState.title = "업무"
+        modalState = modalState.copy(title = "업무")
 
         createFactory(
             modalState = modalState,
             initialTask = null,
+            onModalStateChange = { modalState = it },
             onCreateTask = { createdTask = it },
         ).createTaskCreateAction().execute()
 
@@ -84,13 +88,14 @@ class ModalButtonActionFactoryTest {
     @Test
     fun `삭제 액션은 삭제 불가능한 상태를 거절한다`() {
         val initialTask = createTask(status = Status.REVIEW)
-        val modalState = ModalState(profiles, initialTask)
+        var modalState = ModalState(profiles, initialTask)
         var snackbarMessage = ""
         var deletedTaskId: String? = null
 
         createFactory(
             modalState = modalState,
             initialTask = initialTask,
+            onModalStateChange = { modalState = it },
             onShowSnackbar = { snackbarMessage = it },
             onDeleteTask = { deletedTaskId = it },
         ).createTaskDeleteAction().execute()
@@ -102,6 +107,7 @@ class ModalButtonActionFactoryTest {
     private fun createFactory(
         modalState: ModalState,
         initialTask: TaskCard?,
+        onModalStateChange: (ModalState) -> Unit = {},
         onShowSnackbar: (String) -> Unit = {},
         onCreateTask: (TaskCard) -> Unit = {},
         onUpdateTask: (String, TaskCard) -> Unit = { _, _ -> },
@@ -110,6 +116,7 @@ class ModalButtonActionFactoryTest {
         return ModalButtonActionFactory(
             modalState = modalState,
             initialTask = initialTask,
+            onModalStateChange = onModalStateChange,
             buildTaskCard = { id ->
                 TaskCard(
                     id = id ?: "created-task",

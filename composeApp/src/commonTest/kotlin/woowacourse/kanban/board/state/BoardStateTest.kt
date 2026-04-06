@@ -5,9 +5,9 @@ import kotlin.test.Test
 import kotlinx.collections.immutable.toImmutableList
 import org.assertj.core.api.Assertions.assertThat
 import woowacourse.kanban.board.component.state.WorkSpaceStateHolder
-import woowacourse.kanban.board.model.project.ProjectFactory
 import woowacourse.kanban.board.model.identifier.IdentifierGenerator
 import woowacourse.kanban.board.model.project.Project
+import woowacourse.kanban.board.model.project.ProjectFactory
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Status
@@ -40,21 +40,21 @@ class BoardStateTest {
     @Test
     fun `Todo TaskCard를 추가하면 todoList에 저장된다`() {
         val data = createData(Status.TODO)
-        workSpaceStateHolder.addTask(data)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(data)
         assertThat(workSpaceStateHolder.selectedProject?.filterTasksbyStatus(Status.TODO)).contains(data)
     }
 
     @Test
     fun `Progress TaskCard를 추가하면 progressList에 저장된다`() {
         val data = createData(Status.PROGRESS)
-        workSpaceStateHolder.addTask(data)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(data)
         assertThat(workSpaceStateHolder.selectedProject?.filterTasksbyStatus(Status.PROGRESS)).contains(data)
     }
 
     @Test
     fun `Done TaskCard를 추가하면 doneList에 저장된다`() {
         val data = createData(Status.DONE)
-        workSpaceStateHolder.addTask(data)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(data)
         assertThat(workSpaceStateHolder.selectedProject?.filterTasksbyStatus(Status.DONE)).contains(data)
     }
 
@@ -64,10 +64,10 @@ class BoardStateTest {
         val task2 = createData(Status.TODO)
         val task3 = createData(Status.TODO)
 
-        workSpaceStateHolder.addTask(task1)
-        workSpaceStateHolder.addTask(task1)
-        workSpaceStateHolder.addTask(task2)
-        workSpaceStateHolder.addTask(task3)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task1)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task1)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task2)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task3)
 
         assertThat(workSpaceStateHolder.selectedProject?.calculateDoneRate()).isEqualTo(0.50f)
     }
@@ -78,9 +78,9 @@ class BoardStateTest {
         val task2 = createData(Status.PROGRESS)
         val task3 = createData(Status.DONE)
 
-        workSpaceStateHolder.addTask(task1)
-        workSpaceStateHolder.addTask(task2)
-        workSpaceStateHolder.addTask(task3)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task1)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task2)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task3)
 
         assertThat(workSpaceStateHolder.selectedProject?.allTasksCount).isEqualTo(3)
     }
@@ -96,9 +96,9 @@ class BoardStateTest {
         val task2 = createData(Status.TODO)
         val task3 = createData(Status.TODO)
 
-        workSpaceStateHolder.addTask(task1)
-        workSpaceStateHolder.addTask(task2)
-        workSpaceStateHolder.addTask(task3)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task1)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task2)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task3)
 
         assertThat(workSpaceStateHolder.selectedProject?.calculateDoneRate()).isEqualTo(0.0f)
     }

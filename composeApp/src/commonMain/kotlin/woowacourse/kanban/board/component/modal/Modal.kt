@@ -9,7 +9,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -46,20 +49,22 @@ fun Modal(
     onDeleteTask: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val modalState = remember { ModalState(profiles, initialTask) }
+    var modalState by remember(profiles, initialTask) {
+        mutableStateOf(ModalState(profiles, initialTask))
+    }
     val taskCardFactory = remember { TaskCardFactory(UuidIdentifierGenerator()) }
     val titleInputState = TextInputState(
         value = modalState.title,
-        onChange = { modalState.title = it },
+        onChange = { modalState = modalState.copy(title = it) },
         isError = modalState.isTitleValid.not(),
     )
     val descriptionInputState = TextInputState(
         value = modalState.description,
-        onChange = { modalState.description = it },
+        onChange = { modalState = modalState.copy(description = it) },
     )
     val tagsInputState = TextInputState(
         value = modalState.tags,
-        onChange = { modalState.tags = it },
+        onChange = { modalState = modalState.copy(tags = it) },
         isError = modalState.isTagsValid.not(),
     )
     val buildTaskCard: (String?) -> TaskCard = { id ->
@@ -91,6 +96,7 @@ fun Modal(
     val buttonActionFactory = ModalButtonActionFactory(
         modalState = modalState,
         initialTask = initialTask,
+        onModalStateChange = { modalState = it },
         buildTaskCard = buildTaskCard,
         onShowSnackbar = onShowSnackbar,
         onCreateTask = onCreateTask,
@@ -129,7 +135,7 @@ fun Modal(
                 onStateClick = { nextStatus ->
                     buttonActionFactory.createStatusChangeAction(nextStatus).execute()
                 },
-                onProfileClick = { modalState.profile = it },
+                onProfileClick = { modalState = modalState.copy(profile = it) },
             )
             Footer(
                 onClickClose = onClickClose,
