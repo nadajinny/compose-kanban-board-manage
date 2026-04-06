@@ -26,11 +26,13 @@ import woowacourse.kanban.board.component.modal.section.TextInputSection
 import woowacourse.kanban.board.component.modal.state.ModalState
 import woowacourse.kanban.board.component.sample.ProfilePreviewData
 import woowacourse.kanban.board.component.sample.TaskCardPreviewData
+import woowacourse.kanban.board.model.identifier.UuidIdentifierGenerator
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
 import woowacourse.kanban.board.model.taskcard.Tag
 import woowacourse.kanban.board.model.taskcard.Tags
 import woowacourse.kanban.board.model.taskcard.TaskCard
+import woowacourse.kanban.board.model.taskcard.TaskCardFactory
 import woowacourse.kanban.board.model.taskcard.Title
 
 @Composable
@@ -45,6 +47,7 @@ fun Modal(
     modifier: Modifier = Modifier,
 ) {
     val modalState = remember { ModalState(profiles, initialTask) }
+    val taskCardFactory = remember { TaskCardFactory(UuidIdentifierGenerator()) }
     val titleInputState = TextInputState(
         value = modalState.title,
         onChange = { modalState.title = it },
@@ -59,14 +62,31 @@ fun Modal(
         onChange = { modalState.tags = it },
         isError = modalState.isTagsValid.not(),
     )
-    val buildTaskCard = {
-        TaskCard(
-            title = Title(value = modalState.title),
-            description = Description(value = modalState.description),
-            tags = Tags(Tag.parseAll(modalState.tags).toImmutableList()),
-            status = modalState.status,
-            profile = modalState.profile,
-        )
+    val buildTaskCard: (String?) -> TaskCard = { id ->
+        val title = Title(value = modalState.title)
+        val description = Description(value = modalState.description)
+        val tags = Tags(Tag.parseAll(modalState.tags).toImmutableList())
+        val status = modalState.status
+        val profile = modalState.profile
+
+        if (id == null) {
+            taskCardFactory.create(
+                title = title,
+                description = description,
+                tags = tags,
+                status = status,
+                profile = profile,
+            )
+        } else {
+            TaskCard(
+                id = id,
+                title = title,
+                description = description,
+                tags = tags,
+                status = status,
+                profile = profile,
+            )
+        }
     }
     val buttonActionFactory = ModalButtonActionFactory(
         modalState = modalState,

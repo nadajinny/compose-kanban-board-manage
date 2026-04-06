@@ -5,6 +5,8 @@ import kotlin.test.Test
 import kotlinx.collections.immutable.toImmutableList
 import org.assertj.core.api.Assertions.assertThat
 import woowacourse.kanban.board.component.state.WorkSpaceStateHolder
+import woowacourse.kanban.board.model.project.ProjectFactory
+import woowacourse.kanban.board.model.identifier.IdentifierGenerator
 import woowacourse.kanban.board.model.project.Project
 import woowacourse.kanban.board.model.taskcard.Description
 import woowacourse.kanban.board.model.taskcard.Profile
@@ -17,15 +19,19 @@ import woowacourse.kanban.board.model.workspace.WorkSpace
 
 class BoardStateTest {
     private lateinit var workSpaceStateHolder: WorkSpaceStateHolder
+    private lateinit var projectFactory: ProjectFactory
+    private lateinit var identifierGenerator: IdentifierGenerator
 
     @BeforeTest
     fun setUp() {
+        identifierGenerator = FixedIdentifierGenerator()
+        projectFactory = ProjectFactory(identifierGenerator)
         workSpaceStateHolder = WorkSpaceStateHolder(
             WorkSpace(
                 listOf<Project>(
-                    Project("Compose1", listOf<TaskCard>().toImmutableList()),
-                    Project("Compose2", listOf<TaskCard>().toImmutableList()),
-                    Project("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCard>().toImmutableList()),
+                    projectFactory.create("Compose1", listOf<TaskCard>().toImmutableList()),
+                    projectFactory.create("Compose2", listOf<TaskCard>().toImmutableList()),
+                    projectFactory.create("Compose3너무너무긴문장은말줄임표로표시합니다", listOf<TaskCard>().toImmutableList()),
                 ).toImmutableList()
             )
         )
@@ -99,11 +105,21 @@ class BoardStateTest {
 
     private fun createData(status: Status): TaskCard {
         return TaskCard(
+            id = identifierGenerator.next(),
             title = Title(value = "업무1"),
             description = Description(""),
             tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
             status = status,
             profile = Profile("다이노")
         )
+    }
+
+    private class FixedIdentifierGenerator : IdentifierGenerator {
+        private var sequence = 0
+
+        override fun next(): String {
+            sequence += 1
+            return "id-$sequence"
+        }
     }
 }

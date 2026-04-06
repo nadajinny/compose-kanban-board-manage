@@ -13,7 +13,7 @@ fun interface ModalButtonAction {
 class ModalButtonActionFactory(
     private val modalState: ModalState,
     private val initialTask: TaskCard?,
-    private val buildTaskCard: () -> TaskCard,
+    private val buildTaskCard: (String?) -> TaskCard,
     private val onShowSnackbar: (String) -> Unit,
     private val onCreateTask: (TaskCard) -> Unit,
     private val onUpdateTask: (String, TaskCard) -> Unit,
@@ -37,14 +37,14 @@ class ModalButtonActionFactory(
     fun createTaskCreateAction(): ModalButtonAction = ModalButtonAction {
         if (modalState.isSubmittable.not()) return@ModalButtonAction
 
-        onCreateTask(buildTaskCard())
+        onCreateTask(buildTaskCard(null))
     }
 
     fun createTaskModifyAction(): ModalButtonAction = ModalButtonAction {
         if (modalState.isSubmittable.not()) return@ModalButtonAction
 
         initialTask?.let { task ->
-            onUpdateTask(task.id, buildTaskCard())
+            onUpdateTask(task.id, buildTaskCard(task.id))
         }
     }
 

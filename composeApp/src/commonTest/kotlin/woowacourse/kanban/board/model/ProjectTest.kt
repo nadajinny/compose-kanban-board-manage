@@ -17,6 +17,7 @@ class ProjectTest {
     @Test
     fun `입력한 id를 가진 태스크 카드가 변경값으로 입력한 status로 변경된다`() {
         val project = Project(
+            id = "project-1",
             title = "테스트 프로젝트",
             tasks = persistentListOf(
                 TaskCard(
@@ -45,6 +46,7 @@ class ProjectTest {
             profile = Profile("다이노"),
         )
         val project = Project(
+            id = "project-2",
             title = "테스트 프로젝트",
             tasks = persistentListOf(
                 task

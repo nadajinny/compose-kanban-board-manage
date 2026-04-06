@@ -110,8 +110,9 @@ class ModalButtonActionFactoryTest {
         return ModalButtonActionFactory(
             modalState = modalState,
             initialTask = initialTask,
-            buildTaskCard = {
+            buildTaskCard = { id ->
                 TaskCard(
+                    id = id ?: "created-task",
                     title = Title(modalState.title),
                     description = Description(modalState.description),
                     tags = Tags(Tag.parseAll(modalState.tags).toImmutableList()),
@@ -132,6 +133,7 @@ class ModalButtonActionFactoryTest {
         profile: Profile = profiles.first(),
     ): TaskCard {
         return TaskCard(
+            id = "task-$title-$status-${profile.nickname}",
             title = Title(title),
             description = Description("설명"),
             tags = Tags(listOf<Tag>().toImmutableList()),

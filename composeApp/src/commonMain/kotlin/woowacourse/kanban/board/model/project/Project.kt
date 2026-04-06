@@ -1,15 +1,14 @@
 package woowacourse.kanban.board.model.project
 
-import java.util.UUID
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import woowacourse.kanban.board.model.taskcard.Status
 import woowacourse.kanban.board.model.taskcard.TaskCard
 
 class Project(
+    val id: String,
     val title: String,
     private val tasks: ImmutableList<TaskCard>,
-    val id: String = UUID.randomUUID().toString(),
 ) {
     val allTasksCount get() = tasks.size
 

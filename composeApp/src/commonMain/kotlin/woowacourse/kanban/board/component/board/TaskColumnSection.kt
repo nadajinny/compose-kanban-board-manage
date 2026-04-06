@@ -252,6 +252,7 @@ private fun TaskColumnTodoHeaderPreview() {
 private fun TaskColumnTodoPreview() {
     val tasks = listOf(
         TaskCard(
+            id = "preview-todo-task",
             title = Title(value = "제목"),
             description = Description(value = "설명"),
             tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
@@ -272,6 +273,7 @@ private fun TaskColumnTodoPreview() {
 private fun TaskColumnProgressPreview() {
     val tasks = listOf(
         TaskCard(
+            id = "preview-progress-task",
             title = Title(value = "제목"),
             description = Description(value = "설명"),
             tags = Tags(value = listOf(Tag(value = "컴포넌트"), Tag("zjavh")).toImmutableList()),
@@ -292,6 +294,7 @@ private fun TaskColumnProgressPreview() {
 private fun TaskColumnDonePreview() {
     val tasks = listOf(
         TaskCard(
+            id = "preview-done-task",
             title = Title(value = "제목"),
             description = Description(value = "설명"),
             tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),

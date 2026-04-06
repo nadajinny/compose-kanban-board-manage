@@ -263,6 +263,7 @@ class ModalTest {
         profile: Profile = profiles.first(),
     ): TaskCard {
         return TaskCard(
+            id = "task-$title-$status-${profile.nickname}",
             title = Title(title),
             description = Description("설명"),
             tags = Tags(listOf<Tag>().toImmutableList()),

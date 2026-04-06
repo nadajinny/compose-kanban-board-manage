@@ -20,6 +20,7 @@ class TaskCardTest {
     fun `모든 필드가 있는 카드 - 제목, 설명, 태그, 닉네임 출력`() = runComposeUiTest {
         val tags = listOf("컴포넌트", "성능")
         val TaskCard = TaskCard(
+            id = "task-with-profile",
             title = Title("LazyColumn 컴포넌트 구현"),
             description = Description("세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다."),
             tags = Tags(listOf(Tag("컴포넌트"), Tag("성능")).toImmutableList()),
@@ -41,6 +42,7 @@ class TaskCardTest {
     @Test
     fun `담당자가 없는 카드에서는 담당자 정보가 표시되지 않는다`() = runComposeUiTest {
         val taskCard = TaskCard(
+            id = "task-without-profile",
             title = Title("담당자 없는 카드"),
             description = Description("설명"),
             tags = Tags(listOf(Tag("태그")).toImmutableList()),

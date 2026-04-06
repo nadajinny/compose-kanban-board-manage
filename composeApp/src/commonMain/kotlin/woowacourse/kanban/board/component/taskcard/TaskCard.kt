@@ -108,6 +108,7 @@ private fun TaskCardPreview() {
 private fun TaskCardEmptyDescriptionPreview() {
     TaskCard(
         data = TaskCard(
+            id = "preview-task-empty-description",
             title = Title(value = "LazyColumn 컴포넌트 구현"),
             description = Description(value = ""),
             tags = Tags(value = listOf(Tag(value = "컴포넌트")).toImmutableList()),
@@ -122,6 +123,7 @@ private fun TaskCardEmptyDescriptionPreview() {
 private fun TaskCardEmptyTagPreview() {
     TaskCard(
         data = TaskCard(
+            id = "preview-task-empty-tag",
             title = Title(value = "LazyColumn 컴포넌트 구현"),
             description = Description(value = "세로 스크롤"),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
@@ -136,6 +138,7 @@ private fun TaskCardEmptyTagPreview() {
 private fun TaskCardEmptyTagAndDescriptionPreview() {
     TaskCard(
         data = TaskCard(
+            id = "preview-task-empty-tag-description",
             title = Title(value = "LazyColumn 컴포넌트 구현"),
             description = Description(value = ""),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
@@ -150,6 +153,7 @@ private fun TaskCardEmptyTagAndDescriptionPreview() {
 private fun TaskCardLongTitlePreview() {
     TaskCard(
         data = TaskCard(
+            id = "preview-task-long-title",
             title = Title(value = "LazyColumn 컴포넌트 구현LazyColumn 컴포넌트 구현"),
             description = Description(value = ""),
             tags = Tags(value = listOf<Tag>().toImmutableList()),
@@ -164,6 +168,7 @@ private fun TaskCardLongTitlePreview() {
 private fun TaskCardLongDescriptionPreview() {
     TaskCard(
         data = TaskCard(
+            id = "preview-task-long-description",
             title = Title(value = "LazyColumn 컴포넌트 구현"),
             description = Description(
                 value = "세로 스크롤  세로 스크롤" +

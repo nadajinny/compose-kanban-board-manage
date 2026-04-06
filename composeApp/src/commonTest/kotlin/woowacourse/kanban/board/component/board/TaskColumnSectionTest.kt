@@ -17,6 +17,7 @@ import woowacourse.kanban.board.model.taskcard.Title
 
 @OptIn(ExperimentalTestApi::class)
 class TaskColumnSectionTest {
+    private var taskSequence = 0
 
     @Test
     fun `todoTasks에 등록된 태스크가 3개면 3이 출력된다`() = runComposeUiTest {
@@ -25,6 +26,7 @@ class TaskColumnSectionTest {
         val data3 = createData(Status.TODO)
         val todoTasks = listOf(data1, data2, data3)
         val project = Project(
+            id = "project-todo",
             title = "title",
             tasks = todoTasks.toImmutableList()
         )
@@ -52,6 +54,7 @@ class TaskColumnSectionTest {
 
         val progressTasks = listOf(data1, data2, data3, data4, data5)
         val project = Project(
+            id = "project-progress",
             title = "title",
             tasks = progressTasks.toImmutableList()
         )
@@ -78,6 +81,7 @@ class TaskColumnSectionTest {
 
         val doneTasks = listOf(data1, data2, data3, data4)
         val project = Project(
+            id = "project-done",
             title = "title",
             tasks = doneTasks.toImmutableList()
         )
@@ -102,6 +106,7 @@ class TaskColumnSectionTest {
 
         val reviewTasks = listOf(data1, data2)
         val project = Project(
+            id = "project-review",
             title = "title",
             tasks = reviewTasks.toImmutableList()
         )
@@ -121,7 +126,9 @@ class TaskColumnSectionTest {
 
 
     private fun createData(status: Status): TaskCard {
+        taskSequence += 1
         return TaskCard(
+            id = "task-$status-$taskSequence",
             title = Title(value = "업무1"),
             description = Description(""),
             tags = Tags(value = listOf(Tag("컴포넌트")).toImmutableList()),
