@@ -60,6 +60,20 @@ class ModalButtonActionFactoryTest {
     }
 
     @Test
+    fun `상태 변경 액션은 가능한 상태 변경이면 모달 상태를 변경한다`() {
+        val initialTask = createTask(status = Status.TODO)
+        var modalState = ModalState(profiles, initialTask)
+
+        createFactory(
+            modalState = modalState,
+            initialTask = initialTask,
+            onModalStateChange = { modalState = it },
+        ).createStatusChangeAction(Status.PROGRESS).execute()
+
+        assertThat(modalState.status).isEqualTo(Status.PROGRESS)
+    }
+
+    @Test
     fun `생성 액션은 입력이 유효할 때만 태스크를 생성한다`() {
         var modalState = ModalState(profiles, null)
         var createdTask: TaskCard? = null
@@ -86,6 +100,33 @@ class ModalButtonActionFactoryTest {
     }
 
     @Test
+    fun `수정 액션은 입력이 유효할 때 기존 태스크를 수정한다`() {
+        val initialTask = createTask(title = "기존 업무")
+        var modalState = ModalState(profiles, initialTask).copy(
+            title = "수정된 업무",
+            description = "수정된 설명",
+            status = Status.PROGRESS,
+        )
+        var updatedTaskId: String? = null
+        var updatedTask: TaskCard? = null
+
+        createFactory(
+            modalState = modalState,
+            initialTask = initialTask,
+            onModalStateChange = { modalState = it },
+            onUpdateTask = { id, task ->
+                updatedTaskId = id
+                updatedTask = task
+            },
+        ).createTaskModifyAction().execute()
+
+        assertThat(updatedTaskId).isEqualTo(initialTask.id)
+        assertThat(updatedTask?.title?.value).isEqualTo("수정된 업무")
+        assertThat(updatedTask?.description?.value).isEqualTo("수정된 설명")
+        assertThat(updatedTask?.status).isEqualTo(Status.PROGRESS)
+    }
+
+    @Test
     fun `삭제 액션은 삭제 불가능한 상태를 거절한다`() {
         val initialTask = createTask(status = Status.REVIEW)
         var modalState = ModalState(profiles, initialTask)
@@ -102,6 +143,22 @@ class ModalButtonActionFactoryTest {
 
         assertThat(snackbarMessage).isEqualTo(ComponentText.BOARD_TASK_DELETE_DENIED_SNACKBAR)
         assertThat(deletedTaskId).isNull()
+    }
+
+    @Test
+    fun `삭제 액션은 삭제 가능한 상태면 태스크 삭제를 요청한다`() {
+        val initialTask = createTask(status = Status.TODO)
+        var modalState = ModalState(profiles, initialTask)
+        var deletedTaskId: String? = null
+
+        createFactory(
+            modalState = modalState,
+            initialTask = initialTask,
+            onModalStateChange = { modalState = it },
+            onDeleteTask = { deletedTaskId = it },
+        ).createTaskDeleteAction().execute()
+
+        assertThat(deletedTaskId).isEqualTo(initialTask.id)
     }
 
     private fun createFactory(

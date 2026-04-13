@@ -59,6 +59,58 @@ class BoardStateTest {
     }
 
     @Test
+    fun `프로젝트를 선택하면 선택된 프로젝트가 변경된다`() {
+        val nextProject = workSpaceStateHolder.workSpace.projects[1]
+
+        workSpaceStateHolder = workSpaceStateHolder.selectProject(nextProject)
+
+        assertThat(workSpaceStateHolder.selectedProject?.id).isEqualTo(nextProject.id)
+    }
+
+    @Test
+    fun `선택된 프로젝트의 태스크 상태를 변경할 수 있다`() {
+        val task = createData(Status.TODO)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task)
+
+        workSpaceStateHolder = workSpaceStateHolder.updateTaskStatus(task.id, Status.PROGRESS)
+
+        val foundTask = workSpaceStateHolder.selectedProject?.findTaskById(task.id)
+        assertThat(foundTask?.status).isEqualTo(Status.PROGRESS)
+    }
+
+    @Test
+    fun `선택된 프로젝트의 태스크를 수정할 수 있다`() {
+        val task = createData(Status.TODO)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task)
+        val updatedTask = TaskCard(
+            id = task.id,
+            title = Title("수정된 업무"),
+            description = Description("수정된 설명"),
+            tags = Tags(value = listOf(Tag("수정")).toImmutableList()),
+            status = Status.PROGRESS,
+            profile = Profile("페임스")
+        )
+
+        workSpaceStateHolder = workSpaceStateHolder.updateTask(task.id, updatedTask)
+
+        val foundTask = workSpaceStateHolder.selectedProject?.findTaskById(task.id)
+        assertThat(foundTask?.title?.value).isEqualTo("수정된 업무")
+        assertThat(foundTask?.description?.value).isEqualTo("수정된 설명")
+        assertThat(foundTask?.status).isEqualTo(Status.PROGRESS)
+        assertThat(foundTask?.profile?.nickname).isEqualTo("페임스")
+    }
+
+    @Test
+    fun `선택된 프로젝트의 태스크를 삭제할 수 있다`() {
+        val task = createData(Status.TODO)
+        workSpaceStateHolder = workSpaceStateHolder.addTask(task)
+
+        workSpaceStateHolder = workSpaceStateHolder.deleteTask(task.id)
+
+        assertThat(workSpaceStateHolder.selectedProject?.findTaskById(task.id)).isNull()
+    }
+
+    @Test
     fun `4개 업무 중 2개를 완료했을 때 완료율은 50%로 계산된다`() {
         val task1 = createData(Status.DONE)
         val task2 = createData(Status.TODO)
