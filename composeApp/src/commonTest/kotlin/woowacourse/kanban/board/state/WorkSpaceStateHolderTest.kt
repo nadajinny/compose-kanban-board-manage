@@ -17,7 +17,7 @@ import woowacourse.kanban.board.model.taskcard.TaskCard
 import woowacourse.kanban.board.model.taskcard.Title
 import woowacourse.kanban.board.model.workspace.WorkSpace
 
-class BoardStateTest {
+class WorkSpaceStateHolderTest {
     private lateinit var workSpaceStateHolder: WorkSpaceStateHolder
     private lateinit var projectFactory: ProjectFactory
     private lateinit var identifierGenerator: IdentifierGenerator
